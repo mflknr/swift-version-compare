@@ -5,6 +5,8 @@ struct Version: SemanticVersionComparable {
 
     private(set) var extensions: [String]?
 
+    // MARK: -
+
     init(_ string: String) throws {
         // split string into version and attachment substrings
         let stringElements = string.split(separator: "-", maxSplits: 1, omittingEmptySubsequences: true)
@@ -41,6 +43,8 @@ struct Version: SemanticVersionComparable {
         }
     }
 }
+
+// MARK: -
 
 extension Version: CustomDebugStringConvertible {
     var debugDescription: String { absoluteString }
