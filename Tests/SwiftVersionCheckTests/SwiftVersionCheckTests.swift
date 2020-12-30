@@ -7,19 +7,29 @@ final class SwiftVersionCheckTests: XCTestCase {
         ("1.2.3-alpha.1", "1.2.3", "alpha.1"),
         ("1.0", "1.0.0" , nil),
         ("1", "1.0.0", nil),
-        ("13434", "13434.0.0", nil)
+        ("13434", "13434.0.0", nil),
+        ("0.123123.0", "0.123123.0", nil),
+        ("0.0.127498127947", "0.0.127498127947", nil)
     ]
 
     private let invalidVersionData: [String] = [
         ".0.",
         ".0",
+        ".123",
+        ".400.",
         "1.0.x",
         "1.x.0",
         "x.0.0",
         "",
         "ofkn",
         "_`'*§!§",
-        "da.a`sm-k132/89"
+        "da.a`sm-k132/89",
+        "1.1.1.1",
+        "0.0.0.0.0.0",
+        ".0.0",
+        "0.0.",
+        "alpha",
+        "-alpha"
     ]
 
     func testValidConstruction() {
