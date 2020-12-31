@@ -67,6 +67,17 @@ extension SemanticVersionComparable {
     }
 }
 
+// MARK: - Operations
+
+extension SemanticVersionComparable {
+    /// A Boolean value indicating whether the version is compatible with a given different version.
+    /// - Parameter version: An object that conforms to the `SemanticVersionComparable`protocol.
+    /// - Returns: A boolean indication the compatibility.
+    func isCompatible(with version: Self) -> Bool {
+        self.major == version.major
+    }
+}
+
 // MARK: - Accessor
 
 extension SemanticVersionComparable {

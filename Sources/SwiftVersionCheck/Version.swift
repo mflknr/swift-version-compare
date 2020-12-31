@@ -18,18 +18,18 @@ struct Version: SemanticVersionComparable {
             throw Error.parse("Empty version string in: \(string)")
         }
 
-        // now make sure that the version has the correct SemVer format
+        // check that the versionString has the correct SemVer format which would be any character (number or letter,
+        // no symbols!) x in the form of `x`, `x.x`or `x.x.x`.
         let versionString = String(versionStringElement)
-        guard versionString.matchesSemVerIdentifiers() else {
+        guard versionString.matchesSemVerFormat() else {
             throw Error.format("Version string (\(versionStringElement)) seems to alternate from SemVer format.")
         }
 
         // extract version elements from validated versionString as unsigned integers
         let versionIdentifiers: [UInt] = try versionString.split(separator: ".").map(String.init).map {
-            // since we checked for only positive numbers with regex we can savely init UInt from String, but i won't
-            // the crash operator (`return UInt($0)!`) even if my very live depends on it
+            // since we already checked the format, we can now try to extract an UInt from the string
             guard let element = UInt($0) else {
-                throw Error.parse("Version element is invalid: \($0)")
+                throw Error.parse("Version identifier is an invalid character: \($0). Expecting numbers.")
             }
 
             return element
@@ -61,9 +61,9 @@ private extension String {
         self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
     }
 
-    func matchesSemVerIdentifiers() -> Bool {
-        self.matches("^([0-9]+)\\.([0-9]+)\\.([0-9]+)$") ||
-            self.matches("^([0-9]+)\\.([0-9]+)$") ||
-            self.matches("^([0-9]+)$")
+    func matchesSemVerFormat() -> Bool {
+        self.matches("^([0-9a-zA-Z]+)\\.([0-9a-zA-Z]+)\\.([0-9a-zA-Z]+)$") ||
+            self.matches("^([0-9a-zA-Z]+)\\.([0-9a-zA-Z]+)$") ||
+            self.matches("^([0-9a-zA-Z]+)$")
     }
 }

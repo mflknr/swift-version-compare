@@ -51,6 +51,50 @@ final class SwiftVersionCheckTests: XCTestCase {
         }
     }
 
+    func testOperations() {
+        let versionAA = try! Version("1.0.0")
+        let versionAB = try! Version("1.1.0")
+        let versionAC = try! Version("1.1.1")
+        let versionAD = try! Version("1.0.1")
+        let versionAE = try! Version("1.6238746")
+        let versionAF = try! Version("1")
+        let versionAs = [versionAA, versionAB, versionAC, versionAD, versionAE, versionAF]
+
+        let versionBA = try! Version("2.0.0")
+        let versionBB = try! Version("2.1.0")
+        let versionBC = try! Version("2.1.1")
+        let versionBD = try! Version("2.0.1")
+        let versionBE = try! Version("2.3875")
+        let versionBF = try! Version("2")
+        let versionBs = [versionBA, versionBB, versionBC, versionBD, versionBE, versionBF]
+
+        // compatible
+        versionAs.forEach { first in
+            versionAs.forEach { second in
+                XCTAssertTrue(first.isCompatible(with: second))
+            }
+        }
+
+        versionBs.forEach { first in
+            versionBs.forEach { second in
+                XCTAssertTrue(first.isCompatible(with: second))
+            }
+        }
+
+        // incompatible
+        versionAs.forEach { first in
+            versionBs.forEach { second in
+                XCTAssertFalse(first.isCompatible(with: second))
+            }
+        }
+
+        versionBs.forEach { first in
+            versionAs.forEach { second in
+                XCTAssertFalse(first.isCompatible(with: second))
+            }
+        }
+    }
+
     static var allTests = [
         ("testValidConstruction", testValidConstruction),
         ("testInvalidConstruction", testInvalidConstruction),
