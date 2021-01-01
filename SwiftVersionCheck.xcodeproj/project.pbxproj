@@ -23,9 +23,10 @@
 /* Begin PBXBuildFile section */
 		242572B5259AA91C00170C5F /* SemanticVersionComparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242572B4259AA91C00170C5F /* SemanticVersionComparable.swift */; };
 		242572BF259BE92D00170C5F /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242572BE259BE92D00170C5F /* Error.swift */; };
+		24BFA03C259FD2A400A15E40 /* SemanticVersionComparableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BFA03B259FD2A400A15E40 /* SemanticVersionComparableTests.swift */; };
 		OBJ_24 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Version.swift */; };
 		OBJ_31 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_42 /* SwiftVersionCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* SwiftVersionCheckTests.swift */; };
+		OBJ_42 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* VersionTests.swift */; };
 		OBJ_43 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* XCTestManifests.swift */; };
 		OBJ_45 /* SwiftVersionCheck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftVersionCheck::SwiftVersionCheck::Product" /* SwiftVersionCheck.framework */; };
 /* End PBXBuildFile section */
@@ -50,7 +51,8 @@
 /* Begin PBXFileReference section */
 		242572B4259AA91C00170C5F /* SemanticVersionComparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticVersionComparable.swift; sourceTree = "<group>"; };
 		242572BE259BE92D00170C5F /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		OBJ_12 /* SwiftVersionCheckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftVersionCheckTests.swift; sourceTree = "<group>"; };
+		24BFA03B259FD2A400A15E40 /* SemanticVersionComparableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticVersionComparableTests.swift; sourceTree = "<group>"; };
+		OBJ_12 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
 		OBJ_13 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_17 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		OBJ_18 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -90,7 +92,8 @@
 		OBJ_11 /* SwiftVersionCheckTests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_12 /* SwiftVersionCheckTests.swift */,
+				24BFA03B259FD2A400A15E40 /* SemanticVersionComparableTests.swift */,
+				OBJ_12 /* VersionTests.swift */,
 				OBJ_13 /* XCTestManifests.swift */,
 			);
 			name = SwiftVersionCheckTests;
@@ -106,7 +109,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -116,7 +119,6 @@
 				OBJ_17 /* LICENSE */,
 				OBJ_18 /* README.md */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -204,7 +206,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_14 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -240,7 +242,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_42 /* SwiftVersionCheckTests.swift in Sources */,
+				24BFA03C259FD2A400A15E40 /* SemanticVersionComparableTests.swift in Sources */,
+				OBJ_42 /* VersionTests.swift in Sources */,
 				OBJ_43 /* XCTestManifests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

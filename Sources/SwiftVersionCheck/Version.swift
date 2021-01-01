@@ -1,6 +1,6 @@
 import Foundation
 
-struct Version: SemanticVersionComparable {
+struct Version: SemanticVersionComparable, Hashable {
     private(set) var major: UInt
     private(set) var minor: UInt
     private(set) var patch: UInt
