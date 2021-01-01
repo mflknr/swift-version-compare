@@ -24,7 +24,7 @@ final class SemanticVersionComparableTests: XCTestCase {
         }
     }
 
-    func testOperators() throws {
+    func testNonEqualOperators() throws {
         let testData: [Version: Version] = [
             try! Version("15.287349.9"): try! Version("15.287349.10"),
             try! Version("0.0.1"): try! Version("0.1.0"),
@@ -101,4 +101,10 @@ final class SemanticVersionComparableTests: XCTestCase {
             }
         }
     }
+
+    static var allTests = [
+        ("testEqualOperator", testEqualOperator),
+        ("testNonEqualOperators", testNonEqualOperators),
+        ("testCompatibility", testCompatibility)
+    ]
 }

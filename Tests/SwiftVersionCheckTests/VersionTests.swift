@@ -54,7 +54,7 @@ final class SwiftVersionCheckTests: XCTestCase {
         }
     }
 
-    func testEmptyVersionString() throws {
+    func testErrorEmptyVersionString() throws {
         let testStrings = [
             "-alpha",
             "-",
@@ -110,5 +110,8 @@ final class SwiftVersionCheckTests: XCTestCase {
     static var allTests = [
         ("testValidConstruction", testValidConstruction),
         ("testInvalidConstruction", testInvalidConstruction),
+        ("testErrorEmptyVersionString", testErrorEmptyVersionString),
+        ("testErrorInvalidVersionFormat", testErrorInvalidVersionFormat),
+        ("testErrorInvalidVersionIdentifier", testErrorInvalidVersionIdentifier)
     ]
 }
