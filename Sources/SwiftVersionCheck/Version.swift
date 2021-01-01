@@ -11,25 +11,25 @@ struct Version: SemanticVersionComparable {
 
     init(_ string: String) throws {
         // split string into version and extension substrings
-        let stringElements = string.split(separator: "-", maxSplits: 1, omittingEmptySubsequences: true)
+        let stringElements = string.split(separator: "-", maxSplits: 1, omittingEmptySubsequences: false)
 
         // check for non-empty version string e.g. "-alpha"
-        guard let versionStringElement = stringElements.first else {
-            throw Error.parse("Empty version string in: \(string)")
+        guard let versionStringElement = stringElements.first, !versionStringElement.isEmpty else {
+            throw Error.emptyVersionString
         }
 
         // check that the versionString has the correct SemVer format which would be any character (number or letter,
         // no symbols!) x in the form of `x`, `x.x`or `x.x.x`.
         let versionString = String(versionStringElement)
         guard versionString.matchesSemVerFormat() else {
-            throw Error.format("Version string (\(versionStringElement)) seems to alternate from SemVer format.")
+            throw Error.invalidVersionFormat
         }
 
         // extract version elements from validated versionString as unsigned integers
         let versionIdentifiers: [UInt] = try versionString.split(separator: ".").map(String.init).map {
             // since we already checked the format, we can now try to extract an UInt from the string
             guard let element = UInt($0) else {
-                throw Error.parse("Version identifier is an invalid character: \($0). Expecting numbers.")
+                throw Error.invalidVersionIdentifier
             }
 
             return element

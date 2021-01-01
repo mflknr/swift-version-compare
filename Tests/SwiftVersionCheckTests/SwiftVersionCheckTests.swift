@@ -29,7 +29,10 @@ final class SwiftVersionCheckTests: XCTestCase {
         ".0.0",
         "0.0.",
         "alpha",
-        "-alpha"
+        "-alpha",
+        "-beta.123",
+        "-",
+        "-pre-build"
     ]
 
     func testValidConstruction() {
@@ -48,6 +51,59 @@ final class SwiftVersionCheckTests: XCTestCase {
     func testInvalidConstruction() {
         invalidVersionData.forEach {
             XCTAssertNil(try? Version($0), "Expected object from string `\($0)` to be nil!")
+        }
+    }
+
+    func testEmptyVersionString() throws {
+        let testStrings = [
+            "-alpha",
+            "-",
+            "-pre-build",
+            "-beta.123"
+        ]
+
+        try testStrings.forEach { string in
+            XCTAssertThrowsError(try Version.init(string)) { error in
+                XCTAssertEqual(error as! Error, Error.emptyVersionString, "Expected throwing error for versionString: \(string)")
+            }
+        }
+    }
+
+    func testErrorInvalidVersionFormat() throws {
+        let testStrings = [
+            "da.a`sm-k132/89",
+            "1.1.1.1",
+            "0.0.0.0.0.0",
+            ".0.0",
+            "0.0.",
+            "_`'*§!§",
+            ".0.",
+            ".0",
+            ".123",
+            ".400."
+        ]
+
+        try testStrings.forEach { string in
+            XCTAssertThrowsError(try Version.init(string)) { error in
+                XCTAssertEqual(error as! Error, Error.invalidVersionFormat, "Expected throwing error for versionString: \(string)")
+            }
+        }
+    }
+
+    func testErrorInvalidVersionIdentifier() throws {
+        let testStrings = [
+            "1.0.x",
+            "1.x.0",
+            "x.0.0",
+            "sdjflk.ksdjla.123",
+            "asdasd.1.1",
+            "1.1.4354vdf"
+        ]
+
+        try testStrings.forEach { string in
+            XCTAssertThrowsError(try Version.init(string)) { error in
+                XCTAssertEqual(error as! Error, Error.invalidVersionIdentifier, "Expected throwing error for versionString: \(string)")
+            }
         }
     }
 
