@@ -1,12 +1,12 @@
 //
 //  SemanticVersionComparableTests.swift
-//  SwiftVersionCheckTests
+//  SwiftVersionCompareTests
 //
 //  Created by Marius Hötten-Löns on 01.01.21.
 //
 
 import XCTest
-@testable import SwiftVersionCheck
+@testable import SwiftVersionCompare
 
 final class VersionTests: XCTestCase {
     private let validVersionData: [(String, String, String?)] = [

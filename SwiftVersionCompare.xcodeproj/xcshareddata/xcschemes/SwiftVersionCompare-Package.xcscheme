@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SwiftVersionCheck::SwiftVersionCheck"
-               BuildableName = "SwiftVersionCheck.framework"
-               BlueprintName = "SwiftVersionCheck"
-               ReferencedContainer = "container:SwiftVersionCheck.xcodeproj">
+               BlueprintIdentifier = "SwiftVersionCompare::SwiftVersionCompare"
+               BuildableName = "SwiftVersionCompare.framework"
+               BlueprintName = "SwiftVersionCompare"
+               ReferencedContainer = "container:SwiftVersionCompare.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "SwiftVersionCheck::SwiftVersionCheck"
-            BuildableName = "SwiftVersionCheck.framework"
-            BlueprintName = "SwiftVersionCheck"
-            ReferencedContainer = "container:SwiftVersionCheck.xcodeproj">
+            BlueprintIdentifier = "SwiftVersionCompare::SwiftVersionCompare"
+            BuildableName = "SwiftVersionCompare.framework"
+            BlueprintName = "SwiftVersionCompare"
+            ReferencedContainer = "container:SwiftVersionCompare.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
@@ -43,10 +43,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SwiftVersionCheck::SwiftVersionCheckTests"
-               BuildableName = "SwiftVersionCheckTests.xctest"
-               BlueprintName = "SwiftVersionCheckTests"
-               ReferencedContainer = "container:SwiftVersionCheck.xcodeproj">
+               BlueprintIdentifier = "SwiftVersionCompare::SwiftVersionCompareTests"
+               BuildableName = "SwiftVersionCompareTests.xctest"
+               BlueprintName = "SwiftVersionCompareTests"
+               ReferencedContainer = "container:SwiftVersionCompare.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

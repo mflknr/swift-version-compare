@@ -1,6 +1,6 @@
 //
 //  Error.swift
-//  SwiftVersionCheck
+//  SwiftVersionCompare
 //
 //  Created by Marius Hötten-Löns on 29.12.20.
 //
