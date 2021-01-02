@@ -77,17 +77,17 @@ extension Version: ExpressibleByStringInterpolation {
     }
 }
 
+// MARK: - Protocol Conformances
+
 extension Version: CustomDebugStringConvertible {
     var debugDescription: String { absoluteString }
 }
-
-
 
 extension Version: Codable {}
 
 extension Version: Hashable {}
 
-// MARK: - String Regex
+// MARK: - Regex
 
 private extension String {
     func matches(_ regex: String) -> Bool {
