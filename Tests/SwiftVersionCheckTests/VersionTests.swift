@@ -46,6 +46,40 @@ final class SwiftVersionCheckTests: XCTestCase {
                 XCTAssertNil(version!.extension, "Expected extension to be nil!")
             }
         }
+
+        // test string literal
+        validVersionData.forEach {
+            // equivalent to `let version: Version = ""`
+            let version = Version(stringLiteral: $0.0)
+            XCTAssertNotNil(version, "Expected object from string `\($0.0)` not to be nil!")
+            XCTAssertTrue(version.versionCode == $0.1, "Expected versionCode to be \($0.1), is: \(version.versionCode)")
+            if let expectedExtension = $0.2 {
+                XCTAssertEqual(version.extension, $0.2, "Expected extension to be \(expectedExtension), is: \(version.extension ?? "nil")")
+            } else {
+                XCTAssertNil(version.extension, "Expected extension to be nil!")
+            }
+        }
+
+        // test string interpolation
+        validVersionData.forEach {
+            // equivalent to `let version: Version = ""`
+            let version: Version = "\($0.0)"
+            XCTAssertNotNil(version, "Expected object from string `\($0.0)` not to be nil!")
+            XCTAssertTrue(version.versionCode == $0.1, "Expected versionCode to be \($0.1), is: \(version.versionCode)")
+            if let expectedExtension = $0.2 {
+                XCTAssertEqual(version.extension, $0.2, "Expected extension to be \(expectedExtension), is: \(version.extension ?? "nil")")
+            } else {
+                XCTAssertNil(version.extension, "Expected extension to be nil!")
+            }
+        }
+    }
+
+    func testMemberwiseConstruction() {
+        let versionA = Version(major: 1, minor: 2, patch: 3, extensions: ["alpha"])
+        XCTAssertEqual(versionA.absoluteString, "1.2.3-alpha", "Expected version to be `1.2.3-alpha`, is: \(versionA)!")
+
+        let versionB = Version(major: 125)
+        XCTAssertEqual(versionB, "125.0.0")
     }
 
     func testInvalidConstruction() {

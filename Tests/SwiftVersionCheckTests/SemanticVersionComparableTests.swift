@@ -11,10 +11,10 @@ import XCTest
 final class SemanticVersionComparableTests: XCTestCase {
     func testEqualOperator() throws {
         let testData: [Version: Version] = [
-            try! Version("15.287349.10"): try! Version("15.287349.10"),
-            try! Version("0.1.0"): try! Version("0.1.0"),
-            try! Version("1"): try! Version("1.0.0"),
-            try! Version("15.2"): try! Version("15.2.0")
+            Version("15.287349.10"): Version("15.287349.10"),
+            Version("0.1.0"): Version("0.1.0"),
+            Version("1"): Version("1.0.0"),
+            Version("15.2"): Version("15.2.0")
         ]
 
         testData.forEach { lhs, rhs in
@@ -26,12 +26,12 @@ final class SemanticVersionComparableTests: XCTestCase {
 
     func testNonEqualOperators() throws {
         let testData: [Version: Version] = [
-            try! Version("15.287349.9"): try! Version("15.287349.10"),
-            try! Version("0.0.1"): try! Version("0.1.0"),
-            try! Version("0"): try! Version("1.0.0"),
-            try! Version("13.9182"): try! Version("15.2.0"),
-            try! Version("13.9182.0-alpha"): try! Version("15.2.0"),
-            try! Version("13.9182.1-alpha"): try! Version("13.9182.1")
+            Version("15.287349.9"): Version("15.287349.10"),
+            Version("0.0.1"): Version("0.1.0"),
+            Version("0"): Version("1.0.0"),
+            Version("13.9182"): Version("15.2.0"),
+            Version("13.9182.0-alpha"): Version("15.2.0"),
+            Version("13.9182.1-alpha"): Version("13.9182.1")
         ]
 
         testData.forEach { lhs, rhs in
@@ -59,20 +59,20 @@ final class SemanticVersionComparableTests: XCTestCase {
     }
 
     func testCompatibility() {
-        let versionAA = try! Version("1.0.0")
-        let versionAB = try! Version("1.1.0")
-        let versionAC = try! Version("1.1.1")
-        let versionAD = try! Version("1.0.1")
-        let versionAE = try! Version("1.6238746")
-        let versionAF = try! Version("1")
+        let versionAA = Version("1.0.0")
+        let versionAB = Version("1.1.0")
+        let versionAC = Version("1.1.1")
+        let versionAD = Version("1.0.1")
+        let versionAE = Version("1.6238746")
+        let versionAF = Version("1")
         let versionAs = [versionAA, versionAB, versionAC, versionAD, versionAE, versionAF]
 
-        let versionBA = try! Version("2.0.0")
-        let versionBB = try! Version("2.1.0")
-        let versionBC = try! Version("2.1.1")
-        let versionBD = try! Version("2.0.1")
-        let versionBE = try! Version("2.3875")
-        let versionBF = try! Version("2")
+        let versionBA = Version("2.0.0")
+        let versionBB = Version("2.1.0")
+        let versionBC = Version("2.1.1")
+        let versionBD = Version("2.0.1")
+        let versionBE = Version("2.3875")
+        let versionBF = Version("2")
         let versionBs = [versionBA, versionBB, versionBC, versionBD, versionBE, versionBF]
 
         // compatible

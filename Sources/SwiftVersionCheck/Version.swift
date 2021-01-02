@@ -1,6 +1,6 @@
 import Foundation
 
-struct Version: SemanticVersionComparable, Hashable {
+struct Version: SemanticVersionComparable {
     private(set) var major: UInt
     private(set) var minor: UInt
     private(set) var patch: UInt
@@ -50,11 +50,44 @@ struct Version: SemanticVersionComparable, Hashable {
     }
 }
 
-// MARK: -
+// MARK: - Initializer
+
+extension Version {
+    init(
+        major: UInt,
+        minor: UInt = 0,
+        patch: UInt = 0,
+        extensions: [String]? = nil
+    ) {
+        self.major = major
+        self.minor = minor
+        self.patch = patch
+        self.extensions = extensions
+    }
+}
+
+extension Version: ExpressibleByStringLiteral {
+    init(stringLiteral value: StringLiteralType) {
+        try! self.init(value)
+    }
+}
+extension Version: ExpressibleByStringInterpolation {
+    init(stringInterpolation: DefaultStringInterpolation) {
+        try! self.init(String(stringInterpolation: stringInterpolation))
+    }
+}
 
 extension Version: CustomDebugStringConvertible {
     var debugDescription: String { absoluteString }
 }
+
+
+
+extension Version: Codable {}
+
+extension Version: Hashable {}
+
+// MARK: - String Regex
 
 private extension String {
     func matches(_ regex: String) -> Bool {
