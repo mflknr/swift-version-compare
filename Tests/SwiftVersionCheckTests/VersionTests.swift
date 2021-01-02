@@ -1,7 +1,14 @@
+//
+//  SemanticVersionComparableTests.swift
+//  SwiftVersionCheckTests
+//
+//  Created by Marius Hötten-Löns on 01.01.21.
+//
+
 import XCTest
 @testable import SwiftVersionCheck
 
-final class SwiftVersionCheckTests: XCTestCase {
+final class VersionTests: XCTestCase {
     private let validVersionData: [(String, String, String?)] = [
         ("1.0.0", "1.0.0", nil) ,
         ("1.2.3-alpha.1", "1.2.3", "alpha.1"),
@@ -143,6 +150,7 @@ final class SwiftVersionCheckTests: XCTestCase {
 
     static var allTests = [
         ("testValidConstruction", testValidConstruction),
+        ("testMemberwiseConstruction", testMemberwiseConstruction),
         ("testInvalidConstruction", testInvalidConstruction),
         ("testErrorEmptyVersionString", testErrorEmptyVersionString),
         ("testErrorInvalidVersionFormat", testErrorInvalidVersionFormat),

@@ -1,3 +1,10 @@
+//
+//  SemanticVersionComparable.swift
+//  SwiftVersionCheck
+//
+//  Created by Marius Hötten-Löns on 29.12.20.
+//
+
 protocol SemanticVersionComparable: Comparable {
     var major: UInt { get }
     var minor: UInt { get }

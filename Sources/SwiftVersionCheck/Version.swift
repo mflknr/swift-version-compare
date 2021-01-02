@@ -1,3 +1,10 @@
+//
+//  Version.swift
+//  SwiftVersionCheck
+//
+//  Created by Marius Hötten-Löns on 29.12.20.
+//
+
 import Foundation
 
 struct Version: SemanticVersionComparable {
