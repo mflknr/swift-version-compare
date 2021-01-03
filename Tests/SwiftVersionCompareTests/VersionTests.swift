@@ -12,9 +12,9 @@ final class VersionTests: XCTestCase {
     private let validVersionData: [(String, String, String?)] = [
         ("1.0.0", "1.0.0", nil) ,
         ("1.2.3-alpha.1", "1.2.3", "alpha.1"),
-        ("1.0", "1.0.0" , nil),
-        ("1", "1.0.0", nil),
-        ("13434", "13434.0.0", nil),
+        ("1.0", "1.0" , nil),
+        ("1", "1", nil),
+        ("13434", "13434", nil),
         ("0.123123.0", "0.123123.0", nil),
         ("0.0.127498127947", "0.0.127498127947", nil)
     ]
@@ -39,14 +39,18 @@ final class VersionTests: XCTestCase {
         "-alpha",
         "-beta.123",
         "-",
-        "-pre-build"
+        "-pre-build",
+        "sdjflk.ksdjla.123",
+        "asdasd.1.1",
+        "1.1.4354vdf"
     ]
 
     func testValidConstruction() {
         validVersionData.forEach {
-            let version = try? Version($0.0)
+            let version = Version($0.0)
             XCTAssertNotNil(version, "Expected object from string `\($0.0)` not to be nil!")
             XCTAssertTrue(version!.versionCode == $0.1, "Expected versionCode to be \($0.1), is: \(version!.versionCode)")
+            XCTAssertEqual(version!.debugDescription, version!.description)
             if let expectedExtension = $0.2 {
                 XCTAssertEqual(version!.extension, $0.2, "Expected extension to be \(expectedExtension), is: \(version!.extension ?? "nil")")
             } else {
@@ -60,6 +64,7 @@ final class VersionTests: XCTestCase {
             let version = Version(stringLiteral: $0.0)
             XCTAssertNotNil(version, "Expected object from string `\($0.0)` not to be nil!")
             XCTAssertTrue(version.versionCode == $0.1, "Expected versionCode to be \($0.1), is: \(version.versionCode)")
+            XCTAssertEqual(version.debugDescription, version.description)
             if let expectedExtension = $0.2 {
                 XCTAssertEqual(version.extension, $0.2, "Expected extension to be \(expectedExtension), is: \(version.extension ?? "nil")")
             } else {
@@ -73,6 +78,7 @@ final class VersionTests: XCTestCase {
             let version: Version = "\($0.0)"
             XCTAssertNotNil(version, "Expected object from string `\($0.0)` not to be nil!")
             XCTAssertTrue(version.versionCode == $0.1, "Expected versionCode to be \($0.1), is: \(version.versionCode)")
+            XCTAssertEqual(version.debugDescription, version.description)
             if let expectedExtension = $0.2 {
                 XCTAssertEqual(version.extension, $0.2, "Expected extension to be \(expectedExtension), is: \(version.extension ?? "nil")")
             } else {
@@ -91,69 +97,13 @@ final class VersionTests: XCTestCase {
 
     func testInvalidConstruction() {
         invalidVersionData.forEach {
-            XCTAssertNil(try? Version($0), "Expected object from string `\($0)` to be nil!")
-        }
-    }
-
-    func testErrorEmptyVersionString() throws {
-        let testStrings = [
-            "-alpha",
-            "-",
-            "-pre-build",
-            "-beta.123"
-        ]
-
-        try testStrings.forEach { string in
-            XCTAssertThrowsError(try Version.init(string)) { error in
-                XCTAssertEqual(error as! Error, Error.emptyVersionString, "Expected throwing error for versionString: \(string)")
-            }
-        }
-    }
-
-    func testErrorInvalidVersionFormat() throws {
-        let testStrings = [
-            "da.a`sm-k132/89",
-            "1.1.1.1",
-            "0.0.0.0.0.0",
-            ".0.0",
-            "0.0.",
-            "_`'*§!§",
-            ".0.",
-            ".0",
-            ".123",
-            ".400."
-        ]
-
-        try testStrings.forEach { string in
-            XCTAssertThrowsError(try Version.init(string)) { error in
-                XCTAssertEqual(error as! Error, Error.invalidVersionFormat, "Expected throwing error for versionString: \(string)")
-            }
-        }
-    }
-
-    func testErrorInvalidVersionIdentifier() throws {
-        let testStrings = [
-            "1.0.x",
-            "1.x.0",
-            "x.0.0",
-            "sdjflk.ksdjla.123",
-            "asdasd.1.1",
-            "1.1.4354vdf"
-        ]
-
-        try testStrings.forEach { string in
-            XCTAssertThrowsError(try Version.init(string)) { error in
-                XCTAssertEqual(error as! Error, Error.invalidVersionIdentifier, "Expected throwing error for versionString: \(string)")
-            }
+            XCTAssertNil(Version($0), "Expected object from string `\($0)` to be nil!")
         }
     }
 
     static var allTests = [
         ("testValidConstruction", testValidConstruction),
         ("testMemberwiseConstruction", testMemberwiseConstruction),
-        ("testInvalidConstruction", testInvalidConstruction),
-        ("testErrorEmptyVersionString", testErrorEmptyVersionString),
-        ("testErrorInvalidVersionFormat", testErrorInvalidVersionFormat),
-        ("testErrorInvalidVersionIdentifier", testErrorInvalidVersionIdentifier)
+        ("testInvalidConstruction", testInvalidConstruction)
     ]
 }

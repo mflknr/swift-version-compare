@@ -6,7 +6,5 @@
 //
 
 enum Error: Swift.Error {
-    case emptyVersionString
-    case invalidVersionFormat
     case invalidVersionIdentifier
 }

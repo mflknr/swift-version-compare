@@ -7,33 +7,48 @@
 
 import Foundation
 
-struct Version: SemanticVersionComparable {
-    private(set) var major: UInt
-    private(set) var minor: UInt
-    private(set) var patch: UInt
+public struct Version: SemanticVersionComparable {
+    public var major: UInt
+    public var minor: UInt?
+    public var patch: UInt?
 
-    private(set) var extensions: [String]?
+    public var extensions: [String]?
+
+    public static var `default`: Version = Version(major: 0, minor: 0, patch: 0)
 
     // MARK: -
 
-    init(_ string: String) throws {
+    @inlinable
+    public init(_ major: UInt, _ minor: UInt? = nil, _ patch: UInt? = nil, _ extensions: [String]? = nil) {
+        self.major = major
+        self.minor = minor
+        self.patch = patch
+
+        self.extensions = extensions
+    }
+
+    @inlinable
+    public init(major: UInt, minor: UInt? = nil, patch: UInt? = nil, extensions: [String]? = nil) {
+        self.init(major, minor, patch, extensions)
+    }
+
+    private init?(private string: String) {
         // split string into version and extension substrings
         let stringElements = string.split(separator: "-", maxSplits: 1, omittingEmptySubsequences: false)
 
         // check for non-empty version string e.g. "-alpha"
         guard let versionStringElement = stringElements.first, !versionStringElement.isEmpty else {
-            throw Error.emptyVersionString
+            return nil
         }
 
         // check that the versionString has the correct SemVer format which would be any character (number or letter,
         // no symbols!) x in the form of `x`, `x.x`or `x.x.x`.
         let versionString = String(versionStringElement)
-        guard versionString.matchesSemVerFormat() else {
-            throw Error.invalidVersionFormat
-        }
+        guard versionString.matchesSemVerFormat() else { return nil }
 
-        // extract version elements from validated versionString as unsigned integers
-        let versionIdentifiers: [UInt] = try versionString.split(separator: ".").map(String.init).map {
+        // extract version elements from validated versionString as unsigned integers, throws and returns nil
+        // if a substring cannot be casted as UInt
+        let versionIdentifiers: [UInt]? = try? versionString.split(separator: ".").map(String.init).map {
             // since we already checked the format, we can now try to extract an UInt from the string
             guard let element = UInt($0) else {
                 throw Error.invalidVersionIdentifier
@@ -42,11 +57,12 @@ struct Version: SemanticVersionComparable {
             return element
         }
 
-        // even if we only get `1` as a version (which is valid SemVer btw.) we default to `1.0.0`
-        // same goes for `1.0` -> `1.0.0`
-        self.major = versionIdentifiers[0]
-        self.minor = versionIdentifiers.indices.contains(1) ? versionIdentifiers[1] : 0
-        self.patch = versionIdentifiers.indices.contains(2) ? versionIdentifiers[2] : 0
+        guard let safeIdentifiers = versionIdentifiers else { return nil }
+
+        // map valid identifiers to corresponding version identifier
+        self.major = safeIdentifiers[0]
+        self.minor = safeIdentifiers.indices.contains(1) ? safeIdentifiers[1] : nil
+        self.patch = safeIdentifiers.indices.contains(2) ? safeIdentifiers[2] : nil
 
         // if an extension label can be found, extract its content and save it to `extensions`
         if stringElements.indices.contains(1), let attachmentString = stringElements.last {
@@ -59,35 +75,29 @@ struct Version: SemanticVersionComparable {
 
 // MARK: - Initializer
 
-extension Version {
-    init(
-        major: UInt,
-        minor: UInt = 0,
-        patch: UInt = 0,
-        extensions: [String]? = nil
-    ) {
-        self.major = major
-        self.minor = minor
-        self.patch = patch
-        self.extensions = extensions
+extension Version: LosslessStringConvertible {
+    public init?(_ string: String) {
+        self.init(private: string)
     }
+
+    public var description: String { absoluteString }
 }
 
 extension Version: ExpressibleByStringLiteral {
-    init(stringLiteral value: StringLiteralType) {
-        try! self.init(value)
+    public init(stringLiteral value: StringLiteralType) {
+        self.init(private: value)!
     }
 }
 extension Version: ExpressibleByStringInterpolation {
-    init(stringInterpolation: DefaultStringInterpolation) {
-        try! self.init(String(stringInterpolation: stringInterpolation))
+    public init(stringInterpolation: DefaultStringInterpolation) {
+        self.init(private: String(stringInterpolation: stringInterpolation))!
     }
 }
 
 // MARK: - Protocol Conformances
 
 extension Version: CustomDebugStringConvertible {
-    var debugDescription: String { absoluteString }
+    public var debugDescription: String { absoluteString }
 }
 
 extension Version: Codable {}
@@ -96,7 +106,7 @@ extension Version: Hashable {}
 
 // MARK: - Regex
 
-private extension String {
+extension String {
     func matches(_ regex: String) -> Bool {
         self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
     }
