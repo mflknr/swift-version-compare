@@ -7,6 +7,10 @@
 
 import Foundation
 
+/**
+ A struct representing a version conforming to `SemVer`.
+ - Remark: See `https://semver.org` for detailed information.
+ */
 public struct Version: SemanticVersionComparable {
     public var major: UInt
     public var minor: UInt?
@@ -14,10 +18,25 @@ public struct Version: SemanticVersionComparable {
 
     public var extensions: [String]?
 
+    /// A `default` Version object representing the string `1.0.0`.
     public static var `default`: Version = Version(major: 0, minor: 0, patch: 0)
 
     // MARK: -
 
+    /**
+     Creates a new version.
+
+     - Parameters:
+        - major: The `MAJOR` identifier of a version.
+        - minor: The `MINOR` identifier of a version.
+        - patch: The `PATCH` identifier of a version.
+        - extensions: Contains strings with pre-release information.
+
+     - Note: Unsigned integers are used to provide an straightforward way to make sure that the identifiers
+     are not negative numbers.
+
+     - Remark: Providing redundant initializers for personal preferences and readbility.
+     */
     @inlinable
     public init(_ major: UInt, _ minor: UInt? = nil, _ patch: UInt? = nil, _ extensions: [String]? = nil) {
         self.major = major
@@ -27,6 +46,20 @@ public struct Version: SemanticVersionComparable {
         self.extensions = extensions
     }
 
+    /**
+     Creates a new version.
+
+     - Parameters:
+        - major: The `MAJOR` identifier of a version.
+        - minor: The `MINOR` identifier of a version.
+        - patch: The `PATCH` identifier of a version.
+        - extensions: Contains strings with pre-release information.
+
+     - Note: Unsigned integers are used to provide an straightforward way to make sure that the identifiers
+     are not negative numbers.
+
+     - Remark: Providing redundant initializers for personal preferences and readbility.
+     */
     @inlinable
     public init(major: UInt, minor: UInt? = nil, patch: UInt? = nil, extensions: [String]? = nil) {
         self.init(major, minor, patch, extensions)
@@ -73,9 +106,16 @@ public struct Version: SemanticVersionComparable {
     }
 }
 
-// MARK: - Initializer
+// MARK: - String Expressable and Convertable
 
 extension Version: LosslessStringConvertible {
+    /**
+     Creates a new version from a string.
+
+     - Parameter string: The string beeing parsed into a version.
+
+     - Returns: A version object or `nil` if string does not conform to `SemVer`.
+     */
     public init?(_ string: String) {
         self.init(private: string)
     }
@@ -84,25 +124,32 @@ extension Version: LosslessStringConvertible {
 }
 
 extension Version: ExpressibleByStringLiteral {
+    /**
+     Creates a new version from a string literal.
+
+     - Warning: Usage is not recommended unless the given string conforms to `SemVer`.
+     */
     public init(stringLiteral value: StringLiteralType) {
         self.init(private: value)!
     }
 }
+
 extension Version: ExpressibleByStringInterpolation {
+    /**
+     Creates a new version from a string interpolation.
+
+     - Warning: Usage is not recommended unless the given string conforms to `SemVer`.
+     */
     public init(stringInterpolation: DefaultStringInterpolation) {
         self.init(private: String(stringInterpolation: stringInterpolation))!
     }
 }
 
-// MARK: - Protocol Conformances
+// MARK: - CustomDebugStringConvertible
 
 extension Version: CustomDebugStringConvertible {
     public var debugDescription: String { absoluteString }
 }
-
-extension Version: Codable {}
-
-extension Version: Hashable {}
 
 // MARK: - Regex
 

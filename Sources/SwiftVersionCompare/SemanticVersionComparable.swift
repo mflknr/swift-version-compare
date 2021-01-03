@@ -5,24 +5,39 @@
 //  Created by Marius Hötten-Löns on 29.12.20.
 //
 
-protocol SemanticVersionComparable: Comparable {
+protocol SemanticVersionComparable: Comparable, Codable, Hashable {
+    /// The `MAJOR` identifier of a version.
     var major: UInt { get }
+    /// The `MINOR` identifier of a version
     var minor: UInt? { get }
+    /// The `PATCH` identifer of a verion.
     var patch: UInt? { get }
 
+    /// Contains strings with pre-release information.
     var extensions: [String]? { get }
 }
 
-// MARK: - Comparable
+// MARK: - Equatable
 
 extension SemanticVersionComparable {
     public static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.major == rhs.major &&
         lhs.minor ?? 0 == rhs.minor ?? 0 &&
         lhs.patch ?? 0 == rhs.patch ?? 0 &&
-          lhs.extensions?.isEmpty == rhs.extensions?.isEmpty
+        lhs.extensions?.isEmpty == rhs.extensions?.isEmpty
     }
 
+    public static func === (lhs: Self, rhs: Self) -> Bool {
+        lhs.major == rhs.major &&
+        lhs.minor ?? 0 == rhs.minor ?? 0 &&
+        lhs.patch ?? 0 == rhs.patch ?? 0 &&
+        lhs.extensions == rhs.extensions
+    }
+}
+
+// MARK: - Comparable
+
+extension SemanticVersionComparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         guard lhs != rhs else { return false }
 
@@ -45,7 +60,7 @@ extension SemanticVersionComparable {
     }
 
     public static func <= (lhs: Self, rhs: Self) -> Bool {
-        lhs == rhs || lhs < rhs
+        lhs === rhs || lhs < rhs
     }
 
     public static func > (lhs: Self, rhs: Self) -> Bool {
@@ -70,7 +85,7 @@ extension SemanticVersionComparable {
     }
 
     public static func >= (lhs: Self, rhs: Self) -> Bool {
-        lhs == rhs || lhs > rhs
+        lhs === rhs || lhs > rhs
     }
 }
 
