@@ -21,7 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		OBJ_27 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Error.swift */; };
+		24A6A24625A3DD3B00E12D71 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A24525A3DD3B00E12D71 /* Error.swift */; };
 		OBJ_28 /* SemanticVersionComparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* SemanticVersionComparable.swift */; };
 		OBJ_29 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Version.swift */; };
 		OBJ_36 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
@@ -39,9 +39,17 @@
 			remoteGlobalIDString = "SwiftVersionCompare::SwiftVersionCompare";
 			remoteInfo = SwiftVersionCompare;
 		};
+		24A6A22625A1BC3B00E12D71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftVersionCompare::SwiftVersionCompareTests";
+			remoteInfo = SwiftVersionCompareTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24A6A24525A3DD3B00E12D71 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		OBJ_10 /* SemanticVersionComparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticVersionComparable.swift; sourceTree = "<group>"; };
 		OBJ_11 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		OBJ_14 /* SemanticVersionComparableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticVersionComparableTests.swift; sourceTree = "<group>"; };
@@ -50,7 +58,6 @@
 		OBJ_20 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		OBJ_21 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		OBJ_9 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		"SwiftVersionCompare::SwiftVersionCompare::Product" /* SwiftVersionCompare.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftVersionCompare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SwiftVersionCompare::SwiftVersionCompareTests::Product" /* SwiftVersionCompareTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwiftVersionCompareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -128,7 +135,7 @@
 			children = (
 				OBJ_10 /* SemanticVersionComparable.swift */,
 				OBJ_11 /* Version.swift */,
-				OBJ_9 /* Error.swift */,
+				24A6A24525A3DD3B00E12D71 /* Error.swift */,
 			);
 			name = SwiftVersionCompare;
 			path = Sources/SwiftVersionCompare;
@@ -218,8 +225,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_27 /* Error.swift in Sources */,
 				OBJ_28 /* SemanticVersionComparable.swift in Sources */,
+				24A6A24625A3DD3B00E12D71 /* Error.swift in Sources */,
 				OBJ_29 /* Version.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,7 +255,7 @@
 		OBJ_41 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftVersionCompare::SwiftVersionCompareTests" /* SwiftVersionCompareTests */;
-			targetProxy = "SwiftVersionCompare::SwiftVersionCompareTests" /* SwiftVersionCompareTests */;
+			targetProxy = 24A6A22625A1BC3B00E12D71 /* PBXContainerItemProxy */;
 		};
 		OBJ_52 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

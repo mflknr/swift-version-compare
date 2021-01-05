@@ -8,7 +8,29 @@
 import Foundation
 
 /**
- A struct representing a version conforming to `SemVer`.
+ A version type conforming to `SemVer`.
+
+ You can create a new version using string, string literals, string interpolation or memberwise properties.
+
+     // from string
+     let version: Version? = "1.0.0"
+     let version: Version? = Version("1.0.0")
+     let version: Version = "1.0.0" // <- will crash if string does not conform to `SemVer`
+     let version: Version = Version("1.0.0") // <- will also crash if string is not a semantic version
+
+     // from memberwise properties
+     let version: Version = Version(1, 0, 0)
+     let version: Version = Version(major: 1, minor: 0, patch: 0)
+
+ Pre-Release or buildmetadata information are handled as strings in extensions.
+
+     let version: Version = let version: Version = Version(major: 1, minor: 0, patch: 0, extensions: ["alpha"])
+     version.absoluteString // -> "1.0.0-alpha"
+
+     let version: Version = Version(2, 32, 16, ["pre-release", "alpha"])
+     version.absoluteString // -> "2.32.16-pre-release.alpha"
+     version.extensions // -> "pre-release.alpha"
+
  - Remark: See `https://semver.org` for detailed information.
  */
 public struct Version: SemanticVersionComparable {
@@ -18,8 +40,8 @@ public struct Version: SemanticVersionComparable {
 
     public var extensions: [String]?
 
-    /// A `default` Version object representing the string `1.0.0`.
-    public static var `default`: Version = Version(major: 0, minor: 0, patch: 0)
+    /// An initial version representing the string `0.0.0`.
+    public static var initial: Version = Version(major: 0, minor: 0, patch: 0)
 
     // MARK: -
 
@@ -32,10 +54,10 @@ public struct Version: SemanticVersionComparable {
         - patch: The `PATCH` identifier of a version.
         - extensions: Contains strings with pre-release information.
 
+     - Returns: A new version.
+
      - Note: Unsigned integers are used to provide an straightforward way to make sure that the identifiers
      are not negative numbers.
-
-     - Remark: Providing redundant initializers for personal preferences and readbility.
      */
     @inlinable
     public init(_ major: UInt, _ minor: UInt? = nil, _ patch: UInt? = nil, _ extensions: [String]? = nil) {
@@ -57,8 +79,6 @@ public struct Version: SemanticVersionComparable {
 
      - Note: Unsigned integers are used to provide an straightforward way to make sure that the identifiers
      are not negative numbers.
-
-     - Remark: Providing redundant initializers for personal preferences and readbility.
      */
     @inlinable
     public init(major: UInt, minor: UInt? = nil, patch: UInt? = nil, extensions: [String]? = nil) {
@@ -103,6 +123,30 @@ public struct Version: SemanticVersionComparable {
         } else {
             self.extensions = nil
         }
+    }
+}
+
+// MARK: - Accessors
+
+extension Version {
+    /// The absolute string of the version.
+    public var absoluteString: String {
+        [versionCode, `extension`]
+            .compactMap { $0 }
+            .joined(separator: "-")
+    }
+
+    /// The string of the version representing `MAJOR.MINOR.PATCH`.
+    public var versionCode: String {
+        [major, minor, patch]
+            .compactMap { $0 }
+            .map(String.init)
+            .joined(separator: ".")
+    }
+
+    /// The string of the version containing the extension.
+    public var `extension`: String? {
+        extensions?.joined(separator: ".")
     }
 }
 

@@ -13,8 +13,12 @@ final class SemanticVersionComparableTests: XCTestCase {
         let testData: [Version: Version] = [
             Version("15.287349.10"): Version("15.287349.10"),
             Version("0.1.0"): Version("0.1.0"),
-            Version("1"): Version("1.0.0"),
-            Version("15.2"): Version("15.2.0")
+            Version("1.0.0"): Version("1"),
+            Version("15.2"): Version("15.2.0"),
+            Version("1"): Version("1"),
+            Version("123.0.0"): Version("123"),
+            Version("1.2"): Version("1.2.0"),
+            Version("1.9.0"): Version("1.9")
         ]
 
         testData.forEach { lhs, rhs in
@@ -30,14 +34,16 @@ final class SemanticVersionComparableTests: XCTestCase {
             Version("0.0.1"): Version("0.1.0"),
             Version("0"): Version("1.0.0"),
             Version("13.9182"): Version("15.2.0"),
+            Version("2"): Version("25"),
+            Version("777.8987"): Version("777.8988"),
             Version("13.9182.0-alpha"): Version("15.2.0"),
             Version("13.9182.1-alpha"): Version("13.9182.1")
         ]
 
         testData.forEach { lhs, rhs in
             // less
-            XCTAssertTrue(lhs < rhs)
-            XCTAssertTrue(lhs <= rhs)
+            XCTAssertTrue(lhs < rhs, "Expected \(lhs) to be less to \(rhs)!")
+            XCTAssertTrue(lhs <= rhs, "Expected \(lhs) to be less or equal to \(rhs)!")
             XCTAssertTrue(lhs <= lhs)
             XCTAssertTrue(rhs <= rhs)
 
@@ -47,8 +53,8 @@ final class SemanticVersionComparableTests: XCTestCase {
 
 
             // greater
-            XCTAssertTrue(rhs > lhs)
-            XCTAssertTrue(rhs >= lhs)
+            XCTAssertTrue(rhs > lhs, "Expected \(lhs) to be greater than \(rhs)!")
+            XCTAssertTrue(rhs >= lhs, "Expected \(lhs) to be greater than or equal to \(rhs)!")
             XCTAssertTrue(rhs >= rhs)
             XCTAssertTrue(lhs >= lhs)
 

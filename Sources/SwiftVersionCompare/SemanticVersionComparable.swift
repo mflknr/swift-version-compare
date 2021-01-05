@@ -5,7 +5,40 @@
 //  Created by Marius Hötten-Löns on 29.12.20.
 //
 
-protocol SemanticVersionComparable: Comparable, Codable, Hashable {
+/**
+ A type that can be expressed as a semantic version conforming to `SemVer` and compared using the relational operators ==, ===, <, <=, >=, and >.
+
+ When comparing two versions their identifier beeing `nil` will be treated as `0`.
+
+     let versionOne = Version(1, 0, 0)
+     let versionTwo = Version(1)
+
+     versionOne == versionTwo // <- this statement is `true`
+
+ You can choose between a loosly or strictly comparison considering if you want to compare the extensions a
+ the version
+
+     let versionOne = Version(1, 0, 0)
+     let versionTwo = Version(1, 0, 0, ["alpha"])
+
+     versionOne == versionTwo // `true`
+     versionOne === versionTwo // `false`
+
+ When comparing versions for greater- or lesser-to, the extensions will solely be seen as an indicator for having extensions or not. They will be parsed or interpreted.
+
+     let versionOne = Version(1, 0, 0)
+     let versionTwo = Version(1, 0, 0, ["alpha"])
+
+     versionOne > versionTwo // `true`
+
+     let versionThree = Version(1, 0, 0, ["alpha"])
+     let versionFour = Version(1, 0, 0, ["pre-release"])
+
+     versionThree > versionFour // `false`
+
+ - Remark: See `https://semver.org` for detailed information.
+ */
+protocol SemanticVersionComparable: Comparable, Hashable {
     /// The `MAJOR` identifier of a version.
     var major: UInt { get }
     /// The `MINOR` identifier of a version
@@ -20,13 +53,22 @@ protocol SemanticVersionComparable: Comparable, Codable, Hashable {
 // MARK: - Equatable
 
 extension SemanticVersionComparable {
+    /**
+     Compares version objects for equality.
+
+     - Returns: `true` if version objects are equal.
+     */
     public static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.major == rhs.major &&
         lhs.minor ?? 0 == rhs.minor ?? 0 &&
-        lhs.patch ?? 0 == rhs.patch ?? 0 &&
-        lhs.extensions?.isEmpty == rhs.extensions?.isEmpty
+        lhs.patch ?? 0 == rhs.patch ?? 0 
     }
 
+    /**
+     Strictly compares version objects for equality.
+
+     - Returns: `true` if version objects are strictly equal.
+     */
     public static func === (lhs: Self, rhs: Self) -> Bool {
         lhs.major == rhs.major &&
         lhs.minor ?? 0 == rhs.minor ?? 0 &&
@@ -39,13 +81,18 @@ extension SemanticVersionComparable {
 
 extension SemanticVersionComparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
-        guard lhs != rhs else { return false }
+        guard !(lhs === rhs) else { return false }
 
         if lhs.major < rhs.major {
             return true
-        } else if lhs.major == rhs.major, lhs.minor ?? 0 < rhs.minor ?? 0 {
+        } else if
+            lhs.major == rhs.major,
+            lhs.minor ?? 0 < rhs.minor ?? 0 {
             return true
-        } else if lhs.major == rhs.major, lhs.minor == rhs.minor, lhs.patch ?? 0 < rhs.patch ?? 0 {
+        } else if
+            lhs.major == rhs.major,
+            lhs.minor == rhs.minor,
+            lhs.patch ?? 0 < rhs.patch ?? 0 {
             return true
         } else if
             lhs.major == rhs.major,
@@ -64,13 +111,18 @@ extension SemanticVersionComparable {
     }
 
     public static func > (lhs: Self, rhs: Self) -> Bool {
-        guard lhs != rhs else { return false }
+        guard !(lhs === rhs) else { return false }
 
         if lhs.major > rhs.major {
             return true
-        } else if lhs.major == rhs.major, lhs.minor ?? 0 > rhs.minor ?? 0 {
+        } else if
+            lhs.major == rhs.major,
+            lhs.minor ?? 0 > rhs.minor ?? 0 {
             return true
-        } else if lhs.major == rhs.major, lhs.minor == rhs.minor, lhs.patch ?? 0 > rhs.patch ?? 0 {
+        } else if
+            lhs.major == rhs.major,
+            lhs.minor == rhs.minor,
+            lhs.patch ?? 0 > rhs.patch ?? 0 {
             return true
         } else if
             lhs.major == rhs.major,
@@ -92,32 +144,14 @@ extension SemanticVersionComparable {
 // MARK: - Operations
 
 extension SemanticVersionComparable {
-    /// A Boolean value indicating whether the version is compatible with a given different version.
-    /// - Parameter version: An object that conforms to the `SemanticVersionComparable`protocol.
-    /// - Returns: A boolean indication the compatibility.
+    /**
+     A Boolean value indicating the compatibility of two versions.
+
+     - Parameter version: An object that conforms to the `SemanticVersionComparable`protocol.
+
+     - Returns: `true` if both objects have equal major versions.
+     */
     public func isCompatible(with version: Self) -> Bool {
         self.major == version.major
     }
 }
-
-// MARK: - Accessor
-
-extension SemanticVersionComparable {
-    public var absoluteString: String {
-        [versionCode, `extension`]
-            .compactMap { $0 }
-            .joined(separator: "-")
-    }
-
-    public var versionCode: String {
-        [major, minor, patch]
-            .compactMap { $0 }
-            .map(String.init)
-            .joined(separator: ".")
-    }
-
-    public var `extension`: String? {
-        extensions?.joined(separator: ".")
-    }
-}
-
