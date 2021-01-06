@@ -10,7 +10,7 @@ Following features are and will be implemented:
 - [x] Compare versions and get a result type defining the severity of the version difference (e. g. major-update).
 - [ ] Utilize ranges for a greater variaty of comparisons.
 - [x] Extend `Bundle` and `ProcessInfo` for easy usage.
-- [ ] Open documentation.
+- [x] Open documentation.
 - [ ] Implement extension for `Codable` and `Hashable`.
 
 # Installation
