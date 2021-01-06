@@ -1,0 +1,18 @@
+module: SwiftVersionCompare
+author: Marius Hötten-Löns
+author_url: https://www.nihilias.de
+github_url: https://github.com/nihilias/SwiftVersionCompare/
+readme: README.md
+skip_undocumented: true
+hide_documentation_coverage: false
+theme: apple
+output: docs/
+swift_version: 5.3.1
+clean: true
+min_acl: internal
+xcodebuild_arguments:
+  - -project
+  - SwiftVersionCompare.xcodeproj
+  - -scheme
+  - SwiftVersionCompare-Package
+
