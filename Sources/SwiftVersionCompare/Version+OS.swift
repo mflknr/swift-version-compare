@@ -10,9 +10,6 @@ import Foundation
 public extension ProcessInfo {
     /// The version of the operating system on which the current process is executing.
     @available(macOS, introduced: 10.10)
-    @available(iOS, introduced: 8.0)
-    @available(tvOS, introduced: 9.0)
-    @available(watchOS, introduced: 2.0)
     var comparableOperatingSystemVersion: Version {
         let osVersion: OperatingSystemVersion = operatingSystemVersion
         let version: Version = Version(

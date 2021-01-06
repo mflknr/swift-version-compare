@@ -26,6 +26,6 @@ extension SemanticVersionComparable {
         lhs.major == rhs.major &&
         lhs.minor ?? 0 == rhs.minor ?? 0 &&
         lhs.patch ?? 0 == rhs.patch ?? 0 &&
-        lhs.extensions == rhs.extensions
+            lhs.extensions == rhs.extensions
     }
 }

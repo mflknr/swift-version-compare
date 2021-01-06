@@ -50,7 +50,7 @@ protocol SemanticVersionComparable: Comparable, Hashable {
     var extensions: [String]? { get }
 }
 
-// MARK: - 
+// MARK: -
 
 extension SemanticVersionComparable {
     /**
@@ -62,5 +62,38 @@ extension SemanticVersionComparable {
      */
     public func isCompatible(with version: Self) -> Bool {
         self.major == version.major
+    }
+
+    /**
+     Compare versions for their update severity.
+
+     - Parameter version: The version you want to compare to another version.
+
+     - Returns: The severity of the update the version inherits.
+     */
+    public func compare(with version: Self) -> ComparisonResult {
+        guard self == version || self > version else { return .noUpdate }
+
+        if
+            self.major == version.major,
+            self.minor == version.minor,
+            self.patch == version.patch,
+            self.extensions != version.extensions {
+            return .extensions
+        } else if
+            self.major == version.major,
+            self.minor == version.minor,
+            self.patch != version.patch {
+            return .patch
+        } else if
+            self.major == version.major,
+            self.minor != version.minor {
+            return .minor
+        } else if
+            self.major != version.major {
+            return .major
+        } else {
+            return .noUpdate
+        }
     }
 }
