@@ -17,7 +17,7 @@ Following features are and will be implemented:
 
 Swift Package Manager:
 
-```
+```swift
 package(url: https://github.com/nihilias/SwiftVersionCompare.git", from: "1.0.0"))
 ```
 
@@ -25,7 +25,7 @@ package(url: https://github.com/nihilias/SwiftVersionCompare.git", from: "1.0.0"
 
 For detailed implenentation information see auto-generated [documentation]().
 
-```
+```swift
 // use the version identifier for initialization
 let versionOne = Version(1, 0, 0)
 let versionTwo = Version(
