@@ -116,7 +116,8 @@ final class SemanticVersionComparableTests: XCTestCase {
             (Version("3.230.13"), Version("3.235.1"), VersionCompareResult.minor),
             (Version("565.1.123"), Version("565.1.124"), VersionCompareResult.patch),
             (Version("1.2"), Version("1.2-alpha"), VersionCompareResult.extensions),
-            (Version("2.235234.1"), Version("1.8967596758.4"), VersionCompareResult.noUpdate)
+            (Version("2.235234.1"), Version("1.8967596758.4"), VersionCompareResult.noUpdate),
+            (Version("2.0.0"), Version("2"), VersionCompareResult.noUpdate)
         ]
 
         testData.forEach { data in
