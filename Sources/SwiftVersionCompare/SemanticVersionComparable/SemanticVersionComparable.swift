@@ -38,7 +38,7 @@
 
  - Remark: See `https://semver.org` for detailed information.
  */
-protocol SemanticVersionComparable: Comparable, Hashable {
+public protocol SemanticVersionComparable: Comparable, Hashable {
     /// The `MAJOR` identifier of a version.
     var major: UInt { get }
     /// The `MINOR` identifier of a version
