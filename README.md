@@ -1,6 +1,6 @@
 # SwiftVersionCheck
 
-A small package for comparing and using versions conforming to [SemVer](https://semver.org).
+A small package for comparing and utilizing versions conforming to [SemVer](https://semver.org).
 
 Following features are and will be implemented:
 
