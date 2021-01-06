@@ -5,8 +5,8 @@
 //  Created by Marius Hötten-Löns on 06.01.21.
 //
 
-/// The result type indicating the severity of an update between to versions.
-enum VersionCompareResult {
+/// The severity of an update between versions.
+public enum VersionCompareResult {
     /// A `MAJOR`update
     case major
     /// A `MINOR`update
