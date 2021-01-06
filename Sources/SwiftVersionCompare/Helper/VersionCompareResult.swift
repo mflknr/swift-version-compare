@@ -6,7 +6,7 @@
 //
 
 /// The result type indicating the severity of an update between to versions.
-enum ComparisonResult {
+enum VersionCompareResult {
     /// A `MAJOR`update
     case major
     /// A `MINOR`update

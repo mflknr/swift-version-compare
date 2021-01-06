@@ -108,9 +108,29 @@ final class SemanticVersionComparableTests: XCTestCase {
         }
     }
 
+    func testCompare() {
+        let testData: [(Version, Version, VersionCompareResult)] = [
+            (Version("1"), Version("2"), VersionCompareResult.major),
+            (Version("600.123.4"), Version("601.0.1"), VersionCompareResult.major),
+            (Version("1.3"), Version("1.5"), VersionCompareResult.minor),
+            (Version("3.230.13"), Version("3.235.1"), VersionCompareResult.minor),
+            (Version("565.1.123"), Version("565.1.124"), VersionCompareResult.patch),
+            (Version("1.2"), Version("1.2-alpha"), VersionCompareResult.extensions),
+            (Version("2.235234.1"), Version("1.8967596758.4"), VersionCompareResult.noUpdate)
+        ]
+
+        testData.forEach { data in
+            let versionOne = data.0
+            let versionTwo = data.1
+            let compareResult = versionOne.compare(with: versionTwo)
+            XCTAssertTrue(compareResult == data.2, "Expected result from comparing \(data.0) and \(data.1) to be \(data.2) but is \(compareResult)!")
+        }
+    }
+
     static var allTests = [
         ("testEqualOperator", testEqualOperator),
         ("testNonEqualOperators", testNonEqualOperators),
-        ("testCompatibility", testCompatibility)
+        ("testCompatibility", testCompatibility),
+        ("testCompare", testCompare)
     ]
 }

@@ -71,26 +71,26 @@ extension SemanticVersionComparable {
 
      - Returns: The severity of the update the version inherits.
      */
-    public func compare(with version: Self) -> ComparisonResult {
-        guard self == version || self > version else { return .noUpdate }
+    public func compare(with newVersion: Self) -> VersionCompareResult {
+        guard self != newVersion || self > newVersion else { return .noUpdate }
 
         if
-            self.major == version.major,
-            self.minor == version.minor,
-            self.patch == version.patch,
-            self.extensions != version.extensions {
+            self.major == newVersion.major,
+            self.minor == newVersion.minor,
+            self.patch == newVersion.patch,
+            self.extensions != newVersion.extensions {
             return .extensions
         } else if
-            self.major == version.major,
-            self.minor == version.minor,
-            self.patch != version.patch {
+            self.major == newVersion.major,
+            self.minor == newVersion.minor,
+            self.patch ?? 0 < newVersion.patch ?? 0 {
             return .patch
         } else if
-            self.major == version.major,
-            self.minor != version.minor {
+            self.major == newVersion.major,
+            self.minor ?? 0 < newVersion.minor ?? 0 {
             return .minor
         } else if
-            self.major != version.major {
+            self.major < newVersion.major {
             return .major
         } else {
             return .noUpdate
