@@ -22,6 +22,12 @@
 
 /* Begin PBXBuildFile section */
 		24A6A24625A3DD3B00E12D71 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A24525A3DD3B00E12D71 /* Error.swift */; };
+		24A6A25925A5198900E12D71 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A25825A5198900E12D71 /* String+Regex.swift */; };
+		24A6A26425A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A26325A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift */; };
+		24A6A26A25A51A4700E12D71 /* SemanticVersionComparable+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A26925A51A4700E12D71 /* SemanticVersionComparable+Comparable.swift */; };
+		24A6A27025A51B5500E12D71 /* Version+StringInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A26F25A51B5500E12D71 /* Version+StringInitializer.swift */; };
+		24A6A27E25A51E1900E12D71 /* Version+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A27D25A51E1900E12D71 /* Version+Bundle.swift */; };
+		24A6A28825A6002200E12D71 /* Version+OS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A28725A6002200E12D71 /* Version+OS.swift */; };
 		OBJ_28 /* SemanticVersionComparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* SemanticVersionComparable.swift */; };
 		OBJ_29 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Version.swift */; };
 		OBJ_36 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
@@ -50,6 +56,12 @@
 
 /* Begin PBXFileReference section */
 		24A6A24525A3DD3B00E12D71 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		24A6A25825A5198900E12D71 /* String+Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Regex.swift"; sourceTree = "<group>"; };
+		24A6A26325A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SemanticVersionComparable+Equatable.swift"; sourceTree = "<group>"; };
+		24A6A26925A51A4700E12D71 /* SemanticVersionComparable+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SemanticVersionComparable+Comparable.swift"; sourceTree = "<group>"; };
+		24A6A26F25A51B5500E12D71 /* Version+StringInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+StringInitializer.swift"; sourceTree = "<group>"; };
+		24A6A27D25A51E1900E12D71 /* Version+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+Bundle.swift"; sourceTree = "<group>"; };
+		24A6A28725A6002200E12D71 /* Version+OS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+OS.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* SemanticVersionComparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticVersionComparable.swift; sourceTree = "<group>"; };
 		OBJ_11 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		OBJ_14 /* SemanticVersionComparableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticVersionComparableTests.swift; sourceTree = "<group>"; };
@@ -58,7 +70,7 @@
 		OBJ_20 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		OBJ_21 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		"SwiftVersionCompare::SwiftVersionCompare::Product" /* SwiftVersionCompare.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftVersionCompare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"SwiftVersionCompare::SwiftVersionCompare::Product" /* SwiftVersionCompare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftVersionCompare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SwiftVersionCompare::SwiftVersionCompareTests::Product" /* SwiftVersionCompareTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwiftVersionCompareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -81,6 +93,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24A6A25725A5196D00E12D71 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				24A6A24525A3DD3B00E12D71 /* Error.swift */,
+				24A6A25825A5198900E12D71 /* String+Regex.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		24A6A25E25A519AC00E12D71 /* SemanticVersionComparable */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_10 /* SemanticVersionComparable.swift */,
+				24A6A26925A51A4700E12D71 /* SemanticVersionComparable+Comparable.swift */,
+				24A6A26325A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift */,
+			);
+			path = SemanticVersionComparable;
+			sourceTree = "<group>";
+		};
 		OBJ_12 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,9 +164,12 @@
 		OBJ_8 /* SwiftVersionCompare */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_10 /* SemanticVersionComparable.swift */,
 				OBJ_11 /* Version.swift */,
-				24A6A24525A3DD3B00E12D71 /* Error.swift */,
+				24A6A27D25A51E1900E12D71 /* Version+Bundle.swift */,
+				24A6A26F25A51B5500E12D71 /* Version+StringInitializer.swift */,
+				24A6A28725A6002200E12D71 /* Version+OS.swift */,
+				24A6A25E25A519AC00E12D71 /* SemanticVersionComparable */,
+				24A6A25725A5196D00E12D71 /* Helper */,
 			);
 			name = SwiftVersionCompare;
 			path = Sources/SwiftVersionCompare;
@@ -226,7 +260,13 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_28 /* SemanticVersionComparable.swift in Sources */,
+				24A6A26425A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift in Sources */,
+				24A6A27E25A51E1900E12D71 /* Version+Bundle.swift in Sources */,
+				24A6A27025A51B5500E12D71 /* Version+StringInitializer.swift in Sources */,
+				24A6A28825A6002200E12D71 /* Version+OS.swift in Sources */,
 				24A6A24625A3DD3B00E12D71 /* Error.swift in Sources */,
+				24A6A25925A5198900E12D71 /* String+Regex.swift in Sources */,
+				24A6A26A25A51A4700E12D71 /* SemanticVersionComparable+Comparable.swift in Sources */,
 				OBJ_29 /* Version.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +318,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MARKETING_VERSION = 0.0.0;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -306,6 +347,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MARKETING_VERSION = 0.0.0;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";

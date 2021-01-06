@@ -101,9 +101,41 @@ final class VersionTests: XCTestCase {
         }
     }
 
+    func testBundleVersion() {
+        let testBundle = Bundle(for: type(of: self))
+        let versionString = testBundle.infoDictionary?["CFBundleShortVersionString"] as? String
+        let bundleVersion: Version? = testBundle.shortVersion
+        
+        XCTAssertNotNil(bundleVersion)
+        XCTAssertEqual(versionString!, bundleVersion!.absoluteString, "Expected \(bundleVersion!) to be equal to \(versionString!)!")
+    }
+
+    func testProcessInfoVersion() {
+        let processInfoOsVersion: OperatingSystemVersion = ProcessInfo.processInfo.operatingSystemVersion
+        let comparableOsVersion: Version = ProcessInfo.processInfo.comparableOperatingSystemVersion
+
+        XCTAssertEqual(
+            UInt(processInfoOsVersion.majorVersion),
+            comparableOsVersion.major,
+            "Expected \(processInfoOsVersion.majorVersion) to be equal to \(comparableOsVersion.major)!"
+        )
+        XCTAssertEqual(
+            UInt(processInfoOsVersion.minorVersion),
+            comparableOsVersion.minor,
+            "Expected \(processInfoOsVersion.minorVersion) to be equal to \(comparableOsVersion.minor!)!"
+        )
+        XCTAssertEqual(
+            UInt(processInfoOsVersion.patchVersion),
+            comparableOsVersion.patch,
+            "Expected \(processInfoOsVersion.patchVersion) to be equal to \(comparableOsVersion.patch!)!"
+        )
+    }
+
     static var allTests = [
         ("testValidConstruction", testValidConstruction),
         ("testMemberwiseConstruction", testMemberwiseConstruction),
-        ("testInvalidConstruction", testInvalidConstruction)
+        ("testInvalidConstruction", testInvalidConstruction),
+        ("testBundleVersion", testBundleVersion),
+        ("testProcessInfoVersion", testProcessInfoVersion)
     ]
 }

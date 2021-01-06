@@ -10,7 +10,7 @@ import Foundation
 /**
  A version type conforming to `SemVer`.
 
- You can create a new version using string, string literals, string interpolation or memberwise properties.
+ You can create a new version using string, string literals, string interpolation formatted like `MAJOR.MINOR.PATCH-EXTENSIONS` or memberwise properties.
 
      // from string
      let version: Version? = "1.0.0"
@@ -85,7 +85,7 @@ public struct Version: SemanticVersionComparable {
         self.init(major, minor, patch, extensions)
     }
 
-    private init?(private string: String) {
+    internal init?(private string: String) {
         // split string into version and extension substrings
         let stringElements = string.split(separator: "-", maxSplits: 1, omittingEmptySubsequences: false)
 
@@ -150,61 +150,6 @@ extension Version {
     }
 }
 
-// MARK: - String Expressable and Convertable
-
-extension Version: LosslessStringConvertible {
-    /**
-     Creates a new version from a string.
-
-     - Parameter string: The string beeing parsed into a version.
-
-     - Returns: A version object or `nil` if string does not conform to `SemVer`.
-     */
-    public init?(_ string: String) {
-        self.init(private: string)
-    }
-
-    public var description: String { absoluteString }
-}
-
-extension Version: ExpressibleByStringLiteral {
-    /**
-     Creates a new version from a string literal.
-
-     - Warning: Usage is not recommended unless the given string conforms to `SemVer`.
-     */
-    public init(stringLiteral value: StringLiteralType) {
-        self.init(private: value)!
-    }
-}
-
-extension Version: ExpressibleByStringInterpolation {
-    /**
-     Creates a new version from a string interpolation.
-
-     - Warning: Usage is not recommended unless the given string conforms to `SemVer`.
-     */
-    public init(stringInterpolation: DefaultStringInterpolation) {
-        self.init(private: String(stringInterpolation: stringInterpolation))!
-    }
-}
-
-// MARK: - CustomDebugStringConvertible
-
 extension Version: CustomDebugStringConvertible {
     public var debugDescription: String { absoluteString }
-}
-
-// MARK: - Regex
-
-extension String {
-    func matches(_ regex: String) -> Bool {
-        self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
-    }
-
-    func matchesSemVerFormat() -> Bool {
-        self.matches("^([0-9a-zA-Z]+)\\.([0-9a-zA-Z]+)\\.([0-9a-zA-Z]+)$") ||
-            self.matches("^([0-9a-zA-Z]+)\\.([0-9a-zA-Z]+)$") ||
-            self.matches("^([0-9a-zA-Z]+)$")
-    }
 }
