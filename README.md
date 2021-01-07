@@ -1,4 +1,4 @@
-# SwiftVersionCheck
+# SwiftVersionCompare
 
 A small package for comparing and utilizing versions conforming to [SemVer](https://semver.org).
 
