@@ -1,0 +1,21 @@
+name: pr-check
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: swift --version
+    - run: swift package generate-xcodeproj --enable-code-coverage
+    - run: swift build -v
+    - uses: sersoft-gmbh/xcodebuild-action@v1
+      with:
+        project: SwiftVersionCompare.xcodeproj
+        scheme: SwiftVersionCompare-Package
+        action: test
+    - uses: codecov/codecov-action@v1
