@@ -123,8 +123,8 @@ final class SemanticVersionComparableTests: XCTestCase {
         testData.forEach { data in
             let versionOne = data.0
             let versionTwo = data.1
-            let compareResult = versionOne.compare(with: versionTwo)
-            XCTAssertTrue(compareResult == data.2, "Expected result from comparing \(data.0) and \(data.1) to be \(data.2) but is \(compareResult)!")
+            let updateSeverity = versionOne.severity(to: versionTwo)
+            XCTAssertTrue(updateSeverity == data.2, "Expected result from comparing \(data.0) and \(data.1) to be \(data.2) but is \(updateSeverity)!")
         }
     }
 
