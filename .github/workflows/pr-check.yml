@@ -1,0 +1,17 @@
+name: pr-check
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: swift --version
+    - run: swift package generate-xcodeproj
+    - run: xcodebuild test -project SwiftVersionCompare.xcodeproj -scheme SwiftVersionCompare-Package
