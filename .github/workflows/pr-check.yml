@@ -7,11 +7,15 @@ on:
 
 jobs:
   build:
-
     runs-on: macos-latest
-
     steps:
     - uses: actions/checkout@v2
     - run: swift --version
-    - run: swift package generate-xcodeproj
-    - run: xcodebuild test -project SwiftVersionCompare.xcodeproj -scheme SwiftVersionCompare-Package
+    - run: swift package generate-xcodeproj --enable-code-coverage
+    - run: swift build -v
+    - uses: sersoft-gmbh/xcodebuild-action@v1
+      with:
+        project: SwiftVersionCompare.xcodeproj
+        scheme: SwiftVersionCompare-Package
+        action: test
+    - uses: codecov/codecov-action@v1
