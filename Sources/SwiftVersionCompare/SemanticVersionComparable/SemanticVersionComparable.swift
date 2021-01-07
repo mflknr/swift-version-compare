@@ -71,7 +71,7 @@ extension SemanticVersionComparable {
 
      - Returns: The severity of the update the version inherits.
      */
-    public func compare(with newVersion: Self) -> VersionCompareResult {
+    public func compare(with newVersion: Self) -> UpdateSeverity {
         guard self != newVersion || self > newVersion else { return .noUpdate }
 
         if
@@ -79,7 +79,7 @@ extension SemanticVersionComparable {
             self.minor == newVersion.minor,
             self.patch == newVersion.patch,
             self.extensions != newVersion.extensions {
-            return .extensions
+            return .extension
         } else if
             self.major == newVersion.major,
             self.minor == newVersion.minor,

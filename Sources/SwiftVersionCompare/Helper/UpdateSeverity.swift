@@ -6,7 +6,7 @@
 //
 
 /// The severity of an update between versions.
-public enum VersionCompareResult {
+public enum UpdateSeverity {
     /// A `MAJOR`update
     case major
     /// A `MINOR`update
@@ -14,7 +14,7 @@ public enum VersionCompareResult {
     /// A `PATCH`update
     case patch
     /// A pre-release update
-    case extensions
+    case `extension`
     /// The version is not an update (less or equal)
     case noUpdate
 }

@@ -29,7 +29,7 @@ import Foundation
 
      let version: Version = Version(2, 32, 16, ["pre-release", "alpha"])
      version.absoluteString // -> "2.32.16-pre-release.alpha"
-     version.extensions // -> "pre-release.alpha"
+     version.extension // -> "pre-release.alpha"
 
  - Remark: See `https://semver.org` for detailed information.
  */
