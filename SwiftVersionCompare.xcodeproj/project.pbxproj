@@ -28,7 +28,7 @@
 		24A6A27025A51B5500E12D71 /* Version+StringInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A26F25A51B5500E12D71 /* Version+StringInitializer.swift */; };
 		24A6A27E25A51E1900E12D71 /* Version+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A27D25A51E1900E12D71 /* Version+Bundle.swift */; };
 		24A6A28825A6002200E12D71 /* Version+OS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A28725A6002200E12D71 /* Version+OS.swift */; };
-		24A6A2A625A64DAC00E12D71 /* VersionCompareResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A2A525A64DAC00E12D71 /* VersionCompareResult.swift */; };
+		24A6A2A625A64DAC00E12D71 /* UpdateSeverity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A2A525A64DAC00E12D71 /* UpdateSeverity.swift */; };
 		OBJ_28 /* SemanticVersionComparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* SemanticVersionComparable.swift */; };
 		OBJ_29 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Version.swift */; };
 		OBJ_36 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
@@ -63,7 +63,7 @@
 		24A6A26F25A51B5500E12D71 /* Version+StringInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+StringInitializer.swift"; sourceTree = "<group>"; };
 		24A6A27D25A51E1900E12D71 /* Version+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+Bundle.swift"; sourceTree = "<group>"; };
 		24A6A28725A6002200E12D71 /* Version+OS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+OS.swift"; sourceTree = "<group>"; };
-		24A6A2A525A64DAC00E12D71 /* VersionCompareResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCompareResult.swift; sourceTree = "<group>"; };
+		24A6A2A525A64DAC00E12D71 /* UpdateSeverity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSeverity.swift; sourceTree = "<group>"; };
 		24A6A2BB25A67D1200E12D71 /* .jazzy.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .jazzy.yml; sourceTree = "<group>"; };
 		OBJ_10 /* SemanticVersionComparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticVersionComparable.swift; sourceTree = "<group>"; };
 		OBJ_11 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 			children = (
 				24A6A24525A3DD3B00E12D71 /* Error.swift */,
 				24A6A25825A5198900E12D71 /* String+Regex.swift */,
-				24A6A2A525A64DAC00E12D71 /* VersionCompareResult.swift */,
+				24A6A2A525A64DAC00E12D71 /* UpdateSeverity.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -144,7 +144,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -155,7 +155,6 @@
 				OBJ_21 /* README.md */,
 				24A6A2BB25A67D1200E12D71 /* .jazzy.yml */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -246,7 +245,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_17 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -271,7 +270,7 @@
 				24A6A28825A6002200E12D71 /* Version+OS.swift in Sources */,
 				24A6A24625A3DD3B00E12D71 /* Error.swift in Sources */,
 				24A6A25925A5198900E12D71 /* String+Regex.swift in Sources */,
-				24A6A2A625A64DAC00E12D71 /* VersionCompareResult.swift in Sources */,
+				24A6A2A625A64DAC00E12D71 /* UpdateSeverity.swift in Sources */,
 				24A6A26A25A51A4700E12D71 /* SemanticVersionComparable+Comparable.swift in Sources */,
 				OBJ_29 /* Version.swift in Sources */,
 			);
