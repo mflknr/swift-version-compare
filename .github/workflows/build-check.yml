@@ -10,4 +10,5 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - run: swift --version
     - run: swift build -v
