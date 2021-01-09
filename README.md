@@ -29,7 +29,7 @@ package(url: https://github.com/nihilias/SwiftVersionCompare.git", from: "0.6.0"
 
 # Usage
 
-For detailed implenentation information see auto-generated [documentation]().
+For implenentation details see the [documentation](http://docs.swiftversioncompare.io).
 
 ```swift
 // use the version identifier for initialization
