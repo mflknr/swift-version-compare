@@ -3,7 +3,7 @@
 ![platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20iOS%20%7C%20tvOS%20%7C%20watchOS-lightgrey.svg)
 ![languages](https://img.shields.io/badge/swift-5.0%20%7C%205.1%20%7C%205.2%20%7C%205.3-orange.svg)
 [![build](https://github.com/nihilias/SwiftVersionCompare/workflows/build/badge.svg)](https://github.com/nihilias/SwiftVersionCompare/actions)
-[![doccov](https://nihilias.github.io/SwiftVersionCompare/badge.svg?sanitize=true)](https://nihilias.github.io/SwiftVersionCompare/)
+[![doccov](https://mflknr.github.io/SwiftVersionCompare/badge.svg?sanitize=true)](https://mflknr.github.io/SwiftVersionCompare/)
 [![codecov](https://codecov.io/gh/nihilias/SwiftVersionCompare/branch/develop/graph/badge.svg?token=6EAG2J8DMU)](https://codecov.io/gh/nihilias/SwiftVersionCompare)
 
 A small package for comparing and utilizing versions conforming to [SemVer](https://semver.org).
@@ -29,7 +29,7 @@ package(url: https://github.com/nihilias/SwiftVersionCompare.git", from: "0.6.0"
 
 # Usage
 
-For implenentation details see the [documentation](https://nihilias.github.io/SwiftVersionCompare/).
+For implenentation details see the [documentation](https://mflknr.github.io/SwiftVersionCompare/).
 
 ```swift
 // use the version identifier for initialization
