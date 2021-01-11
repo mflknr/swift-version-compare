@@ -1,4 +1,4 @@
-name: Swift
+name: main-release
 
 on:
   push:
