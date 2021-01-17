@@ -19,4 +19,22 @@ public extension Bundle {
 
         return version
     }
+
+    /**
+     The version and build of the current bundle.
+
+     - Note: Uses the key `CFBundleShortVersionString` and `CFBundleVersion` for retrieving version values.
+     */
+    var version: Version? {
+        guard
+            let shortVersionString: String = infoDictionary?["CFBundleShortVersionString"] as? String,
+            let buildString: String = infoDictionary?["CFBundleVersion"] as? String else {
+            return nil
+        }
+
+        let versionString: String = "\(shortVersionString)+\(buildString)"
+        let version: Version? = Version(versionString)
+
+        return version
+    }
 }

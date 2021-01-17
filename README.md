@@ -10,14 +10,15 @@ A small package for comparing and utilizing versions conforming to [SemVer](http
 
 Following features are and will be implemented:
 
-- [x] Create a version from major, minor, patch and extension information.
-- [x] Create a version from string using `LosslessStringConvertible` or `ExpressibleByStringLiteral` .
+- [x] Create `SemanticVersionComparable` protocol to handle comparison methods
 - [x] Compare versions using `Equatable` and `Comparable` with the known operators `==, ===, <, <=, > and >=`.
 - [x] Compare versions and get the severity of the update (e. g. major-update).
+- [ ] Compare equal versions with different pre-release and build metadata.
 - [ ] Utilize ranges for a greater variaty of comparisons.
+- [x] Create a version from major, minor, patch and extension information.
+- [x] Create a version from string using `LosslessStringConvertible` or `ExpressibleByStringLiteral` .
 - [x] Extend `Bundle` and `ProcessInfo` for easy usage.
 - [x] Open documentation.
-- [ ] Extend `Codable` and `Hashable`.
 
 # Installation
 
@@ -70,4 +71,4 @@ if currentVersion.severity(to: newVersion) == .major {
 }
 ```
 
-
+If you want to implement yourself a custom version object, feel free to let it conform to the `SemanticVersionComparable` protocol enabling it with all the comparable and equatable operators.
