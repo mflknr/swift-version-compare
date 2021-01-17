@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		241EE97725B4EA1F00ACC3D3 /* Version+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241EE97625B4EA1F00ACC3D3 /* Version+Hashable.swift */; };
 		24A6A24625A3DD3B00E12D71 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A24525A3DD3B00E12D71 /* Error.swift */; };
 		24A6A25925A5198900E12D71 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A25825A5198900E12D71 /* String+Regex.swift */; };
 		24A6A26425A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A26325A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		241EE97625B4EA1F00ACC3D3 /* Version+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Version+Hashable.swift"; sourceTree = "<group>"; };
 		24A6A24525A3DD3B00E12D71 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		24A6A25825A5198900E12D71 /* String+Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Regex.swift"; sourceTree = "<group>"; };
 		24A6A26325A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SemanticVersionComparable+Equatable.swift"; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			children = (
 				OBJ_11 /* Version.swift */,
 				24A6A27D25A51E1900E12D71 /* Version+Bundle.swift */,
+				241EE97625B4EA1F00ACC3D3 /* Version+Hashable.swift */,
 				24A6A26F25A51B5500E12D71 /* Version+StringInitializer.swift */,
 				24A6A28725A6002200E12D71 /* Version+OS.swift */,
 				24A6A25E25A519AC00E12D71 /* SemanticVersionComparable */,
@@ -265,6 +268,7 @@
 			files = (
 				OBJ_28 /* SemanticVersionComparable.swift in Sources */,
 				24A6A26425A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift in Sources */,
+				241EE97725B4EA1F00ACC3D3 /* Version+Hashable.swift in Sources */,
 				24A6A27E25A51E1900E12D71 /* Version+Bundle.swift in Sources */,
 				24A6A27025A51B5500E12D71 /* Version+StringInitializer.swift in Sources */,
 				24A6A28825A6002200E12D71 /* Version+OS.swift in Sources */,
