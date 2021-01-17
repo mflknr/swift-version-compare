@@ -15,11 +15,9 @@ Following features are and will be implemented:
 - [x] Compare versions and get the severity of the update (e. g. major-update).
 - [ ] Compare equal versions with different pre-release and build metadata.
 - [ ] Utilize ranges for a greater variaty of comparisons.
-
 - [x] Create a version from major, minor, patch and extension information.
 - [x] Create a version from string using `LosslessStringConvertible` or `ExpressibleByStringLiteral` .
 - [x] Extend `Bundle` and `ProcessInfo` for easy usage.
-
 - [x] Open documentation.
 
 # Installation
