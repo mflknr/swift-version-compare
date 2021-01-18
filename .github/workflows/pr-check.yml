@@ -11,10 +11,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: swift --version
-    - run: swift package generate-xcodeproj --enable-code-coverage
-    - uses: sersoft-gmbh/xcodebuild-action@v1
+    - name: Generate Project
+      run: swift package generate-xcodeproj --enable-code-coverage
+    - name: Test
+      uses: sersoft-gmbh/xcodebuild-action@v1
       with:
         project: SwiftVersionCompare.xcodeproj
         scheme: SwiftVersionCompare-Package
         action: test
-    - uses: codecov/codecov-action@v1
+    - name: Codecov
+      uses: codecov/codecov-action@v1.2.1
+      with:
+        verbose: true
+        xcode_package: SwiftVersionCompare-Package
