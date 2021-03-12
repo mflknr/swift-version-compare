@@ -48,6 +48,9 @@ public protocol SemanticVersionComparable: Comparable, Hashable {
 
     /// Contains strings with pre-release information.
     var extensions: [String]? { get }
+
+    var prerelease: [String]? { get }
+    var buildMetaData: [String]? { get }
 }
 
 // MARK: -

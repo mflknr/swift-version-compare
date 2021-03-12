@@ -17,4 +17,15 @@ extension String {
             self.matches("^([0-9a-zA-Z]+)\\.([0-9a-zA-Z]+)$") ||
             self.matches("^([0-9a-zA-Z]+)$")
     }
+
+    func alphaNumericString() -> String {
+        let pattern = "[^A-Za-z0-9]+"
+        let result = self.replacingOccurrences(
+            of: pattern,
+            with: "",
+            options: [.regularExpression]
+        )
+
+        return result
+    }
 }
