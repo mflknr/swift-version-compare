@@ -6,7 +6,7 @@
 //
 
 extension BuildIdentifier: ExpressibleByStringLiteral {
-    init(stringLiteral value: StringLiteralType) {
+    public init(stringLiteral value: StringLiteralType) {
         if Int(value) != nil {
             self = .digits(value)
         } else {

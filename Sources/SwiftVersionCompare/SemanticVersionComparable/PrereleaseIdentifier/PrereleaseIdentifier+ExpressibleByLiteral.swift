@@ -6,14 +6,14 @@
 //
 
 extension PrereleaseIdentifier: ExpressibleByStringLiteral {
-    init(stringLiteral value: StringLiteralType) {
+    public init(stringLiteral value: StringLiteralType) {
         let alphaNumericString: String = value.alphaNumericString()
         self = .alphaNumeric(alphaNumericString)
     }
 }
 
 extension PrereleaseIdentifier: ExpressibleByIntegerLiteral {
-    init(integerLiteral value: IntegerLiteralType) {
+    public init(integerLiteral value: IntegerLiteralType) {
         let absoluteInteger = abs(value)
         let unsignedInteger = UInt(absoluteInteger)
         self = .numeric(unsignedInteger)

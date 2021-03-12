@@ -5,7 +5,7 @@
 //  Created by Marius Hötten-Löns on 12.03.21.
 //
 
-enum PrereleaseIdentifier {
+public enum PrereleaseIdentifier: Comparable {
     case alpha
     case beta
     case prerelease

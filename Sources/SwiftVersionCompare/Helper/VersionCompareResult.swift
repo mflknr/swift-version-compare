@@ -6,6 +6,9 @@
 //
 
 /// The severity of an update between versions.
+///
+/// - Note: A difference between build meta data of version are explicitly ignored, since `SemVer` considered
+///         them to be different ranks.
 public enum VersionCompareResult {
     /// A `MAJOR`update
     case major
@@ -14,7 +17,7 @@ public enum VersionCompareResult {
     /// A `PATCH`update
     case patch
     /// A pre-release update
-    case extensions
+    case prerelease
     /// The version is not an update (less or equal)
     case noUpdate
 }

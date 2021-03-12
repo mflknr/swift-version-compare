@@ -49,8 +49,8 @@ public protocol SemanticVersionComparable: Comparable, Hashable {
     /// Contains strings with pre-release information.
     var extensions: [String]? { get }
 
-    var prerelease: [String]? { get }
-    var buildMetaData: [String]? { get }
+    var prerelease: [PrereleaseIdentifier]? { get }
+    var build: [BuildIdentifier]? { get }
 }
 
 // MARK: -
@@ -81,8 +81,8 @@ extension SemanticVersionComparable {
             self.major == newVersion.major,
             self.minor == newVersion.minor,
             self.patch == newVersion.patch,
-            self.extensions != newVersion.extensions {
-            return .extensions
+            self.prerelease != newVersion.prerelease {
+            return .prerelease
         } else if
             self.major == newVersion.major,
             self.minor == newVersion.minor,

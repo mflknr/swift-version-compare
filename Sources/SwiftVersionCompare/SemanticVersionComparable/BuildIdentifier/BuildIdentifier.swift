@@ -5,7 +5,7 @@
 //  Created by Marius Hötten-Löns on 12.03.21.
 //
 
-enum BuildIdentifier {
+public enum BuildIdentifier: Comparable {
     case alphaNumeric(_ identifier: String)
     case digits(_ digits: String)
 }
