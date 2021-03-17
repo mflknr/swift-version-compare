@@ -46,10 +46,9 @@ public protocol SemanticVersionComparable: Comparable, Hashable {
     /// The `PATCH` identifer of a verion.
     var patch: UInt? { get }
 
-    /// Contains strings with pre-release information.
-    var extensions: [String]? { get }
-
+    /// Pre-release identifier of a version.
     var prerelease: [PrereleaseIdentifier]? { get }
+    /// Build-meta-data of a version.
     var build: [BuildIdentifier]? { get }
 }
 
@@ -81,6 +80,13 @@ extension SemanticVersionComparable {
             self.major == newVersion.major,
             self.minor == newVersion.minor,
             self.patch == newVersion.patch,
+            self.prerelease == newVersion.prerelease,
+            self.build != newVersion.build {
+            return .build
+        } else if
+            self.major == newVersion.major,
+            self.minor == newVersion.minor,
+            self.patch == newVersion.patch,
             self.prerelease != newVersion.prerelease {
             return .prerelease
         } else if
@@ -99,4 +105,11 @@ extension SemanticVersionComparable {
             return .noUpdate
         }
     }
+}
+
+// MARK: - Default Implementation
+
+extension SemanticVersionComparable {
+    public var prerelease: [PrereleaseIdentifier]? { nil }
+    public var build: [BuildIdentifier]? { nil }
 }
