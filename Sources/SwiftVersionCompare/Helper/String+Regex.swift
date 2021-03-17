@@ -18,6 +18,14 @@ extension String {
             self.matches("^([0-9a-zA-Z]+)$")
     }
 
+    var isAlphaNumericString: Bool {
+        self.matches("[A-Za-z0-9]+")
+    }
+
+    var isNumericString: Bool {
+        self.matches("[0-9]+")
+    }
+
     func alphaNumericString() -> String {
         let pattern = "[^A-Za-z0-9]+"
         let result = self.replacingOccurrences(
