@@ -5,17 +5,44 @@
 //  Created by Marius Hötten-Löns on 12.03.21.
 //
 
-public enum PrereleaseIdentifier: Comparable {
+/// Typed pre-release identifier.
+///
+/// - Note: Identifier can be described using alphanumeric or numeric letters.
+///
+/// - Attention:
+public enum PrereleaseIdentifier: Comparable, Hashable {
+    /// Identifier displaying `alpha`.
     case alpha
+
+    /// Identifier displaying `beta`.
     case beta
+
+    /// Identifier displaying `pre-release`.
     case prerelease
+
+    /// Identifier displaying `rc`.
     case releaseCandidate
+
+    /// Alphanumeric identifier are lower- and uppercased letters and numbers from 0-9.
     case alphaNumeric(_ identifier: String)
+
+    /// Numeric identifier are positive numbers and zeros, yet they do not allow for leading zeros.
     case numeric(_ identifier: UInt)
+
+    internal init?(private string: String) {
+        if string.isNumericString,
+           let numeric = UInt(string) {
+            self = .numeric(numeric)
+        } else if string.isAlphaNumericString {
+            self = .alphaNumeric(string)
+        } else {
+            return nil
+        }
+    }
 }
 
 extension PrereleaseIdentifier {
-    var identifier: String {
+    var value: String {
         switch self {
         case .alpha:
             return "alpha"

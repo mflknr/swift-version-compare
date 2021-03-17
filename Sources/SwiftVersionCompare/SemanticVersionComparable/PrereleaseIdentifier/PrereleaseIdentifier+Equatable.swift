@@ -10,6 +10,6 @@ extension PrereleaseIdentifier {
     ///
     /// - Returns: `true` if pre-release identifiers are equal.
     public static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.identifier == rhs.identifier
+        lhs.value == rhs.value
     }
 }
