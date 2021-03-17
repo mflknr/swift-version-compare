@@ -18,6 +18,8 @@ public enum VersionCompareResult {
     case patch
     /// A pre-release update
     case prerelease
+    /// A build update
+    case build
     /// The version is not an update (less or equal)
     case noUpdate
 }
