@@ -5,13 +5,10 @@
 //  Created by Marius Hötten-Löns on 12.03.21.
 //
 
-extension BuildIdentifier: ExpressibleByStringLiteral {
-    public init(stringLiteral value: StringLiteralType) {
-        if Int(value) != nil {
-            self = .digits(value)
-        } else {
-            let alphaNumericString: String = value.alphaNumericString()
-            self = .alphaNumeric(alphaNumericString)
-        }
+extension BuildIdentifier: LosslessStringConvertible {
+    public init?(_ string: String) {
+        self.init(private: string)
     }
+
+    public var description: String { value }
 }
