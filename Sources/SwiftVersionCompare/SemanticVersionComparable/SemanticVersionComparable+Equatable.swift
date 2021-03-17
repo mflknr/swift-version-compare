@@ -12,9 +12,9 @@ extension SemanticVersionComparable {
      - Returns: `true` if version objects are equal.
      */
     public static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.major == rhs.major &&
-        lhs.minor ?? 0 == rhs.minor ?? 0 &&
-        lhs.patch ?? 0 == rhs.patch ?? 0
+        lhs.major == rhs.major
+            && lhs.minor ?? 0 == rhs.minor ?? 0
+            && lhs.patch ?? 0 == rhs.patch ?? 0
     }
 
     /**
@@ -23,9 +23,9 @@ extension SemanticVersionComparable {
      - Returns: `true` if version objects are strictly equal.
      */
     public static func === (lhs: Self, rhs: Self) -> Bool {
-        lhs.major == rhs.major &&
-        lhs.minor ?? 0 == rhs.minor ?? 0 &&
-        lhs.patch ?? 0 == rhs.patch ?? 0 &&
-            lhs.extensions == rhs.extensions
+        lhs.major == rhs.major
+            && lhs.minor ?? 0 == rhs.minor ?? 0
+            && lhs.patch ?? 0 == rhs.patch ?? 0
+            && lhs.prerelease == rhs.prerelease
     }
 }
