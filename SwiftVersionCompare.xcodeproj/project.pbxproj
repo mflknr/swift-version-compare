@@ -31,6 +31,7 @@
 		24A6A2A625A64DAC00E12D71 /* VersionCompareResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A2A525A64DAC00E12D71 /* VersionCompareResult.swift */; };
 		24D6001425FB86FB0003375E /* BuildIdentifier+ExpressibleByLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D6001325FB86FB0003375E /* BuildIdentifier+ExpressibleByLiteral.swift */; };
 		24D6002425FB8B350003375E /* PrereleaseIdentifier+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D6002325FB8B350003375E /* PrereleaseIdentifier+Equatable.swift */; };
+		24D6003625FCE1F60003375E /* SemanticVersionComparable+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D6003525FCE1F60003375E /* SemanticVersionComparable+Hashable.swift */; };
 		24D6FFE525FB6FFE0003375E /* PrereleaseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D6FFE425FB6FFE0003375E /* PrereleaseIdentifier.swift */; };
 		24D6FFEF25FB74CA0003375E /* PrereleaseIdentifier+ExpressibleByLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D6FFEE25FB74CA0003375E /* PrereleaseIdentifier+ExpressibleByLiteral.swift */; };
 		24D6FFF625FB75210003375E /* BuildIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D6FFF525FB75210003375E /* BuildIdentifier.swift */; };
@@ -72,6 +73,7 @@
 		24A6A2BB25A67D1200E12D71 /* .jazzy.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .jazzy.yml; sourceTree = "<group>"; };
 		24D6001325FB86FB0003375E /* BuildIdentifier+ExpressibleByLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BuildIdentifier+ExpressibleByLiteral.swift"; sourceTree = "<group>"; };
 		24D6002325FB8B350003375E /* PrereleaseIdentifier+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrereleaseIdentifier+Equatable.swift"; sourceTree = "<group>"; };
+		24D6003525FCE1F60003375E /* SemanticVersionComparable+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SemanticVersionComparable+Hashable.swift"; sourceTree = "<group>"; };
 		24D6FFE425FB6FFE0003375E /* PrereleaseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrereleaseIdentifier.swift; sourceTree = "<group>"; };
 		24D6FFEE25FB74CA0003375E /* PrereleaseIdentifier+ExpressibleByLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrereleaseIdentifier+ExpressibleByLiteral.swift"; sourceTree = "<group>"; };
 		24D6FFF525FB75210003375E /* BuildIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildIdentifier.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				OBJ_10 /* SemanticVersionComparable.swift */,
 				24A6A26925A51A4700E12D71 /* SemanticVersionComparable+Comparable.swift */,
 				24A6A26325A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift */,
+				24D6003525FCE1F60003375E /* SemanticVersionComparable+Hashable.swift */,
 			);
 			path = SemanticVersionComparable;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				24A6A27025A51B5500E12D71 /* Version+StringInitializer.swift in Sources */,
 				24A6A28825A6002200E12D71 /* Version+OS.swift in Sources */,
 				24A6A24625A3DD3B00E12D71 /* Error.swift in Sources */,
+				24D6003625FCE1F60003375E /* SemanticVersionComparable+Hashable.swift in Sources */,
 				24D6FFE525FB6FFE0003375E /* PrereleaseIdentifier.swift in Sources */,
 				24A6A25925A5198900E12D71 /* String+Regex.swift in Sources */,
 				24D6FFF625FB75210003375E /* BuildIdentifier.swift in Sources */,
