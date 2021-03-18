@@ -73,33 +73,31 @@ extension SemanticVersionComparable {
 
      - Returns: The severity of the update the version inherits.
      */
-    public func compare(with newVersion: Self) -> VersionCompareResult {
-        guard self != newVersion || self > newVersion else { return .noUpdate }
+    public func compare(with version: Self) -> VersionCompareResult {
+        let lhs = self
+        let rhs = version
+
+        guard lhs != rhs || lhs < rhs else {
+            if lhs.prerelease?.count ?? 0 < rhs.prerelease?.count ?? 0 {
+                return .prerelease
+            } else if lhs.build != rhs.build {
+                return .build
+            }
+
+            return .noUpdate
+        }
 
         if
-            self.major == newVersion.major,
-            self.minor == newVersion.minor,
-            self.patch == newVersion.patch,
-            self.prerelease == newVersion.prerelease,
-            self.build != newVersion.build {
-            return .build
-        } else if
-            self.major == newVersion.major,
-            self.minor == newVersion.minor,
-            self.patch == newVersion.patch,
-            self.prerelease != newVersion.prerelease {
-            return .prerelease
-        } else if
-            self.major == newVersion.major,
-            self.minor == newVersion.minor,
-            self.patch ?? 0 < newVersion.patch ?? 0 {
+            lhs.major == rhs.major,
+            lhs.minor == rhs.minor,
+            lhs.patch ?? 0 < rhs.patch ?? 0 {
             return .patch
         } else if
-            self.major == newVersion.major,
-            self.minor ?? 0 < newVersion.minor ?? 0 {
+            lhs.major == rhs.major,
+            lhs.minor ?? 0 < rhs.minor ?? 0 {
             return .minor
         } else if
-            self.major < newVersion.major {
+            lhs.major < rhs.major {
             return .major
         } else {
             return .noUpdate
