@@ -23,8 +23,8 @@ final class SemanticVersionComparableTests: XCTestCase {
 
         testData.forEach { lhs, rhs in
             XCTAssertEqual(lhs, rhs, "Expected \(lhs) to be equal to \(rhs)")
-            XCTAssertFalse(lhs > rhs)
-            XCTAssertFalse(lhs < rhs)
+            XCTAssertFalse(lhs > rhs, "Expected \(lhs) to be greater than \(rhs)")
+            XCTAssertFalse(lhs < rhs, "Expected \(lhs) to be lesser than \(rhs)")
         }
     }
 
@@ -36,29 +36,31 @@ final class SemanticVersionComparableTests: XCTestCase {
             Version("13.9182"): Version("15.2.0"),
             Version("2"): Version("25"),
             Version("777.8987"): Version("777.8988"),
-            Version("13.9182.0-alpha"): Version("15.2.0"),
-            Version("13.9182.1-alpha"): Version("13.9182.1")
+            Version("13.9182.0"): Version("15.2.0"),
+            Version("13.9182.1-alpha"): Version("13.9182.1"),
+            Version("13.1.1-alpha"): Version("13.1.1-beta"),
+            Version("5-h2o4hr"): Version("5")
         ]
 
         testData.forEach { lhs, rhs in
             // less
-            XCTAssertTrue(lhs < rhs, "Expected \(lhs) to be less to \(rhs)!")
-            XCTAssertTrue(lhs <= rhs, "Expected \(lhs) to be less or equal to \(rhs)!")
+            XCTAssertTrue(lhs < rhs, "Expected \(lhs.absoluteString) to be less to \(rhs.absoluteString)!")
+            XCTAssertTrue(lhs <= rhs, "Expected \(lhs.absoluteString) to be less or equal to \(rhs.absoluteString)!")
             XCTAssertTrue(lhs <= lhs)
             XCTAssertTrue(rhs <= rhs)
 
-            XCTAssertFalse(rhs < lhs)
+            XCTAssertFalse(rhs < lhs, "Expected \(rhs.absoluteString) to be less to \(lhs.absoluteString)!")
             XCTAssertFalse(lhs < lhs)
             XCTAssertFalse(rhs < rhs)
 
 
             // greater
-            XCTAssertTrue(rhs > lhs, "Expected \(lhs) to be greater than \(rhs)!")
-            XCTAssertTrue(rhs >= lhs, "Expected \(lhs) to be greater than or equal to \(rhs)!")
+            XCTAssertTrue(rhs > lhs, "Expected \(lhs.absoluteString) to be greater than \(rhs.absoluteString)!")
+            XCTAssertTrue(rhs >= lhs, "Expected \(lhs.absoluteString) to be greater than or equal to \(rhs.absoluteString)!")
             XCTAssertTrue(rhs >= rhs)
             XCTAssertTrue(lhs >= lhs)
 
-            XCTAssertFalse(lhs > rhs)
+            XCTAssertFalse(lhs > rhs, "Expected \(lhs.absoluteString) to be greater to \(rhs.absoluteString)!")
             XCTAssertFalse(rhs > rhs)
             XCTAssertFalse(lhs > lhs)
         }
@@ -115,7 +117,8 @@ final class SemanticVersionComparableTests: XCTestCase {
             (Version("1.3"), Version("1.5"), VersionCompareResult.minor),
             (Version("3.230.13"), Version("3.235.1"), VersionCompareResult.minor),
             (Version("565.1.123"), Version("565.1.124"), VersionCompareResult.patch),
-            (Version("1.2"), Version("1.2-alpha"), VersionCompareResult.extensions),
+            (Version("1.2"), Version("1.2-alpha"), VersionCompareResult.prerelease),
+            (Version("1.34523"), Version("1.34523+100"), VersionCompareResult.build),
             (Version("2.235234.1"), Version("1.8967596758.4"), VersionCompareResult.noUpdate),
             (Version("2.0.0"), Version("2"), VersionCompareResult.noUpdate)
         ]
@@ -124,7 +127,7 @@ final class SemanticVersionComparableTests: XCTestCase {
             let versionOne = data.0
             let versionTwo = data.1
             let compareResult = versionOne.compare(with: versionTwo)
-            XCTAssertTrue(compareResult == data.2, "Expected result from comparing \(data.0) and \(data.1) to be \(data.2) but is \(compareResult)!")
+            XCTAssertTrue(compareResult == data.2, "Expected result from comparing \(data.0.absoluteString) and \(data.1.absoluteString) to be \(data.2) but is \(compareResult)!")
         }
     }
 
