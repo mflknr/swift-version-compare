@@ -52,9 +52,9 @@ final class VersionTests: XCTestCase {
             XCTAssertTrue(version!.versionCode == $0.1, "Expected versionCode to be \($0.1), is: \(version!.versionCode)")
             XCTAssertEqual(version!.debugDescription, version!.description)
             if let expectedExtension = $0.2 {
-//                XCTAssertEqual(version!.extension, $0.2, "Expected extension to be \(expectedExtension), is: \(version!.extension ?? "nil")")
+                XCTAssertEqual(version!.versionExtension, $0.2, "Expected extension to be \(expectedExtension), is: \(version!.versionExtension ?? "nil")")
             } else {
-//                XCTAssertNil(version!.extension, "Expected extension to be nil!")
+                XCTAssertNil(version!.versionExtension, "Expected extension to be nil!")
             }
         }
 
@@ -66,9 +66,9 @@ final class VersionTests: XCTestCase {
             XCTAssertTrue(version.versionCode == $0.1, "Expected versionCode to be \($0.1), is: \(version.versionCode)")
             XCTAssertEqual(version.debugDescription, version.description)
             if let expectedExtension = $0.2 {
-//                XCTAssertEqual(version.extension, $0.2, "Expected extension to be \(expectedExtension), is: \(version.extension ?? "nil")")
+                XCTAssertEqual(version.versionExtension, $0.2, "Expected extension to be \(expectedExtension), is: \(version.versionExtension ?? "nil")")
             } else {
-//                XCTAssertNil(version.extension, "Expected extension to be nil!")
+                XCTAssertNil(version.versionExtension, "Expected extension to be nil!")
             }
         }
 
@@ -80,9 +80,9 @@ final class VersionTests: XCTestCase {
             XCTAssertTrue(version.versionCode == $0.1, "Expected versionCode to be \($0.1), is: \(version.versionCode)")
             XCTAssertEqual(version.debugDescription, version.description)
             if let expectedExtension = $0.2 {
-//                XCTAssertEqual(version.extension, $0.2, "Expected extension to be \(expectedExtension), is: \(version.extension ?? "nil")")
+                XCTAssertEqual(version.versionExtension, $0.2, "Expected extension to be \(expectedExtension), is: \(version.versionExtension ?? "nil")")
             } else {
-//                XCTAssertNil(version.extension, "Expected extension to be nil!")
+                XCTAssertNil(version.versionExtension, "Expected extension to be nil!")
             }
         }
     }
@@ -101,13 +101,25 @@ final class VersionTests: XCTestCase {
         }
     }
 
-    func testBundleVersion() {
+    func testInvalidBundleVersion() {
+        // the main bundle from test targets is different from actual app targets and will be invalid for use,
+        // but not for testing
+        XCTAssertNil(Bundle.main.shortVersion)
+        XCTAssertNil(Bundle.main.version)
+    }
+
+    func testValidBundleVersion() {
         let testBundle = Bundle(for: type(of: self))
-        let versionString = testBundle.infoDictionary?["CFBundleShortVersionString"] as? String
-        let bundleVersion: Version? = testBundle.shortVersion
-        
-        XCTAssertNotNil(bundleVersion)
-        XCTAssertEqual(versionString!, bundleVersion!.absoluteString, "Expected \(bundleVersion!) to be equal to \(versionString!)!")
+        let shortVersionString = testBundle.infoDictionary?["CFBundleShortVersionString"] as? String
+        let buildString = testBundle.infoDictionary?["CFBundleVersion"] as? String
+        let shortVersion: Version? = testBundle.shortVersion
+        let version: Version? = testBundle.version
+
+        XCTAssertNotNil(shortVersion)
+        XCTAssertEqual(shortVersionString!, shortVersion!.absoluteString, "Expected \(shortVersion!) to be equal to \(shortVersionString!)!")
+
+        XCTAssertNotNil(version)
+        XCTAssertEqual("\(shortVersionString!)+\(buildString!)", version!.absoluteString, "Expected \(version!) to be equal to \(buildString!)!")
     }
 
     func testProcessInfoVersion() {
@@ -135,7 +147,7 @@ final class VersionTests: XCTestCase {
         ("testValidConstruction", testValidConstruction),
         ("testMemberwiseConstruction", testMemberwiseConstruction),
         ("testInvalidConstruction", testInvalidConstruction),
-        ("testBundleVersion", testBundleVersion),
+        ("testBundleVersion", testValidBundleVersion),
         ("testProcessInfoVersion", testProcessInfoVersion)
     ]
 }

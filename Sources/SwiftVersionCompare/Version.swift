@@ -72,18 +72,16 @@ public struct Version: SemanticVersionComparable {
         self.build = build
     }
 
-    /**
-     Creates a new version.
-
-     - Parameters:
-        - major: The `MAJOR` identifier of a version.
-        - minor: The `MINOR` identifier of a version.
-        - patch: The `PATCH` identifier of a version.
-        - extensions: Contains strings with pre-release information.
-
-     - Note: Unsigned integers are used to provide an straightforward way to make sure that the identifiers
-     are not negative numbers.
-     */
+    /// Creates a new version.
+    ///
+    /// - Parameters:
+    ///    - major: The `MAJOR` identifier of a version.
+    ///    - minor: The `MINOR` identifier of a version.
+    ///    - patch: The `PATCH` identifier of a version.
+    ///    - extensions: Contains strings with pre-release information.
+    ///
+    /// - Note: Unsigned integers are used to provide an straightforward way to make sure that the identifiers
+    ///         are not negative numbers.
     @inlinable
     public init(
         major: UInt,
@@ -139,7 +137,9 @@ public struct Version: SemanticVersionComparable {
         self.patch = safeIdentifiers.indices.contains(2) ? safeIdentifiers[2] : nil
 
         // extract pre-release identifier if available
-        if versionSplitPrerelease.indices.contains(1), let prereleaseSubstring = versionSplitPrerelease.last {
+        if
+            versionSplitPrerelease.indices.contains(1),
+            let prereleaseSubstring = versionSplitPrerelease.last {
             self.prerelease = String(prereleaseSubstring)
                 .split(separator: ".")
                 .map(String.init)
@@ -170,9 +170,9 @@ public struct Version: SemanticVersionComparable {
 
 // MARK: - Accessors
 
-extension Version {
+public extension Version {
     /// The absolute string of the version.
-    public var absoluteString: String {
+    var absoluteString: String {
         var versionString = versionCode
         if let pr = prereleaseIdentifier {
             versionString = [versionString, pr].joined(separator: "-")
@@ -186,22 +186,36 @@ extension Version {
     }
 
     /// The string of the version representing `MAJOR.MINOR.PATCH`.
-    public var versionCode: String {
+    var versionCode: String {
         [major, minor, patch]
             .compactMap { $0 }
             .map(String.init)
             .joined(separator: ".")
     }
 
+    /// The string of the version representing the pre-release identifier and build-meta-data.
+    var versionExtension: String? {
+        var extensionsString: String? = prereleaseIdentifier
+        if let build = buildMetaData {
+            if let ext = extensionsString {
+                extensionsString = [ext, build].joined(separator: "+")
+            } else {
+                extensionsString = build
+            }
+        }
+
+        return extensionsString
+    }
+
     /// The pre-release identifier as a string if available.
-    public var prereleaseIdentifier: String? {
+    var prereleaseIdentifier: String? {
         prerelease?
             .compactMap { $0.value }
             .joined(separator: ".")
     }
 
     /// The build meta data as a string if available.
-    public var buildMetaData: String? {
+    var buildMetaData: String? {
         build?
             .compactMap { $0.value }
             .joined(separator: ".")
