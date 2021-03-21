@@ -9,7 +9,8 @@
 ///
 /// - Note: Identifier can be described using alphanumeric or numeric letters.
 ///
-/// - Attention:
+/// - Attention: If an identifier does not show conformance for beeing numeric or alphanumeric it is initialized
+///              as `nil`.
 public enum PrereleaseIdentifier: Comparable, Hashable {
     /// Identifier displaying `alpha`.
     case alpha
@@ -29,7 +30,7 @@ public enum PrereleaseIdentifier: Comparable, Hashable {
     /// Numeric identifier are positive numbers and zeros, yet they do not allow for leading zeros.
     case numeric(_ identifier: UInt)
 
-    internal init?(private string: String) {
+    init?(private string: String) {
         if string.isNumericString,
            let numeric = UInt(string) {
             self = .numeric(numeric)
@@ -41,7 +42,7 @@ public enum PrereleaseIdentifier: Comparable, Hashable {
     }
 }
 
-extension PrereleaseIdentifier {
+public extension PrereleaseIdentifier {
     var value: String {
         switch self {
         case .alpha:

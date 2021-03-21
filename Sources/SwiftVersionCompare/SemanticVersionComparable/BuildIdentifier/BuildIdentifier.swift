@@ -17,7 +17,7 @@ public enum BuildIdentifier: Comparable {
     /// Digit identifier are positive numbers and zeros, thus allowing leading zeros.
     case digits(_ digits: String)
 
-    internal init?(private string: String) {
+    init?(private string: String) {
         if let _ = Int(string) {
             self = .digits(string)
         } else if string.isAlphaNumericString {
@@ -28,7 +28,7 @@ public enum BuildIdentifier: Comparable {
     }
 }
 
-extension BuildIdentifier {
+public extension BuildIdentifier {
     var value: String {
         switch self {
         case let .alphaNumeric(identifier):

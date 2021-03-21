@@ -5,8 +5,8 @@
 //  Created by Marius Hötten-Löns on 05.01.21.
 //
 
-extension SemanticVersionComparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
+public extension SemanticVersionComparable {
+    static func < (lhs: Self, rhs: Self) -> Bool {
         // if versions are identical on major, minor and patch level, compare them lexicographiocally
         guard lhs == rhs else {
             // cast UInt to Int for each identifier to compare ordering lexicographically. missing
@@ -62,11 +62,11 @@ extension SemanticVersionComparable {
         return lhspr.count < rhspr.count
     }
 
-    public static func <= (lhs: Self, rhs: Self) -> Bool {
+    static func <= (lhs: Self, rhs: Self) -> Bool {
         lhs === rhs || lhs < rhs
     }
 
-    public static func >= (lhs: Self, rhs: Self) -> Bool {
+    static func >= (lhs: Self, rhs: Self) -> Bool {
         lhs === rhs || lhs > rhs
     }
 }
