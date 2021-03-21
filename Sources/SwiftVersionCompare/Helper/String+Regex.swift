@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension String {
+internal extension String {
     func matches(_ regex: String) -> Bool {
         self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
     }
@@ -24,16 +24,5 @@ extension String {
 
     var isNumericString: Bool {
         self.matches("[0-9]+")
-    }
-
-    func alphaNumericString() -> String {
-        let pattern = "[^A-Za-z0-9]+"
-        let result = self.replacingOccurrences(
-            of: pattern,
-            with: "",
-            options: [.regularExpression]
-        )
-
-        return result
     }
 }
