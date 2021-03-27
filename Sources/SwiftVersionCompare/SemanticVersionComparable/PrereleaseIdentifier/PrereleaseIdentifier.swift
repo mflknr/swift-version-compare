@@ -18,7 +18,7 @@ public enum PrereleaseIdentifier: Comparable, Hashable {
     /// Identifier displaying `beta`.
     case beta
 
-    /// Identifier displaying `pre-release`.
+    /// Identifier displaying `prerelease`.
     case prerelease
 
     /// Identifier displaying `rc`.
