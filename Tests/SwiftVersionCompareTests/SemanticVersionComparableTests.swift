@@ -18,7 +18,7 @@ final class SemanticVersionComparableTests: XCTestCase {
             Version("1"): Version("1"),
             Version("123.0.0"): Version("123"),
             Version("1.2"): Version("1.2.0"),
-            Version("1.9.0"): Version("1.9")
+            Version("1.9.0"): Version("1.9"),
         ]
 
         testData.forEach { lhs, rhs in

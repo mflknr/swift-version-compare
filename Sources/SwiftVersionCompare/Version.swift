@@ -9,7 +9,7 @@ import Foundation
 
 /// A version type conforming to `SemVer`.
 ///
-/// You can create a new version using string, string literals, string interpolation formatted like `MAJOR.MINOR.PATCH-EXTENSIONS` or memberwise properties.
+/// You can create a new version using string, string literals and string interpolation formatted like `MAJOR.MINOR.PATCH-PRERELEASE+BUILD` or memberwise properties.
 ///
 ///     // from string
 ///     let version: Version? = "1.0.0"
@@ -21,7 +21,7 @@ import Foundation
 ///     let version: Version = Version(1, 0, 0)
 ///     let version: Version = Version(major: 1, minor: 0, patch: 0)
 ///
-/// Pre-Release or buildmetadata information are handled as strings in extensions.
+/// Pre-release identifier or build-meta-data are handled as strings in extensions.
 ///
 ///     let version: Version = let version: Version = Version(major: 1, minor: 0, patch: 0, extensions: ["alpha"])
 ///     version.absoluteString // -> "1.0.0-alpha"
@@ -39,7 +39,7 @@ public struct Version: SemanticVersionComparable {
     public var prerelease: [PrereleaseIdentifier]?
     public var build: [BuildIdentifier]?
 
-    // MARK: -
+    // MARK: - Init
 
     /// Creates a new version.
     ///
@@ -47,12 +47,13 @@ public struct Version: SemanticVersionComparable {
     ///    - major: The `MAJOR` identifier of a version.
     ///    - minor: The `MINOR` identifier of a version.
     ///    - patch: The `PATCH` identifier of a version.
-    ///    - extensions: Contains strings with pre-release information.
+    ///    - prerelease: The pre-release identifier of a version.
+    ///    - build: The build-meta-data of a version.
     ///
     /// - Returns: A new version.
     ///
     /// - Note: Unsigned integers are used to provide an straightforward way to make sure that the identifiers
-    /// are not negative numbers.
+    ///         are not negative numbers.
     @inlinable
     public init(
         _ major: UInt,
@@ -75,7 +76,8 @@ public struct Version: SemanticVersionComparable {
     ///    - major: The `MAJOR` identifier of a version.
     ///    - minor: The `MINOR` identifier of a version.
     ///    - patch: The `PATCH` identifier of a version.
-    ///    - extensions: Contains strings with pre-release information.
+    ///    - prerelease: The pre-release identifier of a version.
+    ///    - build: The build-meta-data of a version.
     ///
     /// - Note: Unsigned integers are used to provide an straightforward way to make sure that the identifiers
     ///         are not negative numbers.
@@ -92,22 +94,24 @@ public struct Version: SemanticVersionComparable {
 
     internal init?(private string: String) {
         // split string into version with pre-release identifier and build-meta-data substrings
-        let versionSplitBuild = string.split(separator: "+", maxSplits: 1, omittingEmptySubsequences: false)
+        let versionSplitBuild = string.split(separator: "+", omittingEmptySubsequences: false)
 
-        // check if string does not contain only build-meta-data e.g. "+123"
+        // check if string does not contain only build-meta-data e.g. "+123" or falsely "+123+something"
         guard
             !versionSplitBuild.isEmpty,
+            versionSplitBuild.count <= 2,
             let versionPrereleaseString = versionSplitBuild.first else {
             return nil
         }
 
         // split previously splitted substring into version and pre-release identifier substrings
         let versionSplitPrerelease = versionPrereleaseString
-            .split(separator: "-", maxSplits: 1, omittingEmptySubsequences: false)
+            .split(separator: "-", omittingEmptySubsequences: false)
 
-        // check for non-empty version string e.g. "-alpha"
+        // check for non-empty or invalid version string e.g. "-alpha" or "-alpha-beta"
         guard
             !versionSplitPrerelease.isEmpty,
+            versionSplitPrerelease.count <= 2,
             let versionStringElement = versionSplitPrerelease.first else {
             return nil
         }

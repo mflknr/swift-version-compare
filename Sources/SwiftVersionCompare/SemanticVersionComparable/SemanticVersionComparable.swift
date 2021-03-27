@@ -59,7 +59,7 @@ public extension SemanticVersionComparable {
     ///
     /// - Returns: `true` if both objects have equal major versions.
     func isCompatible(with version: Self) -> Bool {
-        self.major == version.major
+        major == version.major
     }
 
     /// Compare versions for their update severity.
@@ -111,7 +111,7 @@ public extension SemanticVersionComparable {
 public extension SemanticVersionComparable {
     /// The absolute string of the version.
     var absoluteString: String {
-        var versionString = versionCode
+        var versionString = coreString
         if let pr = prereleaseIdentifier {
             versionString = [versionString, pr].joined(separator: "-")
         }
@@ -124,7 +124,7 @@ public extension SemanticVersionComparable {
     }
 
     /// The string of the version representing `MAJOR.MINOR.PATCH`.
-    var versionCode: String {
+    var coreString: String {
         [major, minor, patch]
             .compactMap { $0 }
             .map(String.init)
@@ -132,7 +132,7 @@ public extension SemanticVersionComparable {
     }
 
     /// The string of the version representing the pre-release identifier and build-meta-data.
-    var versionExtension: String? {
+    var extensionString: String? {
         var extensionsString: String? = prereleaseIdentifier
         if let build = buildMetaData {
             if let ext = extensionsString {
