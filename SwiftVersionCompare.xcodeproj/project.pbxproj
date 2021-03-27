@@ -122,7 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				24D6FFE325FB6FD90003375E /* PrereleaseIdentifier */,
-				24D6FFF425FB75050003375E /* BuildIdentifier */,
+				24D6FFF425FB75050003375E /* BuildMetaData */,
 				OBJ_10 /* SemanticVersionComparable.swift */,
 				24A6A26925A51A4700E12D71 /* SemanticVersionComparable+Comparable.swift */,
 				24A6A26325A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift */,
@@ -141,13 +141,13 @@
 			path = PrereleaseIdentifier;
 			sourceTree = "<group>";
 		};
-		24D6FFF425FB75050003375E /* BuildIdentifier */ = {
+		24D6FFF425FB75050003375E /* BuildMetaData */ = {
 			isa = PBXGroup;
 			children = (
 				24D6FFF525FB75210003375E /* BuildMetaData.swift */,
 				24D6001325FB86FB0003375E /* BuildMetaData+ExpressibleByLiteral.swift */,
 			);
-			path = BuildIdentifier;
+			path = BuildMetaData;
 			sourceTree = "<group>";
 		};
 		OBJ_12 /* Tests */ = {
