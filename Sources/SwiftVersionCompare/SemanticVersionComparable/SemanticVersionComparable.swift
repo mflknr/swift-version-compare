@@ -47,7 +47,7 @@ public protocol SemanticVersionComparable: Comparable, Hashable {
     /// Pre-release identifier of a version.
     var prerelease: [PrereleaseIdentifier]? { get }
     /// Build-meta-data of a version.
-    var build: [BuildIdentifier]? { get }
+    var build: [BuildMetaData]? { get }
 }
 
 // MARK: -
@@ -103,7 +103,7 @@ public extension SemanticVersionComparable {
 
 public extension SemanticVersionComparable {
     var prerelease: [PrereleaseIdentifier]? { nil }
-    var build: [BuildIdentifier]? { nil }
+    var build: [BuildMetaData]? { nil }
 }
 
 // MARK: - Accessors

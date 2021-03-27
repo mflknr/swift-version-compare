@@ -50,7 +50,7 @@ public extension PrereleaseIdentifier {
         case .beta:
             return "beta"
         case .prerelease:
-            return "pre-release"
+            return "prerelease"
         case .releaseCandidate:
             return "rc"
         case let .alphaNumeric(identifier):

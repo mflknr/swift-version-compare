@@ -1,5 +1,5 @@
 //
-//  BuildIdentifier.swift
+//  BuildMetaData.swift
 //  SwiftVersionCompare
 //
 //  Created by Marius Hötten-Löns on 12.03.21.
@@ -10,7 +10,7 @@
 /// - Note: Identifier can be described using alphanumeric letters or digits.
 ///
 /// - Attention: 
-public enum BuildIdentifier: Comparable {
+public enum BuildMetaData: Comparable {
     /// Alphanumeric identifier are lower- and uppercased letters and numbers from 0-9.
     case alphaNumeric(_ identifier: String)
 
@@ -28,7 +28,7 @@ public enum BuildIdentifier: Comparable {
     }
 }
 
-public extension BuildIdentifier {
+public extension BuildMetaData {
     var value: String {
         switch self {
         case let .alphaNumeric(identifier):

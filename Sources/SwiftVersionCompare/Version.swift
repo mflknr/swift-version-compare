@@ -13,22 +13,26 @@ import Foundation
 ///
 ///     // from string
 ///     let version: Version? = "1.0.0"
-///     let version: Version? = Version("1.0.0")
+///     let version: Version? = Version("1.0.0-alpha.1+23")
 ///     let version: Version = "1.0.0" // <- will crash if string does not conform to `SemVer`
 ///     let version: Version = Version("1.0.0") // <- will also crash if string is not a semantic version
 ///
 ///     // from memberwise properties
 ///     let version: Version = Version(1, 0, 0)
-///     let version: Version = Version(major: 1, minor: 0, patch: 0)
+///     let version: Version = Version(major: 1, minor: 0, patch: 0, prerelease: ["alpha, "1"], build: ["exp"])
 ///
-/// Pre-release identifier or build-meta-data are handled as strings in extensions.
+/// Pre-release identifier or build-meta-data can be handled as strings or as a few selected enumared case with it
+/// associated raw value (see `PrereleaseIdentifier` and `BuildMetaData` for more).
 ///
-///     let version: Version = let version: Version = Version(major: 1, minor: 0, patch: 0, extensions: ["alpha"])
-///     version.absoluteString // -> "1.0.0-alpha"
+///     let version: Version = let version: Version = Version(major: 1, minor: 0, patch: 0, prerelease: ["alpha"], build: ["500"])
+///     version.absoluteString // -> "1.0.0-alpha+500"
 ///
-///     let version: Version = Version(2, 32, 16, ["pre-release", "alpha"])
-///     version.absoluteString // -> "2.32.16-pre-release.alpha"
-///     version.extensions // -> "pre-release.alpha"
+///     let version: Version = Version(2, 32, 16, ["family", .alpha], ["1"])
+///     version.absoluteString // -> "2.32.16-family.alpha+1"
+///     version.coreString // -> "2.32.16"
+///     version.extensionString // -> "family.alpha+1"
+///     version.prereleaseIdentifer // -> "family.alpha"
+///     version.buildMetaData // -> "1"
 ///
 /// - Remark: See `https://semver.org` for detailed information.
 public struct Version: SemanticVersionComparable {
@@ -37,7 +41,7 @@ public struct Version: SemanticVersionComparable {
     public var patch: UInt?
 
     public var prerelease: [PrereleaseIdentifier]?
-    public var build: [BuildIdentifier]?
+    public var build: [BuildMetaData]?
 
     // MARK: - Init
 
@@ -60,7 +64,7 @@ public struct Version: SemanticVersionComparable {
         _ minor: UInt? = nil,
         _ patch: UInt? = nil,
         _ prerelease: [PrereleaseIdentifier]? = nil,
-        _ build: [BuildIdentifier]? = nil
+        _ build: [BuildMetaData]? = nil
     ) {
         self.major = major
         self.minor = minor
@@ -87,7 +91,7 @@ public struct Version: SemanticVersionComparable {
         minor: UInt? = nil,
         patch: UInt? = nil,
         prerelease: [PrereleaseIdentifier]? = nil,
-        build: [BuildIdentifier]? = nil
+        build: [BuildMetaData]? = nil
     ) {
         self.init(major, minor, patch, prerelease, build)
     }
@@ -163,7 +167,7 @@ public struct Version: SemanticVersionComparable {
                 .split(separator: ".")
                 .map(String.init)
                 .compactMap {
-                    BuildIdentifier.init($0)
+                    BuildMetaData.init($0)
                 }
         } else {
             self.build = nil
