@@ -39,9 +39,6 @@ public struct Version: SemanticVersionComparable {
     public var prerelease: [PrereleaseIdentifier]?
     public var build: [BuildIdentifier]?
 
-    /// An initial version representing the string `0.0.0`.
-    public static var initial: Version = Version(major: 0, minor: 0, patch: 0)
-
     // MARK: -
 
     /// Creates a new version.
@@ -94,15 +91,17 @@ public struct Version: SemanticVersionComparable {
     }
 
     internal init?(private string: String) {
-        // split string into version, pre-release and build-meta-data identifier substrings
-        let versionSplitBuild = string
-            .split(separator: "+", maxSplits: 1, omittingEmptySubsequences: false)
+        // split string into version with pre-release identifier and build-meta-data substrings
+        let versionSplitBuild = string.split(separator: "+", maxSplits: 1, omittingEmptySubsequences: false)
+
+        // check if string does not contain only build-meta-data e.g. "+123"
         guard
             !versionSplitBuild.isEmpty,
             let versionPrereleaseString = versionSplitBuild.first else {
             return nil
         }
 
+        // split previously splitted substring into version and pre-release identifier substrings
         let versionSplitPrerelease = versionPrereleaseString
             .split(separator: "-", maxSplits: 1, omittingEmptySubsequences: false)
 
@@ -113,15 +112,15 @@ public struct Version: SemanticVersionComparable {
             return nil
         }
 
-        // check that the versionString has the correct SemVer format which would be any character (number or letter,
-        // no symbols!) x in the form of `x`, `x.x`or `x.x.x`.
+        // check that the version string has the correct SemVer format which are 0 and positive numbers in the form
+        // of `x`, `x.x`or `x.x.x`.
         let versionString = String(versionStringElement)
         guard versionString.matchesSemVerFormat() else { return nil }
 
-        // extract version elements from validated versionString as unsigned integers, throws and returns nil
-        // if a substring cannot be casted as UInt
+        // extract version elements from validated version string as unsigned integers, throws and returns nil
+        // if a substring cannot be casted as UInt, since only positive numbers are allowed
         let versionIdentifiers: [UInt]? = try? versionString.split(separator: ".").map(String.init).map {
-            // since we already checked the format, we can now try to extract an UInt from the string
+            // we already checked the format so we can now try to extract an UInt from the string
             guard let element = UInt($0) else {
                 throw Error.invalidVersionIdentifier
             }
@@ -168,58 +167,11 @@ public struct Version: SemanticVersionComparable {
     }
 }
 
-// MARK: - Accessors
+// MARK: - Static Accessors
 
 public extension Version {
-    /// The absolute string of the version.
-    var absoluteString: String {
-        var versionString = versionCode
-        if let pr = prereleaseIdentifier {
-            versionString = [versionString, pr].joined(separator: "-")
-        }
-
-        if let build = buildMetaData {
-            versionString = [versionString, build].joined(separator: "+")
-        }
-
-        return versionString
-    }
-
-    /// The string of the version representing `MAJOR.MINOR.PATCH`.
-    var versionCode: String {
-        [major, minor, patch]
-            .compactMap { $0 }
-            .map(String.init)
-            .joined(separator: ".")
-    }
-
-    /// The string of the version representing the pre-release identifier and build-meta-data.
-    var versionExtension: String? {
-        var extensionsString: String? = prereleaseIdentifier
-        if let build = buildMetaData {
-            if let ext = extensionsString {
-                extensionsString = [ext, build].joined(separator: "+")
-            } else {
-                extensionsString = build
-            }
-        }
-
-        return extensionsString
-    }
-
-    /// The pre-release identifier as a string if available.
-    var prereleaseIdentifier: String? {
-        prerelease?
-            .compactMap { $0.value }
-            .joined(separator: ".")
-    }
-
-    /// The build meta data as a string if available.
-    var buildMetaData: String? {
-        build?
-            .compactMap { $0.value }
-            .joined(separator: ".")
-    }
+    /// An initial version representing the string `0.0.0`.
+    static var initial: Version = Version(major: 0, minor: 0, patch: 0)
 }
 
 extension Version: CustomDebugStringConvertible {
