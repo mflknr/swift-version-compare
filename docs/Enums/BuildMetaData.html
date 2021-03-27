@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>VersionCompareResult Enumeration Reference</title>
+    <title>BuildMetaData Enumeration Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,8 +13,8 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/VersionCompareResult" class="dashAnchor"></a>
-    <a title="VersionCompareResult Enumeration Reference"></a>
+    <a name="//apple_ref/swift/Enum/BuildMetaData" class="dashAnchor"></a>
+    <a title="BuildMetaData Enumeration Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (97% documented)</p>
@@ -29,7 +29,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        VersionCompareResult Enumeration Reference
+        BuildMetaData Enumeration Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -81,19 +81,23 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>VersionCompareResult</h1>
+            <h1>BuildMetaData</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">VersionCompareResult</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">BuildMetaData</span> <span class="p">:</span> <span class="kt">Comparable</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">BuildMetaData</span><span class="p">:</span> <span class="kt">LosslessStringConvertible</span></code></pre>
 
                 </div>
               </div>
-            <p>The severity of an update between versions.</p>
+            <p>Typed build-meta-data identifier.</p>
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
-    A difference between build meta data of version are explicitly ignored, since <code>SemVer</code> considered
-    them to be different ranks.
+    <p>Identifier can be described using alphanumeric letters or digits.</p>
+
+</div><div class="aside aside-attention">
+    <p class="aside-title">Attention</p>
+    <p>Strings not conforming to <code>SemVer</code> will be handled as <code>nil</code>.</p>
 
 </div>
 
@@ -104,9 +108,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:19SwiftVersionCompare0bC6ResultO5majoryA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/major" class="dashAnchor"></a>
-                    <a class="token" href="#/s:19SwiftVersionCompare0bC6ResultO5majoryA2CmF">major</a>
+                    <a name="/s:19SwiftVersionCompare13BuildMetaDataO12alphaNumericyACSScACmF"></a>
+                    <a name="//apple_ref/swift/Element/alphaNumeric(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare13BuildMetaDataO12alphaNumericyACSScACmF">alphaNumeric(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -114,14 +118,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A <code>MAJOR</code>update</p>
+                        <p>Alphanumeric identifier are lower- and uppercased letters and numbers from 0-9.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">major</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">alphaNumeric</span><span class="p">(</span><span class="nv">_</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -131,9 +135,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:19SwiftVersionCompare0bC6ResultO5minoryA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/minor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:19SwiftVersionCompare0bC6ResultO5minoryA2CmF">minor</a>
+                    <a name="/s:19SwiftVersionCompare13BuildMetaDataO6digitsyACSScACmF"></a>
+                    <a name="//apple_ref/swift/Element/digits(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare13BuildMetaDataO6digitsyACSScACmF">digits(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -141,14 +145,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A <code>MINOR</code>update</p>
+                        <p>Digit identifier are positive numbers and zeros, thus allowing leading zeros.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">minor</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">digits</span><span class="p">(</span><span class="nv">_</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -158,9 +162,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:19SwiftVersionCompare0bC6ResultO5patchyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/patch" class="dashAnchor"></a>
-                    <a class="token" href="#/s:19SwiftVersionCompare0bC6ResultO5patchyA2CmF">patch</a>
+                    <a name="/s:s25LosslessStringConvertiblePyxSgSScfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s25LosslessStringConvertiblePyxSgSScfc">init(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -168,14 +172,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A <code>PATCH</code>update</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">patch</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="n">_</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -185,9 +188,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:19SwiftVersionCompare0bC6ResultO10prereleaseyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/prerelease" class="dashAnchor"></a>
-                    <a class="token" href="#/s:19SwiftVersionCompare0bC6ResultO10prereleaseyA2CmF">prerelease</a>
+                    <a name="/s:s23CustomStringConvertibleP11descriptionSSvp"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s23CustomStringConvertibleP11descriptionSSvp">description</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -195,14 +198,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A pre-release update</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">prerelease</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -212,9 +214,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:19SwiftVersionCompare0bC6ResultO5buildyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/build" class="dashAnchor"></a>
-                    <a class="token" href="#/s:19SwiftVersionCompare0bC6ResultO5buildyA2CmF">build</a>
+                    <a name="/s:19SwiftVersionCompare13BuildMetaDataO5valueSSvp"></a>
+                    <a name="//apple_ref/swift/Property/value" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare13BuildMetaDataO5valueSSvp">value</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -222,41 +224,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A build update</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">build</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:19SwiftVersionCompare0bC6ResultO8noUpdateyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/noUpdate" class="dashAnchor"></a>
-                    <a class="token" href="#/s:19SwiftVersionCompare0bC6ResultO8noUpdateyA2CmF">noUpdate</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The version is not an update (less or equal)</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">noUpdate</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>

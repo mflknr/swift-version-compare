@@ -16,7 +16,7 @@
     <a title="  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (100% documented)</p>
+        <p><a href="index.html"> Docs</a> (97% documented)</p>
         <p class="header-right">
           <form role="search" action="search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
@@ -37,6 +37,12 @@
           <li class="nav-group-name">
             <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/BuildMetaData.html">BuildMetaData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/PrereleaseIdentifier.html">PrereleaseIdentifier</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Enums/VersionCompareResult.html">VersionCompareResult</a>
               </li>
@@ -77,7 +83,7 @@
             
             <h1 id='swiftversioncheck' class='heading'>SwiftVersionCheck</h1>
 
-<p>A small package for comparing and using versions conforming to <a href="https://semver.org">SemVer</a>.</p>
+<p>A small package for comparing and utilizing versions conforming to <a href="https://semver.org">SemVer</a>.</p>
 
 <p>Following features are and will be implemented:</p>
 
@@ -88,50 +94,50 @@
 <li>[x] Compare versions and get a result type defining the severity of the version difference (e. g. major-update).</li>
 <li>[ ] Utilize ranges for a greater variaty of comparisons.</li>
 <li>[x] Extend <code>Bundle</code> and <code>ProcessInfo</code> for easy usage.</li>
-<li>[ ] Open documentation.</li>
+<li>[x] Open documentation.</li>
 <li>[ ] Implement extension for <code>Codable</code> and <code>Hashable</code>.</li>
 </ul>
 <h1 id='installation' class='heading'>Installation</h1>
 
 <p>Swift Package Manager:</p>
-<pre class="highlight plaintext"><code>package(url: https://github.com/nihilias/SwiftVersionCompare.git", from: "1.0.0"))
+<pre class="highlight swift"><code><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="nv">https</span><span class="p">:</span><span class="c1">//github.com/nihilias/SwiftVersionCompare.git", from: "1.0.0"))</span>
 </code></pre>
 <h1 id='usage' class='heading'>Usage</h1>
 
 <p>For detailed implenentation information see auto-generated <a href="">documentation</a>.</p>
-<pre class="highlight plaintext"><code>// use the version identifier for initialization
-let versionOne = Version(1, 0, 0)
-let versionTwo = Version(
-    major: 1,
-    minor: 0,
-    patch: 0
-)
+<pre class="highlight swift"><code><span class="c1">// use the version identifier for initialization</span>
+<span class="k">let</span> <span class="nv">versionOne</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">versionTwo</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span>
+    <span class="nv">major</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nv">minor</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nv">patch</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">)</span>
 
-// use strings
-// use `ExpressibleByStringLiteral` with caution, because it's fatal if string is not `SemVer` version
-let versionThreeA: Version = "1.0.0" 
-let versionThreeB: Version = Version("1.0.0")
+<span class="c1">// use strings</span>
+<span class="c1">// use `ExpressibleByStringLiteral` with caution, because it's fatal if string is not `SemVer` version</span>
+<span class="k">let</span> <span class="nv">versionThreeA</span><span class="p">:</span> <span class="kt">Version</span> <span class="o">=</span> <span class="s">"1.0.0"</span> 
+<span class="k">let</span> <span class="nv">versionThreeB</span><span class="p">:</span> <span class="kt">Version</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span><span class="s">"1.0.0"</span><span class="p">)</span>
 
-let versionFourA: Version? = "1.0.0"
-let versionFourB: Version? = Version("1.0.0")
+<span class="k">let</span> <span class="nv">versionFourA</span><span class="p">:</span> <span class="kt">Version</span><span class="p">?</span> <span class="o">=</span> <span class="s">"1.0.0"</span>
+<span class="k">let</span> <span class="nv">versionFourB</span><span class="p">:</span> <span class="kt">Version</span><span class="p">?</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span><span class="s">"1.0.0"</span><span class="p">)</span>
 
-// easy initial `0.0.0` version
-let initialVersion: Version = .initial
+<span class="c1">// easy initial `0.0.0` version</span>
+<span class="k">let</span> <span class="nv">initialVersion</span><span class="p">:</span> <span class="kt">Version</span> <span class="o">=</span> <span class="o">.</span><span class="n">initial</span>
 
-// from bundle and processInfo
-let bundleVersion = Bundle.main.shortVersion
-let osVersion = ProcessInfo.processInfo.comparableOperatingSystemVersion
+<span class="c1">// from bundle and processInfo</span>
+<span class="k">let</span> <span class="nv">bundleVersion</span> <span class="o">=</span> <span class="kt">Bundle</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">shortVersion</span>
+<span class="k">let</span> <span class="nv">osVersion</span> <span class="o">=</span> <span class="kt">ProcessInfo</span><span class="o">.</span><span class="n">processInfo</span><span class="o">.</span><span class="n">comparableOperatingSystemVersion</span>
 
-// compare versions with usally known operators (==, ===, &lt;, &lt;=, &gt;=, &gt;)
-if Version("1.0.0") &gt; Version("0.4.0") {
-    // ...
-}
+<span class="c1">// compare versions with usally known operators (==, ===, &lt;, &lt;=, &gt;=, &gt;)</span>
+<span class="k">if</span> <span class="kt">Version</span><span class="p">(</span><span class="s">"1.0.0"</span><span class="p">)</span> <span class="o">&gt;</span> <span class="kt">Version</span><span class="p">(</span><span class="s">"0.4.0"</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
 </code></pre>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-01-07)</p>
+          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-03-28)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
