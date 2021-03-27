@@ -13,6 +13,7 @@ public extension SemanticVersionComparable {
         lhs.major == rhs.major
             && lhs.minor ?? 0 == rhs.minor ?? 0
             && lhs.patch ?? 0 == rhs.patch ?? 0
+            && lhs.prerelease == rhs.prerelease
     }
 
     /// Strictly compares version objects for equality.
@@ -23,5 +24,6 @@ public extension SemanticVersionComparable {
             && lhs.minor ?? 0 == rhs.minor ?? 0
             && lhs.patch ?? 0 == rhs.patch ?? 0
             && lhs.prerelease == rhs.prerelease
+            && lhs.build == rhs.build
     }
 }

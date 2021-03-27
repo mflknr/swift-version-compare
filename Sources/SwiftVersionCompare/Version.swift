@@ -9,7 +9,8 @@ import Foundation
 
 /// A version type conforming to `SemVer`.
 ///
-/// You can create a new version using string, string literals and string interpolation formatted like `MAJOR.MINOR.PATCH-PRERELEASE+BUILD` or memberwise properties.
+/// You can create a new version using string, string literals and string interpolation formatted
+/// like `MAJOR.MINOR.PATCH-PRERELEASE+BUILD` or memberwise properties.
 ///
 ///     // from string
 ///     let version: Version? = "1.0.0"
@@ -32,7 +33,7 @@ import Foundation
 ///     version.coreString // -> "2.32.16"
 ///     version.extensionString // -> "family.alpha+1"
 ///     version.prereleaseIdentifer // -> "family.alpha"
-///     version.buildMetaData // -> "1"
+///     version.buildMetaDataString // -> "1"
 ///
 /// - Remark: See `https://semver.org` for detailed information.
 public struct Version: SemanticVersionComparable {

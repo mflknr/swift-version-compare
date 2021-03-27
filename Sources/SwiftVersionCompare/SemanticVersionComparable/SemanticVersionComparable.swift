@@ -5,35 +5,24 @@
 //  Created by Marius Hötten-Löns on 29.12.20.
 //
 
-/// A type that can be expressed as a semantic version conforming to `SemVer` and compared using the relational operators ==, ===, <, <=, >=, and >.
+/// A type that can be expressed as a semantic version conforming to `SemVer`.
 ///
-/// When comparing two versions their identifier beeing `nil` will be treated as `0`.
+/// Additionally to the ranking rules, when comparing two versions, if their version core identifiers are `nil` they
+/// will be treated as `0`.
 ///
 ///     let versionOne = Version(1, 0, 0)
 ///     let versionTwo = Version(1)
 ///
 ///     versionOne == versionTwo // <- this statement is `true`
 ///
-/// You can choose between a loosly or strictly comparison considering if you want to compare the extensions a
+/// You can choose between a loosly or strictly comparison considering if you want to compare the build-meta-data of
 /// the version
 ///
-///     let versionOne = Version(1, 0, 0)
-///     let versionTwo = Version(1, 0, 0, ["alpha"])
+///     let versionOne = Version(1, 0, 0, [.alpha])
+///     let versionTwo = Version(1, 0, 0, [.alpha], ["exp"])
 ///
 ///     versionOne == versionTwo // `true`
 ///     versionOne === versionTwo // `false`
-///
-/// When comparing versions for greater- or lesser-to, the extensions will solely be seen as an indicator for having extensions or not. They will be parsed or interpreted.
-///
-///     let versionOne = Version(1, 0, 0)
-///     let versionTwo = Version(1, 0, 0, ["alpha"])
-///
-///     versionOne > versionTwo // `true`
-///
-///     let versionThree = Version(1, 0, 0, ["alpha"])
-///     let versionFour = Version(1, 0, 0, ["pre-release"])
-///
-///     versionThree > versionFour // `false`
 ///
 /// - Remark: See `https://semver.org` for detailed information.
 public protocol SemanticVersionComparable: Comparable, Hashable {
@@ -112,11 +101,11 @@ public extension SemanticVersionComparable {
     /// The absolute string of the version.
     var absoluteString: String {
         var versionString = coreString
-        if let pr = prereleaseIdentifier {
+        if let pr = prereleaseIdentifierString {
             versionString = [versionString, pr].joined(separator: "-")
         }
 
-        if let build = buildMetaData {
+        if let build = buildMetaDataString {
             versionString = [versionString, build].joined(separator: "+")
         }
 
@@ -133,8 +122,8 @@ public extension SemanticVersionComparable {
 
     /// The string of the version representing the pre-release identifier and build-meta-data.
     var extensionString: String? {
-        var extensionsString: String? = prereleaseIdentifier
-        if let build = buildMetaData {
+        var extensionsString: String? = prereleaseIdentifierString
+        if let build = buildMetaDataString {
             if let ext = extensionsString {
                 extensionsString = [ext, build].joined(separator: "+")
             } else {
@@ -146,14 +135,14 @@ public extension SemanticVersionComparable {
     }
 
     /// The pre-release identifier as a string if available.
-    var prereleaseIdentifier: String? {
+    var prereleaseIdentifierString: String? {
         prerelease?
             .compactMap { $0.value }
             .joined(separator: ".")
     }
 
     /// The build meta data as a string if available.
-    var buildMetaData: String? {
+    var buildMetaDataString: String? {
         build?
             .compactMap { $0.value }
             .joined(separator: ".")
