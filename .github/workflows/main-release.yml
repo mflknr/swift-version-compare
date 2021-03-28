@@ -4,19 +4,19 @@ on:
   push:
     branches:
       - main
+    tags:
+      - *
 
 jobs:
   build:
-
     runs-on: macos-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/create@v1
-      env:
+      - uses: actions/checkout@v2
+      - uses: actions/create@v1
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
-        draft: true
-        prerelease: false
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: true
+          prerelease: false
