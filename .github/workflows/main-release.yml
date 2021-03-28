@@ -5,7 +5,7 @@ on:
     branches:
       - main
     tags:
-      - *
+      - 1.*
 
 jobs:
   build:
