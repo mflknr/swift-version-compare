@@ -1,6 +1,12 @@
 # SwiftVersionCheck
 
-A small package for comparing and utilizing versions conforming to [SemVer](https://semver.org).
+![platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20iOS%20%7C%20tvOS%20%7C%20watchOS-lightgrey.svg)
+![languages](https://img.shields.io/badge/swift-5.0%20%7C%205.1%20%7C%205.2%20%7C%205.3-orange.svg)
+[![build](https://github.com/mflknr/SwiftVersionCompare/workflows/build/badge.svg)](https://github.com/mflknr/SwiftVersionCompare/actions)
+[![doccov](https://mflknr.github.io/SwiftVersionCompare/badge.svg?sanitize=true)](https://mflknr.github.io/SwiftVersionCompare/)
+[![codecov](https://codecov.io/gh/mflknr/SwiftVersionCompare/branch/develop/graph/badge.svg?token=6EAG2J8DMU)](https://codecov.io/gh/mflknr/SwiftVersionCompare)
+
+A small package introducing a `Version` object implementing the  `SemanticVersionComparable` protocol for comparing versions conforming to [SemVer](https://semver.org). 
 
 # Installation
 
@@ -12,7 +18,7 @@ package(url: https://github.com/nihilias/SwiftVersionCompare.git", from: "1.0.0"
 
 # Usage
 
-For detailed implenentation information see auto-generated [documentation]().
+For detailed implenentation information see [documentation]().
 
 ```swift
 // use the version core identifier for initialization
