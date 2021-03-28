@@ -6,29 +6,34 @@ on:
       - develop
   pull_request:
     branches:
-      - develop
+      - 'feature/**'
+      - 'hotfix/**'
 
 jobs:
-  build:
+  checkout:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
+  build:
+    runs-on: macos-latest
+    needs: checkout
+    steps:
       - run: swift --version
       - run: swift build -v
   test:
     runs-on: macos-latest
+    needs: checkout
     steps:
-      - uses: actions/checkout@v2
       - run: swift --version
       - name: Generate Project
         run: swift package generate-xcodeproj --enable-code-coverage
       - name: Test
-        uses: sersoft-gmbh/xcodebuild-action@v1
+        uses: sersoft-gmbh/xcodebuild-action@v1.4
         with:
           project: SwiftVersionCompare.xcodeproj
           scheme: SwiftVersionCompare-Package
           action: test
       - name: Codecov
-        uses: codecov/codecov-action@v1.2.1
+        uses: codecov/codecov-action@v1.3.1
         with:
           verbose: true
