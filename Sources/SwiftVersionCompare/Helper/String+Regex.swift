@@ -7,14 +7,22 @@
 
 import Foundation
 
-extension String {
+internal extension String {
     func matches(_ regex: String) -> Bool {
-        self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
+        range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
     }
 
     func matchesSemVerFormat() -> Bool {
-        self.matches("^([0-9a-zA-Z]+)\\.([0-9a-zA-Z]+)\\.([0-9a-zA-Z]+)$") ||
-            self.matches("^([0-9a-zA-Z]+)\\.([0-9a-zA-Z]+)$") ||
-            self.matches("^([0-9a-zA-Z]+)$")
+        matches("^([0-9a-zA-Z]+)\\.([0-9a-zA-Z]+)\\.([0-9a-zA-Z]+)$") ||
+            matches("^([0-9a-zA-Z]+)\\.([0-9a-zA-Z]+)$") ||
+            matches("^([0-9a-zA-Z]+)$")
+    }
+
+    var isAlphaNumericString: Bool {
+        matches("[A-Za-z0-9]+")
+    }
+
+    var isNumericString: Bool {
+        matches("[0-9]+")
     }
 }
