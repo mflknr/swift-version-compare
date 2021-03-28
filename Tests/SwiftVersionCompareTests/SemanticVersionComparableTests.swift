@@ -69,7 +69,7 @@ final class SemanticVersionComparableTests: XCTestCase {
             Version("15.287349.9"): Version("15.287349.10"),
             Version("0.0.1"): Version("0.1.0"),
             Version("0"): Version("1.0.0"),
-            Version("13.9182"): Version("15.2.0"),
+            Version("13.6"): Version("15.2.0"),
             Version("2"): Version("25"),
             Version("777.8987"): Version("777.8988"),
             Version("13.9182.0"): Version("15.2.0"),
