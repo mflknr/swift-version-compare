@@ -17,7 +17,6 @@ jobs:
       - run: swift build -v
   test:
     runs-on: macos-latest
-    needs: checkout
     steps:
       - uses: actions/checkout@v2
       - run: swift --version
