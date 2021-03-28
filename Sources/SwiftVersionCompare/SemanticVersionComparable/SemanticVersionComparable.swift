@@ -60,7 +60,7 @@ public extension SemanticVersionComparable {
         let lhs = self
         let rhs = version
 
-        guard !(lhs === rhs) else {
+        guard !lhs.hasEqualVersionCore(as: rhs) else {
             if lhs.build != rhs.build {
                 return .build
             }
@@ -85,6 +85,15 @@ public extension SemanticVersionComparable {
         } else {
             return .noUpdate
         }
+    }
+
+    /// Check if a version has an equal version core as another version.
+    ///
+    /// - Parameter version: The other version you want to check with.
+    ///
+    /// - Returns: `true` if the respective version cores are equal.
+    func hasEqualVersionCore(as version: Self) -> Bool {
+        coreString == version.coreString
     }
 }
 

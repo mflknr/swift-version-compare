@@ -19,12 +19,48 @@ final class SemanticVersionComparableTests: XCTestCase {
             Version("123.0.0"): Version("123"),
             Version("1.2"): Version("1.2.0"),
             Version("1.9.0"): Version("1.9"),
+            Version("1-alpha.1"): Version("1-alpha.1"),
+            Version("24-beta+1"): Version("24-beta+1"),
+            Version("1.6.2+exp.1"): Version("1.6.2+exp.1"),
+            Version("2.0+500"): Version("2.0+500"),
+            Version("300.0+master"): Version("300.0+develop")
         ]
 
         testData.forEach { lhs, rhs in
             XCTAssertEqual(lhs, rhs, "Expected \(lhs) to be equal to \(rhs)")
             XCTAssertFalse(lhs > rhs, "Expected \(lhs) to be greater than \(rhs)")
             XCTAssertFalse(lhs < rhs, "Expected \(lhs) to be lesser than \(rhs)")
+        }
+    }
+
+    func testStrictEqualOperator() throws {
+        let validTestData: [Version: Version] = [
+            Version("15.287349.10"): Version("15.287349.10"),
+            Version("0.1.0"): Version("0.1.0"),
+            Version("1.0.0"): Version("1"),
+            Version("15.2"): Version("15.2.0"),
+            Version("1"): Version("1"),
+            Version("123.0.0"): Version("123"),
+            Version("1.2"): Version("1.2.0"),
+            Version("1.9.0"): Version("1.9"),
+            Version("1-alpha.1"): Version("1-alpha.1"),
+            Version("24-beta+1"): Version("24-beta+1"),
+            Version("1.6.2+exp.1"): Version("1.6.2+exp.1"),
+            Version("2.0+500"): Version("2.0+500")
+        ]
+
+        let invalidTestData: [Version: Version] = [
+            Version("300.0+master"): Version("300.0+develop")
+        ]
+
+        validTestData.forEach { lhs, rhs in
+            XCTAssertTrue(lhs === rhs, "Expected \(lhs) to be equal to \(rhs)")
+            XCTAssertFalse(lhs > rhs, "Expected \(lhs) to be greater than \(rhs)")
+            XCTAssertFalse(lhs < rhs, "Expected \(lhs) to be lesser than \(rhs)")
+        }
+
+        invalidTestData.forEach { lhs, rhs in
+            XCTAssertFalse(lhs === rhs, "Expected \(lhs) to be equal to \(rhs)")
         }
     }
 
@@ -117,7 +153,7 @@ final class SemanticVersionComparableTests: XCTestCase {
             (Version("1.3"), Version("1.5"), VersionCompareResult.minor),
             (Version("3.230.13"), Version("3.235.1"), VersionCompareResult.minor),
             (Version("565.1.123"), Version("565.1.124"), VersionCompareResult.patch),
-            (Version("1.2"), Version("1.2-alpha"), VersionCompareResult.prerelease),
+            (Version("1.2-alpha"), Version("1.2-beta"), VersionCompareResult.prerelease),
             (Version("1.34523"), Version("1.34523+100"), VersionCompareResult.build),
             (Version("2.235234.1"), Version("1.8967596758.4"), VersionCompareResult.noUpdate),
             (Version("2.0.0"), Version("2"), VersionCompareResult.noUpdate)
@@ -133,6 +169,7 @@ final class SemanticVersionComparableTests: XCTestCase {
 
     static var allTests = [
         ("testEqualOperator", testEqualOperator),
+        ("testStrictEqualOperator", testStrictEqualOperator),
         ("testNonEqualOperators", testNonEqualOperators),
         ("testCompatibility", testCompatibility),
         ("testCompare", testCompare)

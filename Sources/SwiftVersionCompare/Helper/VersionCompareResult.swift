@@ -7,7 +7,7 @@
 
 /// The severity of an update between versions.
 ///
-/// - Note: A difference between build meta data of version are explicitly ignored, since `SemVer` considered
+/// - Note: A difference between build-meta-data of versions are explicitly ignored, since `SemVer`  does not considere
 ///         them to be different ranks.
 public enum VersionCompareResult {
     /// A `MAJOR`update

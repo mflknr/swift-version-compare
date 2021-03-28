@@ -15,8 +15,8 @@ extension PrereleaseIdentifier: LosslessStringConvertible {
 
 extension PrereleaseIdentifier: ExpressibleByIntegerLiteral {
     public init(integerLiteral value: IntegerLiteralType) {
-        let absoluteInteger = abs(value)
-        let unsignedInteger = UInt(absoluteInteger)
+        let absoluteInteger: Int = abs(value)
+        let unsignedInteger: UInt = UInt(absoluteInteger)
         self = .numeric(unsignedInteger)
     }
 }
