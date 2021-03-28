@@ -13,6 +13,12 @@ extension PrereleaseIdentifier: LosslessStringConvertible {
     public var description: String { value }
 }
 
+extension PrereleaseIdentifier: ExpressibleByStringLiteral {
+    public init(stringLiteral value: StringLiteralType) {
+        self.init(private: value)!
+    }
+}
+
 extension PrereleaseIdentifier: ExpressibleByIntegerLiteral {
     public init(integerLiteral value: IntegerLiteralType) {
         let absoluteInteger: Int = abs(value)

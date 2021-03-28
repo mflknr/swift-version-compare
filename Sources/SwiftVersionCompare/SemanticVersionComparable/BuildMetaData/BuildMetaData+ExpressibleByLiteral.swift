@@ -12,3 +12,9 @@ extension BuildMetaData: LosslessStringConvertible {
 
     public var description: String { value }
 }
+
+extension BuildMetaData: ExpressibleByStringLiteral {
+    public init(stringLiteral value: StringLiteralType) {
+        self.init(private: value)!
+    }
+}
