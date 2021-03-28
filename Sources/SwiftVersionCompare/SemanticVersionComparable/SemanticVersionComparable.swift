@@ -60,13 +60,13 @@ public extension SemanticVersionComparable {
         let lhs = self
         let rhs = version
 
-        guard lhs != rhs || lhs < rhs else {
-            if lhs.prerelease?.count ?? 0 < rhs.prerelease?.count ?? 0 {
-                return .prerelease
-            } else if lhs.build != rhs.build {
+        guard !(lhs === rhs) else {
+            if lhs.build != rhs.build {
                 return .build
             }
-
+            if lhs < rhs {
+                return .prerelease
+            }
             return .noUpdate
         }
 
