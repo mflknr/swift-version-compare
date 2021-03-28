@@ -61,12 +61,14 @@ public extension SemanticVersionComparable {
         let rhs = version
 
         guard !lhs.hasEqualVersionCore(as: rhs) else {
-            if lhs.build != rhs.build {
-                return .build
-            }
             if lhs < rhs {
                 return .prerelease
             }
+            if lhs.build != rhs.build &&
+               lhs.prereleaseIdentifierString == rhs.prereleaseIdentifierString {
+                return .build
+            }
+
             return .noUpdate
         }
 
@@ -93,7 +95,9 @@ public extension SemanticVersionComparable {
     ///
     /// - Returns: `true` if the respective version cores are equal.
     func hasEqualVersionCore(as version: Self) -> Bool {
-        coreString == version.coreString
+        let lhsAsIntSequence = [Int(major), Int(minor ?? 0), Int(patch ?? 0)]
+        let rhsAsIntSequence = [Int(version.major), Int(version.minor ?? 0), Int(version.patch ?? 0)]
+        return lhsAsIntSequence.elementsEqual(rhsAsIntSequence)
     }
 }
 

@@ -8,7 +8,7 @@
 public extension SemanticVersionComparable {
     static func < (lhs: Self, rhs: Self) -> Bool {
         // if versions are identical on major, minor and patch level, compare them lexicographiocally
-        guard lhs.coreString == rhs.coreString else {
+        guard lhs.hasEqualVersionCore(as: rhs) else {
             // cast UInt to Int for each identifier to compare ordering lexicographically. missing
             // identifier for minor or patch versions (e. g. "1" or "2.0") are handled as zeros.
             let lhsAsIntSequence = [Int(lhs.major), Int(lhs.minor ?? 0), Int(lhs.patch ?? 0)]
