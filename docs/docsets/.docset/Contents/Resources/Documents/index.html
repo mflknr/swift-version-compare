@@ -84,19 +84,6 @@
             <h1 id='swiftversioncheck' class='heading'>SwiftVersionCheck</h1>
 
 <p>A small package for comparing and utilizing versions conforming to <a href="https://semver.org">SemVer</a>.</p>
-
-<p>Following features are and will be implemented:</p>
-
-<ul>
-<li>[x] Create a version from major, minor, patch and extension information.</li>
-<li>[x] Create a version from string using <code>LosslessStringConvertible</code> or <code>ExpressibleByStringLiteral</code> .</li>
-<li>[x] Compare versions using <code>Equatable</code> and <code>Comparable</code> with the known operators <code>==, ===, &lt;, &lt;=, &gt; and &gt;=</code>.</li>
-<li>[x] Compare versions and get a result type defining the severity of the version difference (e. g. major-update).</li>
-<li>[ ] Utilize ranges for a greater variaty of comparisons.</li>
-<li>[x] Extend <code>Bundle</code> and <code>ProcessInfo</code> for easy usage.</li>
-<li>[x] Open documentation.</li>
-<li>[ ] Implement extension for <code>Codable</code> and <code>Hashable</code>.</li>
-</ul>
 <h1 id='installation' class='heading'>Installation</h1>
 
 <p>Swift Package Manager:</p>
@@ -105,21 +92,20 @@
 <h1 id='usage' class='heading'>Usage</h1>
 
 <p>For detailed implenentation information see auto-generated <a href="">documentation</a>.</p>
-<pre class="highlight swift"><code><span class="c1">// use the version identifier for initialization</span>
+<pre class="highlight swift"><code><span class="c1">// use the version core identifier for initialization</span>
 <span class="k">let</span> <span class="nv">versionOne</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">versionTwo</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span>
     <span class="nv">major</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="nv">minor</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="nv">patch</span><span class="p">:</span> <span class="mi">0</span>
-<span class="p">)</span>
+    <span class="nv">patch</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nv">prerelease</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">alpha</span><span class="p">],</span>
+    <span class="nv">build</span><span class="p">:</span> <span class="p">[</span><span class="s">"1"</span><span class="p">]</span>
+<span class="p">)</span> <span class="c1">// -&gt; prints: "1.0.0-alpha+1"</span>
 
 <span class="c1">// use strings</span>
 <span class="c1">// use `ExpressibleByStringLiteral` with caution, because it's fatal if string is not `SemVer` version</span>
-<span class="k">let</span> <span class="nv">versionThreeA</span><span class="p">:</span> <span class="kt">Version</span> <span class="o">=</span> <span class="s">"1.0.0"</span> 
-<span class="k">let</span> <span class="nv">versionThreeB</span><span class="p">:</span> <span class="kt">Version</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span><span class="s">"1.0.0"</span><span class="p">)</span>
-
-<span class="k">let</span> <span class="nv">versionFourA</span><span class="p">:</span> <span class="kt">Version</span><span class="p">?</span> <span class="o">=</span> <span class="s">"1.0.0"</span>
-<span class="k">let</span> <span class="nv">versionFourB</span><span class="p">:</span> <span class="kt">Version</span><span class="p">?</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span><span class="s">"1.0.0"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">versionThreeA</span><span class="p">:</span> <span class="kt">Version</span><span class="p">?</span> <span class="o">=</span> <span class="s">"1.0.0"</span> 
+<span class="k">let</span> <span class="nv">versionThreeB</span><span class="p">:</span> <span class="kt">Version</span><span class="p">?</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span><span class="s">"1.0.0"</span><span class="p">)</span>
 
 <span class="c1">// easy initial `0.0.0` version</span>
 <span class="k">let</span> <span class="nv">initialVersion</span><span class="p">:</span> <span class="kt">Version</span> <span class="o">=</span> <span class="o">.</span><span class="n">initial</span>

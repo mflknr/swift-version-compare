@@ -23,7 +23,7 @@ let versionTwo = Version(
     patch: 0,
     prerelease: [.alpha],
     build: ["1"]
-)
+) // -> prints: "1.0.0-alpha+1"
 
 // use strings
 // use `ExpressibleByStringLiteral` with caution, because it's fatal if string is not `SemVer` version
