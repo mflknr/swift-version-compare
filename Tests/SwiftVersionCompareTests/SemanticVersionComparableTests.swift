@@ -23,7 +23,11 @@ final class SemanticVersionComparableTests: XCTestCase {
             Version("24-beta+1"): Version("24-beta+1"),
             Version("1.6.2+exp.1"): Version("1.6.2+exp.1"),
             Version("2.0+500"): Version("2.0+500"),
-            Version("300.0+master"): Version("300.0+develop")
+            Version("300.0+master"): Version("300.0+develop"),
+            Version(1, nil, nil, [.alpha]): Version(1, 0, 0, ["alpha"]),
+            Version(1, nil, nil, [.beta]): Version(1, 0, 0, ["beta"]),
+            Version(1, nil, nil, [.releaseCandidate]): Version(1, 0, 0, ["rc"]),
+            Version(1, nil, nil, [.prerelease]): Version(1, 0, 0, ["prerelease"])
         ]
 
         testData.forEach { lhs, rhs in
@@ -75,7 +79,9 @@ final class SemanticVersionComparableTests: XCTestCase {
             Version("13.9182.0"): Version("15.2.0"),
             Version("13.9182.1-alpha"): Version("13.9182.1"),
             Version("13.1.1-alpha"): Version("13.1.1-beta"),
-            Version("5-h2o4hr"): Version("5")
+            Version("5-h2o4hr"): Version("5"),
+            Version("5-alpha.1"): Version("5-alpha.2"),
+            Version("5-alpha.2"): Version("5-alpha.beta")
         ]
 
         testData.forEach { lhs, rhs in
@@ -156,7 +162,19 @@ final class SemanticVersionComparableTests: XCTestCase {
             (Version("1.2-alpha"), Version("1.2-beta"), VersionCompareResult.prerelease),
             (Version("1.34523"), Version("1.34523+100"), VersionCompareResult.build),
             (Version("2.235234.1"), Version("1.8967596758.4"), VersionCompareResult.noUpdate),
-            (Version("2.0.0"), Version("2"), VersionCompareResult.noUpdate)
+            (Version("2.0.0"), Version("2"), VersionCompareResult.noUpdate),
+            (Version("2.0.0"), Version("2+1"), VersionCompareResult.build),
+            (Version("2.0"), Version("2-alpha.beta.1"), VersionCompareResult.noUpdate),
+            (Version("2.0-alpha.beta.1"), Version("2"), VersionCompareResult.prerelease),
+            (Version("2.0-alpha.beta.1"), Version("2+exp.1"), VersionCompareResult.prerelease),
+            (Version("2.0-alpha.beta.1"), Version("2-alpha.beta.1+exp.1"), VersionCompareResult.build),
+            (Version("2.0-alpha.beta.1"), Version("2.0.0-alpha.beta.1+exp.1"), VersionCompareResult.build),
+            (Version("2-alpha.beta.1"), Version("2.0-alpha.beta.1+exp.1"), VersionCompareResult.build),
+            (Version("2-alpha.beta.1"), Version("2-alpha.beta.1+exp.1"), VersionCompareResult.build),
+            (Version("2-alpha.beta.1+1"), Version("2-alpha.beta.1+exp.1"), VersionCompareResult.build),
+            (Version("1.0.0-alpha"), Version("1.0.0+1"), VersionCompareResult.prerelease),
+            (Version("1.0.0+234"), Version("1.0.0-alpha"), VersionCompareResult.noUpdate),
+            (Version("1.0.0-alpha+1"), Version("1.0.0"), VersionCompareResult.prerelease)
         ]
 
         testData.forEach { data in
