@@ -15,6 +15,6 @@ extension BuildMetaData: LosslessStringConvertible {
 
 extension BuildMetaData: ExpressibleByStringLiteral {
     public init(stringLiteral value: StringLiteralType) {
-        self.init(private: value)!
+        self.init(private: value)
     }
 }

@@ -17,13 +17,16 @@ public enum BuildMetaData: Comparable {
     /// Digit identifier are positive numbers and zeros, thus allowing leading zeros.
     case digits(_ digits: String)
 
-    init?(private string: String) {
+    /// Unknown identifier are used when string literals do not conform to `SemVer` and are removed.
+    case unknown
+
+    init(private string: String) {
         if let _ = Int(string) {
             self = .digits(string)
         } else if string.isAlphaNumericString {
             self = .alphaNumeric(string)
         } else {
-            return nil
+            self = .unknown
         }
     }
 }
@@ -35,6 +38,8 @@ public extension BuildMetaData {
             return identifier
         case let .digits(identifier):
             return identifier
+        case .unknown:
+            return ""
         }
     }
 }

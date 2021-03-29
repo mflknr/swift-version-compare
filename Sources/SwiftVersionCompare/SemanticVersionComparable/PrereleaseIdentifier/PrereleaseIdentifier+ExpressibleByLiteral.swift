@@ -15,7 +15,7 @@ extension PrereleaseIdentifier: LosslessStringConvertible {
 
 extension PrereleaseIdentifier: ExpressibleByStringLiteral {
     public init(stringLiteral value: StringLiteralType) {
-        self.init(private: value)!
+        self.init(private: value)
     }
 }
 
