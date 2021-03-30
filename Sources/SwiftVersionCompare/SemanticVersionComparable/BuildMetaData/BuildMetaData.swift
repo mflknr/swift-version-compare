@@ -5,7 +5,7 @@
 //  Created by Marius Hötten-Löns on 12.03.21.
 //
 
-/// Typed build-meta-data identifier.
+/// Typed build-meta-data.
 ///
 /// - Note: Identifier can be described using alphanumeric letters or digits.
 ///
@@ -32,6 +32,7 @@ public enum BuildMetaData: Comparable {
 }
 
 public extension BuildMetaData {
+    /// Raw string representation of a build-meta-data.
     var value: String {
         switch self {
         case let .alphaNumeric(identifier):
