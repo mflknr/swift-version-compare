@@ -6,6 +6,9 @@
 //
 
 public extension SemanticVersionComparable {
+    /// Compare versions using the `SemVer` ranking system.
+    ///
+    /// - Note: Build-meta-data have no influence on a version's rank.
     static func < (lhs: Self, rhs: Self) -> Bool {
         // if versions are identical on major, minor and patch level, compare them lexicographiocally
         guard lhs.hasEqualVersionCore(as: rhs) else {
@@ -60,13 +63,5 @@ public extension SemanticVersionComparable {
 
         // lastly, if number of identifiers of lhs version is lower than rhs version, it ranks lower
         return lhspr.count < rhspr.count
-    }
-
-    static func <= (lhs: Self, rhs: Self) -> Bool {
-        lhs == rhs || lhs < rhs
-    }
-
-    static func >= (lhs: Self, rhs: Self) -> Bool {
-        lhs == rhs || lhs > rhs
     }
 }

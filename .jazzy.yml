@@ -15,4 +15,3 @@ xcodebuild_arguments:
   - SwiftVersionCompare.xcodeproj
   - -scheme
   - SwiftVersionCompare-Package
-
