@@ -205,9 +205,6 @@ the version</p>
                     <a name="//apple_ref/swift/Property/prerelease" class="dashAnchor"></a>
                     <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparableP10prereleaseSayAA20PrereleaseIdentifierOGSgvp">prerelease</a>
                     </code>
-                      <span class="declaration-note">
-                        Default implementation
-                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -216,10 +213,6 @@ the version</p>
                       <div class="abstract">
                         <p>Pre-release identifier of a version.</p>
 
-                      </div>
-                      <h4>Default Implementation</h4>
-                      <div class="default_impl abstract">
-                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -239,9 +232,6 @@ the version</p>
                     <a name="//apple_ref/swift/Property/build" class="dashAnchor"></a>
                     <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparableP5buildSayAA13BuildMetaDataOGSgvp">build</a>
                     </code>
-                      <span class="declaration-note">
-                        Default implementation
-                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -250,10 +240,6 @@ the version</p>
                       <div class="abstract">
                         <p>Build-meta-data of a version.</p>
 
-                      </div>
-                      <h4>Default Implementation</h4>
-                      <div class="default_impl abstract">
-                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -269,9 +255,9 @@ the version</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:SL1loiySbx_xtFZ"></a>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparablePAAE1loiySbx_xtFZ"></a>
                     <a name="//apple_ref/swift/Method/&lt;(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SL1loiySbx_xtFZ"><(_:<wbr>_:<wbr>)</a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparablePAAE1loiySbx_xtFZ"><(_:<wbr>_:<wbr>)</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -282,71 +268,19 @@ the version</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Compare versions using the <code>SemVer</code> ranking system.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Build-meta-data have no influence on a version&rsquo;s rank.
+
+</div>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:SL2leoiySbx_xtFZ"></a>
-                    <a name="//apple_ref/swift/Method/&lt;=(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SL2leoiySbx_xtFZ"><=(_:<wbr>_:<wbr>)</a>
-                    </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:SL2geoiySbx_xtFZ"></a>
-                    <a name="//apple_ref/swift/Method/&gt;=(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SL2geoiySbx_xtFZ">>=(_:<wbr>_:<wbr>)</a>
-                    </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -424,9 +358,9 @@ the version</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:SH4hash4intoys6HasherVz_tF"></a>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparablePAAE4hash4intoys6HasherVz_tF"></a>
                     <a name="//apple_ref/swift/Method/hash(into:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SH4hash4intoys6HasherVz_tF">hash(into:<wbr>)</a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparablePAAE4hash4intoys6HasherVz_tF">hash(into:<wbr>)</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -437,7 +371,14 @@ the version</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Conformance to <code>Hashable</code> protocol.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Since build-meta-data are not considered in ranking semantic version, it won&rsquo;t be considered
+    here either.
+
+</div>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -777,7 +718,7 @@ the version</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-03-29)</p>
+          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-03-30)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
