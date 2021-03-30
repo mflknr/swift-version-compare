@@ -19,7 +19,7 @@ internal extension String {
     }
 
     var isAlphaNumericString: Bool {
-        matches("[A-Za-z0-9]+")
+        matches("[a-zA-Z-][0-9a-zA-Z-]+")
     }
 
     var isNumericString: Bool {
