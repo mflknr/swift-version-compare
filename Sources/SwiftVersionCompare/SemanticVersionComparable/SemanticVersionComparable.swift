@@ -101,13 +101,6 @@ public extension SemanticVersionComparable {
     }
 }
 
-// MARK: - Default Implementation
-
-public extension SemanticVersionComparable {
-    var prerelease: [PrereleaseIdentifier]? { nil }
-    var build: [BuildMetaData]? { nil }
-}
-
 // MARK: - Accessors
 
 public extension SemanticVersionComparable {
