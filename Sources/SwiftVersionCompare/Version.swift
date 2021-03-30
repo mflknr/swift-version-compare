@@ -5,8 +5,6 @@
 //  Created by Marius Hötten-Löns on 29.12.20.
 //
 
-import Foundation
-
 /// A version type conforming to `SemVer`.
 ///
 /// You can create a new version using string, string literals and string interpolation formatted
@@ -138,7 +136,10 @@ public struct Version: SemanticVersionComparable {
             .map(String.init)
             .map {
                 // we already checked the format so we can now try to extract an UInt from the string
-                guard let element = UInt($0) else {
+                guard
+                    let element = UInt($0),
+                    let firstCharacter = $0.first,
+                    !(firstCharacter.isZero && $0.count > 1) else {
                     throw Error.invalidVersionIdentifier
                 }
 

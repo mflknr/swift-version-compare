@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		24828B622613B4EC00AF8BA2 /* Character+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24828B612613B4EC00AF8BA2 /* Character+Extensions.swift */; };
 		24A6A24625A3DD3B00E12D71 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A24525A3DD3B00E12D71 /* Error.swift */; };
 		24A6A25925A5198900E12D71 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A25825A5198900E12D71 /* String+Regex.swift */; };
 		24A6A26425A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A26325A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24828B612613B4EC00AF8BA2 /* Character+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Extensions.swift"; sourceTree = "<group>"; };
 		24A6A24525A3DD3B00E12D71 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		24A6A25825A5198900E12D71 /* String+Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Regex.swift"; sourceTree = "<group>"; };
 		24A6A26325A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SemanticVersionComparable+Equatable.swift"; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		24A6A25725A5196D00E12D71 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				24828B612613B4EC00AF8BA2 /* Character+Extensions.swift */,
 				24A6A24525A3DD3B00E12D71 /* Error.swift */,
 				24A6A25825A5198900E12D71 /* String+Regex.swift */,
 				24B3A1CD261103BB00EDC055 /* VersionCompareResult.swift */,
@@ -306,6 +309,7 @@
 				24B3A1CE261103BB00EDC055 /* VersionCompareResult.swift in Sources */,
 				24D6003625FCE1F60003375E /* SemanticVersionComparable+Hashable.swift in Sources */,
 				24D6FFE525FB6FFE0003375E /* PrereleaseIdentifier.swift in Sources */,
+				24828B622613B4EC00AF8BA2 /* Character+Extensions.swift in Sources */,
 				24A6A25925A5198900E12D71 /* String+Regex.swift in Sources */,
 				24D6FFF625FB75210003375E /* BuildMetaData.swift in Sources */,
 				24D6002425FB8B350003375E /* PrereleaseIdentifier+Equatable.swift in Sources */,
