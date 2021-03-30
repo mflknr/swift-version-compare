@@ -118,7 +118,8 @@ public struct Version: SemanticVersionComparable {
         // check for non-empty or invalid version string e.g. "-alpha"
         guard
             !versionSplitPrerelease.isEmpty,
-            let versionStringElement = versionSplitPrerelease.first else {
+            let versionStringElement = versionSplitPrerelease.first,
+            !versionStringElement.isEmpty else {
             return nil
         }
 
@@ -165,9 +166,9 @@ public struct Version: SemanticVersionComparable {
                 .compactMap {
                     if let asInt = Int($0) {
                         return PrereleaseIdentifier.init(integerLiteral: asInt)
-                    } else {
-                        return PrereleaseIdentifier.init($0)
                     }
+
+                    return PrereleaseIdentifier.init($0)
                 }
             // if a pre-release identifier element is initialized as .unkown, we can savely assume that the given
             // string is not a valid  `SemVer` version string.

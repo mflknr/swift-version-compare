@@ -9,8 +9,7 @@ internal extension Character {
     var isZero: Bool {
         if self == "0" {
             return true
-        } else {
-            return false
         }
+        return false
     }
 }
