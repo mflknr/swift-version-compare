@@ -5,8 +5,6 @@
 //  Created by Marius Hötten-Löns on 05.01.21.
 //
 
-import Foundation
-
 internal extension String {
     func matches(_ regex: String) -> Bool {
         range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
@@ -19,7 +17,7 @@ internal extension String {
     }
 
     var isAlphaNumericString: Bool {
-        matches("[A-Za-z0-9]+")
+        matches("[a-zA-Z-][0-9a-zA-Z-]+")
     }
 
     var isNumericString: Bool {

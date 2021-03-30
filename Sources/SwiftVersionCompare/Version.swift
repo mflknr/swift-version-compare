@@ -5,8 +5,6 @@
 //  Created by Marius Hötten-Löns on 29.12.20.
 //
 
-import Foundation
-
 /// A version type conforming to `SemVer`.
 ///
 /// You can create a new version using string, string literals and string interpolation formatted
@@ -15,8 +13,9 @@ import Foundation
 ///     // from string
 ///     let version: Version? = "1.0.0"
 ///     let version: Version? = Version("1.0.0-alpha.1+23")
+///     let version: Version? = Version("1.0.0.1.2") // <- will be `nil` since it's not `SemVer`
+///
 ///     let version: Version = "1.0.0" // <- will crash if string does not conform to `SemVer`
-///     let version: Version = Version("1.0.0") // <- will also crash if string is not a semantic version
 ///
 ///     // from memberwise properties
 ///     let version: Version = Version(1, 0, 0)
@@ -97,7 +96,10 @@ public struct Version: SemanticVersionComparable {
         self.init(major, minor, patch, prerelease, build)
     }
 
-    internal init?(private string: String) {
+    /// Creates a new version using a string.
+    ///
+    /// - Parameter string: The string representing a version.
+    public init?(private string: String) {
         // split string into version with pre-release identifier and build-meta-data substrings
         let versionSplitBuild = string.split(separator: "+", omittingEmptySubsequences: false)
 
@@ -110,13 +112,12 @@ public struct Version: SemanticVersionComparable {
         }
 
         // split previously splitted substring into version and pre-release identifier substrings
-        let versionSplitPrerelease = versionPrereleaseString
+        var versionSplitPrerelease = versionPrereleaseString
             .split(separator: "-", omittingEmptySubsequences: false)
 
-        // check for non-empty or invalid version string e.g. "-alpha" or "-alpha-beta"
+        // check for non-empty or invalid version string e.g. "-alpha"
         guard
             !versionSplitPrerelease.isEmpty,
-            versionSplitPrerelease.count <= 2,
             let versionStringElement = versionSplitPrerelease.first else {
             return nil
         }
@@ -124,20 +125,30 @@ public struct Version: SemanticVersionComparable {
         // check that the version string has the correct SemVer format which are 0 and positive numbers in the form
         // of `x`, `x.x`or `x.x.x`.
         let versionString = String(versionStringElement)
-        guard versionString.matchesSemVerFormat() else { return nil }
+        guard versionString.matchesSemVerFormat() else {
+            return nil
+        }
 
         // extract version elements from validated version string as unsigned integers, throws and returns nil
         // if a substring cannot be casted as UInt, since only positive numbers are allowed
-        let versionIdentifiers: [UInt]? = try? versionString.split(separator: ".").map(String.init).map {
-            // we already checked the format so we can now try to extract an UInt from the string
-            guard let element = UInt($0) else {
-                throw Error.invalidVersionIdentifier
+        let versionIdentifiers: [UInt]? = try? versionString
+            .split(separator: ".")
+            .map(String.init)
+            .map {
+                // we already checked the format so we can now try to extract an UInt from the string
+                guard
+                    let element = UInt($0),
+                    let firstCharacter = $0.first,
+                    !(firstCharacter.isZero && $0.count > 1) else {
+                    throw Error.invalidVersionIdentifier
+                }
+
+                return element
             }
 
-            return element
+        guard let safeIdentifiers = versionIdentifiers else {
+            return nil
         }
-
-        guard let safeIdentifiers = versionIdentifiers else { return nil }
 
         // map valid identifiers to corresponding version identifier
         self.major = safeIdentifiers[0]
@@ -145,9 +156,9 @@ public struct Version: SemanticVersionComparable {
         self.patch = safeIdentifiers.indices.contains(2) ? safeIdentifiers[2] : nil
 
         // extract pre-release identifier if available
-        if
-            versionSplitPrerelease.indices.contains(1),
-            let prereleaseSubstring = versionSplitPrerelease.last {
+        if versionSplitPrerelease.indices.contains(1) {
+            versionSplitPrerelease.removeFirst(1)
+            let prereleaseSubstring = versionSplitPrerelease.joined(separator: "-")
             self.prerelease = String(prereleaseSubstring)
                 .split(separator: ".")
                 .map(String.init)
@@ -158,19 +169,37 @@ public struct Version: SemanticVersionComparable {
                         return PrereleaseIdentifier.init($0)
                     }
                 }
+            // if a pre-release identifier element is initialized as .unkown, we can savely assume that the given
+            // string is not a valid  `SemVer` version string.
+            if
+                let prerelease = self.prerelease,
+                prerelease.contains(where: { $0 == .unknown }) {
+                return nil
+            }
         } else {
+            // not pre-release identifier has been found
             self.prerelease = nil
         }
 
         // extract build-meta-data identifier if available
-        if versionSplitBuild.indices.contains(1), let buildSubstring = versionSplitBuild.last {
+        if
+            versionSplitBuild.indices.contains(1),
+            let buildSubstring = versionSplitBuild.last {
             self.build = String(buildSubstring)
                 .split(separator: ".")
                 .map(String.init)
                 .compactMap {
                     BuildMetaData.init($0)
                 }
+            // finding an .unkown element means that the given string is not conform to `SemVer` since it is no
+            // alphaNumeric or a digit
+            if
+                let build = self.build,
+                build.contains(where: { $0 == .unknown }) {
+                return nil
+            }
         } else {
+            // no build-meta-data has been found
             self.build = nil
         }
     }

@@ -5,9 +5,9 @@
         "package": "SwiftVersionCompare",
         "repositoryURL": "https://github.com/nihilias/SwiftVersionCompare.git",
         "state": {
-          "branch": null,
-          "revision": "5033050d7ac09287ad9ac1d612307e313d0753d3",
-          "version": "0.6.0"
+          "branch": "develop",
+          "revision": "99b270e10b22fe8bb41354d1c8ec75050da6cff6",
+          "version": null
         }
       }
     ]

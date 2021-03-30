@@ -13,12 +13,12 @@ A small package introducing a `Version` object implementing the  `SemanticVersio
 Swift Package Manager:
 
 ```swift
-package(url: https://github.com/nihilias/SwiftVersionCompare.git", from: "1.0.0"))
+package(url: https://github.com/mflknr/SwiftVersionCompare.git", from: "1.0.0"))
 ```
 
 # Usage
 
-For detailed implenentation information see [documentation]().
+For detailed implenentation information see [documentation](https://mflknr.github.io/SwiftVersionCompare/).
 
 ```swift
 // use the version core identifier for initialization

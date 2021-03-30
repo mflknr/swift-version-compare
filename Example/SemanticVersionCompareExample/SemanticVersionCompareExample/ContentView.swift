@@ -50,8 +50,10 @@ struct ContentView: View {
             return "Version B is a minor update to Version A."
         case .patch:
             return "Version B is a patch update to Version A."
-        case .extensions:
-            return "Difference in build meta info."
+        case .prerelease:
+            return "Difference in pre-release identifiers."
+        case .build:
+            return "Difference in build-meta-datas."
         case .noUpdate:
             return "No update between the versions detected."
         }

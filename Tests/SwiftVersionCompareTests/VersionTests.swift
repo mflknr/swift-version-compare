@@ -24,7 +24,41 @@ final class VersionTests: XCTestCase {
         ("1+1", "1", "1"),
         ("1-beta.1+exval30", "1", "beta.1+exval30"),
         ("23.400-familyalpha.2.beta+172948712.1", "23.400", "familyalpha.2.beta+172948712.1"),
-        ("1.5+thomassbuild", "1.5", "thomassbuild")
+        ("1.5+thomassbuild", "1.5", "thomassbuild"),
+        ("3.265893.15-alpha.13.beta+exp.sha.315", "3.265893.15", "alpha.13.beta+exp.sha.315"),
+        ("5", "5", nil),
+        ("5.3", "5.3", nil),
+        ("5.3.2", "5.3.2", nil),
+        ("5.0", "5.0", nil),
+        ("5.0.0", "5.0.0", nil),
+        ("5.3.0", "5.3.0", nil),
+        ("5.3.2", "5.3.2", nil),
+        ("5+3990", "5", "3990"),
+        ("5.3+3990", "5.3", "3990"),
+        ("5.3.2+3990", "5.3.2", "3990"),
+        ("5.0+3990", "5.0", "3990"),
+        ("5.0.0+3990", "5.0.0", "3990"),
+        ("5.3.0+3990", "5.3.0", "3990"),
+        ("5.3.2+3990", "5.3.2", "3990"),
+        ("5-rc", "5", "rc"),
+        ("5.3-rc", "5.3", "rc"),
+        ("5.3.2-rc", "5.3.2", "rc"),
+        ("5.0-rc", "5.0", "rc"),
+        ("5.0.0-rc", "5.0.0", "rc"),
+        ("5.3.0-rc", "5.3.0", "rc"),
+        ("5.3.2-rc", "5.3.2", "rc"),
+        ("5-rc+3990", "5", "rc+3990"),
+        ("5.3-rc+3990", "5.3", "rc+3990"),
+        ("5.3.2-rc+3990", "5.3.2", "rc+3990"),
+        ("5.0-rc+3990", "5.0", "rc+3990"),
+        ("5.0.0-rc+3990", "5.0.0", "rc+3990"),
+        ("5.3.0-rc+3990", "5.3.0", "rc+3990"),
+        ("5.3.2-rc+3990", "5.3.2", "rc+3990"),
+        ("1-1", "1", "1"),
+        ("1.2.3-alpha-beta+3", "1.2.3", "alpha-beta+3"),
+        ("1.0.0-alpha-1skladnk1.1+123", "1.0.0", "alpha-1skladnk1.1+123"),
+        ("1.0.0-alpha-1skl--------ad---nk1.---+123", "1.0.0", "alpha-1skl--------ad---nk1.---+123"),
+        ("1.2.3-test+123-123-123-123", "1.2.3", "test+123-123-123-123")
     ]
 
     private let invalidVersionData: [String] = [
@@ -51,8 +85,9 @@ final class VersionTests: XCTestCase {
         "sdjflk.ksdjla.123",
         "asdasd.1.1",
         "1.1.4354vdf",
-        "1.2.3-alpha-beta+3",
-        "18+123+something"
+        "18+123+something",
+        "1.2.3-test+123-123-123-123+",
+        "0000001.00000001.01111"
     ]
 
     func testValidConstruction() {
@@ -103,6 +138,22 @@ final class VersionTests: XCTestCase {
 
         let versionB = Version(major: 125)
         XCTAssertEqual(versionB, "125.0.0")
+
+        let versionC = Version(
+            major: 1,
+            minor: 2,
+            patch: 3,
+            prerelease: [.alpha, "release"],
+            build: [.alphaNumeric("exp"), .digits("300"), "test"])
+        XCTAssertEqual(versionC.absoluteString, "1.2.3-alpha.release+exp.300.test", "Expected version to be `1.2.3-alpha.release+exp.300.test`, is: \(versionC)!")
+
+        let versionD = Version(
+            major: 1,
+            minor: 2,
+            patch: 3,
+            prerelease: [.alphaNumeric("alpha"), .numeric(1), .beta, .releaseCandidate, .prerelease],
+            build: [.alphaNumeric("exp"), .digits("300"), "test"])
+        XCTAssertEqual(versionD.absoluteString, "1.2.3-alpha.1.beta.rc.prerelease+exp.300.test", "Expected version to be `1.2.3-alpha.release+exp.300.test`, is: \(versionD)!")
     }
 
     func testInvalidConstruction() {

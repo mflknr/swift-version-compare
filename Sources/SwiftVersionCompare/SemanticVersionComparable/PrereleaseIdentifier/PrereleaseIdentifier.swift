@@ -30,14 +30,17 @@ public enum PrereleaseIdentifier: Comparable, Hashable {
     /// Numeric identifier are positive numbers and zeros, yet they do not allow for leading zeros.
     case numeric(_ identifier: UInt)
 
-    init?(private string: String) {
+    /// Unknown identifier are used when string literals do not conform to `SemVer` and are removed.
+    case unknown
+
+    init(private string: String) {
         if string.isNumericString,
            let numeric = UInt(string) {
             self = .numeric(numeric)
         } else if string.isAlphaNumericString {
             self = .alphaNumeric(string)
         } else {
-            return nil
+            self = .unknown
         }
     }
 }
@@ -57,6 +60,8 @@ public extension PrereleaseIdentifier {
             return identifier
         case let .numeric(identifier):
             return String(identifier)
+        case .unknown:
+            return ""
         }
     }
 }
