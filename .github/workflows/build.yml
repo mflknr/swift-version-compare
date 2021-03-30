@@ -1,0 +1,30 @@
+name: build
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: swift --version
+      - run: swift build -v
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: swift --version
+      - name: Test
+        uses: sersoft-gmbh/xcodebuild-action@v1.4
+        with:
+          project: SwiftVersionCompare.xcodeproj
+          scheme: SwiftVersionCompare-Package
+          action: test
+      - name: Codecov
+        uses: codecov/codecov-action@v1
