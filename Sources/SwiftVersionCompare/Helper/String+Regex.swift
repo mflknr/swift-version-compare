@@ -17,10 +17,10 @@ internal extension String {
     }
 
     var isAlphaNumericString: Bool {
-        matches("[a-zA-Z-][0-9a-zA-Z-]+")
+        matches("^[a-zA-Z0-9-]+$")
     }
 
     var isNumericString: Bool {
-        matches("[0-9]+")
+        matches("[0-9]+$")
     }
 }

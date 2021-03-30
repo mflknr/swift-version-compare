@@ -1,19 +1,6 @@
 {
   "warnings": [
-    {
-      "file": "/Users/nihilias/Developer/Repositories/SwiftVersionCompare/Sources/SwiftVersionCompare/SemanticVersionComparable/BuildMetaData/BuildMetaData.swift",
-      "line": 35,
-      "symbol": "BuildMetaData.value",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/nihilias/Developer/Repositories/SwiftVersionCompare/Sources/SwiftVersionCompare/SemanticVersionComparable/PrereleaseIdentifier/PrereleaseIdentifier.swift",
-      "line": 49,
-      "symbol": "PrereleaseIdentifier.value",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    }
+
   ],
   "source_directory": "/Users/nihilias/Developer/Repositories/SwiftVersionCompare"
 }

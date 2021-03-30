@@ -46,6 +46,7 @@ public enum PrereleaseIdentifier: Comparable, Hashable {
 }
 
 public extension PrereleaseIdentifier {
+    /// Raw string representation of a pre-release identifier.
     var value: String {
         switch self {
         case .alpha:

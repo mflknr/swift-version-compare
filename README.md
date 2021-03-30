@@ -1,4 +1,4 @@
-# SwiftVersionCheck
+# SwiftVersionCompare
 
 ![platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20iOS%20%7C%20tvOS%20%7C%20watchOS-lightgrey.svg)
 ![languages](https://img.shields.io/badge/swift-5.0%20%7C%205.1%20%7C%205.2%20%7C%205.3-orange.svg)
