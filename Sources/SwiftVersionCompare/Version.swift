@@ -114,13 +114,12 @@ public struct Version: SemanticVersionComparable {
         }
 
         // split previously splitted substring into version and pre-release identifier substrings
-        let versionSplitPrerelease = versionPrereleaseString
+        var versionSplitPrerelease = versionPrereleaseString
             .split(separator: "-", omittingEmptySubsequences: false)
 
-        // check for non-empty or invalid version string e.g. "-alpha" or "-alpha-beta"
+        // check for non-empty or invalid version string e.g. "-alpha"
         guard
             !versionSplitPrerelease.isEmpty,
-            versionSplitPrerelease.count <= 2,
             let versionStringElement = versionSplitPrerelease.first else {
             return nil
         }
@@ -128,7 +127,9 @@ public struct Version: SemanticVersionComparable {
         // check that the version string has the correct SemVer format which are 0 and positive numbers in the form
         // of `x`, `x.x`or `x.x.x`.
         let versionString = String(versionStringElement)
-        guard versionString.matchesSemVerFormat() else { return nil }
+        guard versionString.matchesSemVerFormat() else {
+            return nil
+        }
 
         // extract version elements from validated version string as unsigned integers, throws and returns nil
         // if a substring cannot be casted as UInt, since only positive numbers are allowed
@@ -154,9 +155,9 @@ public struct Version: SemanticVersionComparable {
         self.patch = safeIdentifiers.indices.contains(2) ? safeIdentifiers[2] : nil
 
         // extract pre-release identifier if available
-        if
-            versionSplitPrerelease.indices.contains(1),
-            let prereleaseSubstring = versionSplitPrerelease.last {
+        if versionSplitPrerelease.indices.contains(1) {
+            versionSplitPrerelease.removeFirst(1)
+            let prereleaseSubstring = versionSplitPrerelease.joined(separator: "-")
             self.prerelease = String(prereleaseSubstring)
                 .split(separator: ".")
                 .map(String.init)

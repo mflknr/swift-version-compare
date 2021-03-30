@@ -54,7 +54,11 @@ final class VersionTests: XCTestCase {
         ("5.0.0-rc+3990", "5.0.0", "rc+3990"),
         ("5.3.0-rc+3990", "5.3.0", "rc+3990"),
         ("5.3.2-rc+3990", "5.3.2", "rc+3990"),
-        ("1-1", "1", "1")
+        ("1-1", "1", "1"),
+        ("1.2.3-alpha-beta+3", "1.2.3", "alpha-beta+3"),
+        ("1.0.0-alpha-1skladnk1.1+123", "1.0.0", "alpha-1skladnk1.1+123"),
+        ("1.0.0-alpha-1skl--------ad---nk1.---+123", "1.0.0", "alpha-1skl--------ad---nk1.---+123"),
+        ("1.2.3-test+123-123-123-123", "1.2.3", "test+123-123-123-123")
     ]
 
     private let invalidVersionData: [String] = [
@@ -81,8 +85,8 @@ final class VersionTests: XCTestCase {
         "sdjflk.ksdjla.123",
         "asdasd.1.1",
         "1.1.4354vdf",
-        "1.2.3-alpha-beta+3",
-        "18+123+something"
+        "18+123+something",
+        "1.2.3-test+123-123-123-123+"
     ]
 
     func testValidConstruction() {
