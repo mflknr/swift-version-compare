@@ -81,7 +81,8 @@ final class SemanticVersionComparableTests: XCTestCase {
             Version("13.1.1-alpha"): Version("13.1.1-beta"),
             Version("5-h2o4hr"): Version("5"),
             Version("5-alpha.1"): Version("5-alpha.2"),
-            Version("5-alpha.2"): Version("5-alpha.beta")
+            Version("5-alpha.2"): Version("5-alpha.beta"),
+            Version("5-alpha.23+500"): Version("5-alpha.beta+200")
         ]
 
         testData.forEach { lhs, rhs in

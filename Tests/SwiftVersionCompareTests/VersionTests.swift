@@ -87,7 +87,9 @@ final class VersionTests: XCTestCase {
         "1.1.4354vdf",
         "18+123+something",
         "1.2.3-test+123-123-123-123+",
-        "0000001.00000001.01111"
+        "0000001.00000001.01111",
+        "1.1.1-alpha%",
+        "2-beta+23$"
     ]
 
     func testValidConstruction() {
