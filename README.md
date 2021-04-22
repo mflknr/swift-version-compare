@@ -1,7 +1,7 @@
 # SwiftVersionCompare
 
-![platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20iOS%20%7C%20tvOS%20%7C%20watchOS-lightgrey.svg)
-![languages](https://img.shields.io/badge/swift-5.0%20%7C%205.1%20%7C%205.2%20%7C%205.3-orange.svg)
+[![platforms](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fmflknr%2FSwiftVersionCompare%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/mflknr/SwiftVersionCompare)
+[![swiftcomp](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fmflknr%2FSwiftVersionCompare%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/mflknr/SwiftVersionCompare)
 [![build](https://github.com/mflknr/SwiftVersionCompare/workflows/build/badge.svg)](https://github.com/mflknr/SwiftVersionCompare/actions)
 [![doccov](https://mflknr.github.io/SwiftVersionCompare/badge.svg?sanitize=true)](https://mflknr.github.io/SwiftVersionCompare/)
 [![codecov](https://codecov.io/gh/mflknr/SwiftVersionCompare/branch/develop/graph/badge.svg?token=6EAG2J8DMU)](https://codecov.io/gh/mflknr/SwiftVersionCompare)
