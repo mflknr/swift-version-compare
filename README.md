@@ -18,7 +18,7 @@ package(url: https://github.com/mflknr/SwiftVersionCompare.git", from: "1.0.0"))
 
 # Usage
 
-For detailed implenentation information see [documentation](https://mflknr.github.io/SwiftVersionCompare/).
+For detailed implementation information see [documentation](https://mflknr.github.io/SwiftVersionCompare/).
 
 ```swift
 // use the version core identifier for initialization
