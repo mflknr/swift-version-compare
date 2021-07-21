@@ -2,7 +2,7 @@
 //  String+Regex.swift
 //  SwiftVersionCompare
 //
-//  Created by Marius Hötten-Löns on 05.01.21.
+//  Created by Marius Felkner on 05.01.21.
 //
 
 internal extension String {

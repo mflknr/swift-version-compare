@@ -2,7 +2,7 @@
 //  ComparisonResult.swift
 //  SwiftVersionCompare
 //
-//  Created by Marius Hötten-Löns on 06.01.21.
+//  Created by Marius Felkner on 06.01.21.
 //
 
 /// The severity of an update between versions.

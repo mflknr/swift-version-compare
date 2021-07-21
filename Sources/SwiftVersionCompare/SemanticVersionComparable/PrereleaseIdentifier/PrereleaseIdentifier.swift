@@ -2,7 +2,7 @@
 //  PrereleaseIdentifier.swift
 //  SwiftVersionCompare
 //
-//  Created by Marius Hötten-Löns on 12.03.21.
+//  Created by Marius Felkner on 12.03.21.
 //
 
 /// Typed pre-release identifier.

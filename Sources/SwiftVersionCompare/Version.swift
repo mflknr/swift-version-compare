@@ -2,7 +2,7 @@
 //  Version.swift
 //  SwiftVersionCompare
 //
-//  Created by Marius Hötten-Löns on 29.12.20.
+//  Created by Marius Felkner on 29.12.20.
 //
 
 /// A version type conforming to `SemVer`.
