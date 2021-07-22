@@ -2,7 +2,7 @@
 //  SemanticVersionComparable+Hashable.swift
 //  SwiftVersionCompare
 //
-//  Created by Marius Hötten-Löns on 13.03.21.
+//  Created by Marius Felkner on 13.03.21.
 //
 
 extension SemanticVersionComparable {

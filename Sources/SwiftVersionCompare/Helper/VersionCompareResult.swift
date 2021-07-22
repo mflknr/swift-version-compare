@@ -1,14 +1,13 @@
 //
-//  ComparisonResult.swift
+//  VersionCompareResult.swift
 //  SwiftVersionCompare
 //
-//  Created by Marius Hötten-Löns on 06.01.21.
+//  Created by Marius Felkner on 06.01.21.
 //
 
 /// The severity of an update between versions.
 ///
-/// - Note: A difference between build-meta-data of versions are explicitly ignored, since `SemVer`  does not considere
-///         them to be different ranks.
+/// - Note: A difference between build-meta-data of versions are as `SemVer` states explicitly ignored.
 public enum VersionCompareResult {
     /// A `MAJOR`update
     case major

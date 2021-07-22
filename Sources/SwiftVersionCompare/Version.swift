@@ -2,7 +2,7 @@
 //  Version.swift
 //  SwiftVersionCompare
 //
-//  Created by Marius Hötten-Löns on 29.12.20.
+//  Created by Marius Felkner on 29.12.20.
 //
 
 /// A version type conforming to `SemVer`.
@@ -24,7 +24,7 @@
 /// Pre-release identifier or build-meta-data can be handled as strings or as a few selected enumared case with it
 /// associated raw value (see `PrereleaseIdentifier` and `BuildMetaData` for more).
 ///
-///     let version: Version = let version: Version = Version(major: 1, minor: 0, patch: 0, prerelease: ["alpha"], build: ["500"])
+///     let version: Version = Version(major: 1, minor: 0, patch: 0, prerelease: ["alpha"], build: ["500"])
 ///     version.absoluteString // -> "1.0.0-alpha+500"
 ///
 ///     let version: Version = Version(2, 32, 16, ["family", .alpha], ["1"])
@@ -141,7 +141,7 @@ public struct Version: SemanticVersionComparable {
                     let element = UInt($0),
                     let firstCharacter = $0.first,
                     !(firstCharacter.isZero && $0.count > 1) else {
-                    throw Error.invalidVersionIdentifier
+                    throw VersionValidationError.invalidVersionIdentifier(identifier: $0)
                 }
 
                 return element

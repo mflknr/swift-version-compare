@@ -2,10 +2,10 @@
 //  PrereleaseIdentifier.swift
 //  SwiftVersionCompare
 //
-//  Created by Marius Hötten-Löns on 12.03.21.
+//  Created by Marius Felkner on 12.03.21.
 //
 
-/// Typed pre-release identifier.
+/// Enumerated pre-release identifier for `SemVer` conform initializing and handling.
 ///
 /// - Note: Identifier can be described using alphanumeric or numeric letters.
 ///

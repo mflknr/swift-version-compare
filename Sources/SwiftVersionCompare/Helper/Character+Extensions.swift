@@ -2,7 +2,7 @@
 //  Character+Extensions.swift
 //  SwiftVersionCompare
 //
-//  Created by Marius Hötten-Löns on 30.03.21.
+//  Created by Marius Felkner on 30.03.21.
 //
 
 internal extension Character {

@@ -2,7 +2,7 @@
 //  SemanticVersionComparableTests.swift
 //  SwiftVersionCompareTests
 //
-//  Created by Marius Hötten-Löns on 01.01.21.
+//  Created by Marius Felkner on 01.01.21.
 //
 
 import XCTest
