@@ -22,7 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		24828B622613B4EC00AF8BA2 /* Character+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24828B612613B4EC00AF8BA2 /* Character+Extensions.swift */; };
-		24A6A24625A3DD3B00E12D71 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A24525A3DD3B00E12D71 /* Error.swift */; };
+		24A6A24625A3DD3B00E12D71 /* VersionValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A24525A3DD3B00E12D71 /* VersionValidationError.swift */; };
 		24A6A25925A5198900E12D71 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A25825A5198900E12D71 /* String+Regex.swift */; };
 		24A6A26425A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A26325A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift */; };
 		24A6A26A25A51A4700E12D71 /* SemanticVersionComparable+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A6A26925A51A4700E12D71 /* SemanticVersionComparable+Comparable.swift */; };
@@ -65,7 +65,7 @@
 /* Begin PBXFileReference section */
 		24322B402613C4EC0028E151 /* .codecov.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .codecov.yml; sourceTree = "<group>"; };
 		24828B612613B4EC00AF8BA2 /* Character+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Extensions.swift"; sourceTree = "<group>"; };
-		24A6A24525A3DD3B00E12D71 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		24A6A24525A3DD3B00E12D71 /* VersionValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionValidationError.swift; sourceTree = "<group>"; };
 		24A6A25825A5198900E12D71 /* String+Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Regex.swift"; sourceTree = "<group>"; };
 		24A6A26325A51A2F00E12D71 /* SemanticVersionComparable+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SemanticVersionComparable+Equatable.swift"; sourceTree = "<group>"; };
 		24A6A26925A51A4700E12D71 /* SemanticVersionComparable+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SemanticVersionComparable+Comparable.swift"; sourceTree = "<group>"; };
@@ -115,9 +115,9 @@
 			isa = PBXGroup;
 			children = (
 				24828B612613B4EC00AF8BA2 /* Character+Extensions.swift */,
-				24A6A24525A3DD3B00E12D71 /* Error.swift */,
 				24A6A25825A5198900E12D71 /* String+Regex.swift */,
 				24B3A1CD261103BB00EDC055 /* VersionCompareResult.swift */,
+				24A6A24525A3DD3B00E12D71 /* VersionValidationError.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -307,7 +307,7 @@
 				24A6A27E25A51E1900E12D71 /* Version+Bundle.swift in Sources */,
 				24A6A27025A51B5500E12D71 /* Version+StringInitializer.swift in Sources */,
 				24A6A28825A6002200E12D71 /* Version+OS.swift in Sources */,
-				24A6A24625A3DD3B00E12D71 /* Error.swift in Sources */,
+				24A6A24625A3DD3B00E12D71 /* VersionValidationError.swift in Sources */,
 				24B3A1CE261103BB00EDC055 /* VersionCompareResult.swift in Sources */,
 				24D6003625FCE1F60003375E /* SemanticVersionComparable+Hashable.swift in Sources */,
 				24D6FFE525FB6FFE0003375E /* PrereleaseIdentifier.swift in Sources */,
