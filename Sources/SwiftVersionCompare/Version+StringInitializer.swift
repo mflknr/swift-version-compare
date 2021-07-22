@@ -1,5 +1,5 @@
 //
-//  Version+StringOperators.swift
+//  Version+StringInitializer.swift
 //  SwiftVersionCompare
 //
 //  Created by Marius Felkner on 05.01.21.
@@ -8,7 +8,7 @@
 extension Version: LosslessStringConvertible {
     /// Creates a new version from a string.
     ///
-    /// - Parameter string: The string beeing parsed into a version.
+    /// - Parameter string: A string beeing parsed into a version.
     ///
     /// - Returns: A version object or `nil` if string does not conform to `SemVer`.
     public init?(_ string: String) {

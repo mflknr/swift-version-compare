@@ -42,16 +42,19 @@ public protocol SemanticVersionComparable: Comparable, Hashable {
 // MARK: -
 
 public extension SemanticVersionComparable {
-    /// A Boolean value indicating the compatibility of two versions.
+    /// A boolean value indicating the compatibility of two versions. As `SemVer` states two versions are
+    /// compatible if they have the same major version.
     ///
-    /// - Parameter version: An object that conforms to the `SemanticVersionComparable`protocol.
+    /// - Parameter version: An version object that conforms to the `SemanticVersionComparable`protocol.
     ///
     /// - Returns: `true` if both objects have equal major versions.
     func isCompatible(with version: Self) -> Bool {
         major == version.major
     }
 
-    /// Compare versions for their update severity.
+    /// Compare a version object (lhs) with a greater version object (rhs). Lhs must be a lower version to return
+    /// a valid result otherwise `.noUpdate` will be returned regardless of the difference between the two version
+    /// objects.
     ///
     /// - Parameter version: The version you want to compare to another version.
     ///
@@ -94,6 +97,8 @@ public extension SemanticVersionComparable {
     /// - Parameter version: The other version you want to check with.
     ///
     /// - Returns: `true` if the respective version cores are equal.
+    ///
+    /// - Note: A version core is defined as the `MAJOR.MINOR.PATCH` part of a semantic version.
     func hasEqualVersionCore(as version: Self) -> Bool {
         let lhsAsIntSequence = [Int(major), Int(minor ?? 0), Int(patch ?? 0)]
         let rhsAsIntSequence = [Int(version.major), Int(version.minor ?? 0), Int(version.patch ?? 0)]
@@ -104,7 +109,8 @@ public extension SemanticVersionComparable {
 // MARK: - Accessors
 
 public extension SemanticVersionComparable {
-    /// The absolute string of the version.
+    /// The absolute string of the version containing the core version, pre-release identifier and build-meta-data
+    /// formatted as `MAJOR.MINOR.PATCH-PRERELEASE+BUILD`.
     var absoluteString: String {
         var versionString = coreString
         if let pr = prereleaseIdentifierString {
@@ -118,7 +124,7 @@ public extension SemanticVersionComparable {
         return versionString
     }
 
-    /// The string of the version representing `MAJOR.MINOR.PATCH`.
+    /// The string of the version representing `MAJOR.MINOR.PATCH` only.
     var coreString: String {
         [major, minor, patch]
             .compactMap { $0 }
@@ -126,7 +132,7 @@ public extension SemanticVersionComparable {
             .joined(separator: ".")
     }
 
-    /// The string of the version representing the pre-release identifier and build-meta-data.
+    /// The string of the version containing the pre-release identifier and build-meta-data only.
     var extensionString: String? {
         var extensionsString: String? = prereleaseIdentifierString
         if let build = buildMetaDataString {
@@ -147,7 +153,7 @@ public extension SemanticVersionComparable {
             .joined(separator: ".")
     }
 
-    /// The build meta data as a string if available.
+    /// The build-meta-data as a string if available.
     var buildMetaDataString: String? {
         build?
             .compactMap { $0.value }
