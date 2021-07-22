@@ -15,10 +15,12 @@ extension VersionValidationError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidVersionIdentifier(let identifier):
-            return NSLocalizedString(
-                "The parsed string contained an invalid SemVer version identifier: \(identifier).",
+            let format = NSLocalizedString(
+                "The parsed string contained an invalid SemVer version identifier: '%@'.",
                 comment: ""
             )
+
+            return String(format: format, identifier)
         }
     }
 }
