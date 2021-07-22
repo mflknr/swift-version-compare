@@ -80,6 +80,7 @@
 		24D6FFE425FB6FFE0003375E /* PrereleaseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrereleaseIdentifier.swift; sourceTree = "<group>"; };
 		24D6FFEE25FB74CA0003375E /* PrereleaseIdentifier+ExpressibleByLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrereleaseIdentifier+ExpressibleByLiteral.swift"; sourceTree = "<group>"; };
 		24D6FFF525FB75210003375E /* BuildMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildMetaData.swift; sourceTree = "<group>"; };
+		24F8D48D26A96FD1007C72AE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		OBJ_10 /* SemanticVersionComparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticVersionComparable.swift; sourceTree = "<group>"; };
 		OBJ_11 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		OBJ_14 /* SemanticVersionComparableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticVersionComparableTests.swift; sourceTree = "<group>"; };
@@ -190,6 +191,7 @@
 				OBJ_12 /* Tests */,
 				OBJ_17 /* Products */,
 				OBJ_20 /* LICENSE */,
+				24F8D48D26A96FD1007C72AE /* CHANGELOG.md */,
 				OBJ_21 /* README.md */,
 				24A6A2BB25A67D1200E12D71 /* .jazzy.yml */,
 				24322B402613C4EC0028E151 /* .codecov.yml */,
