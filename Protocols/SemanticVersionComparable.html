@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SemanticVersionComparable Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/SemanticVersionComparable" class="dashAnchor"></a>
+    <a title="SemanticVersionComparable Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        SemanticVersionComparable Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/BuildMetaData.html">BuildMetaData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/PrereleaseIdentifier.html">PrereleaseIdentifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/VersionCompareResult.html">VersionCompareResult</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Bundle.html">Bundle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/ProcessInfo.html">ProcessInfo</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/SemanticVersionComparable.html">SemanticVersionComparable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Version.html">Version</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>SemanticVersionComparable</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SemanticVersionComparable</span> <span class="p">:</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">Hashable</span></code></pre>
+
+                </div>
+              </div>
+            <p>A type that can be expressed as a semantic version conforming to <code>SemVer</code>.</p>
+
+<p>Additionally to the ranking rules, when comparing two versions, if their version core identifiers are <code>nil</code> they
+will be treated as <code>0</code>.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">versionOne</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">versionTwo</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">versionOne</span> <span class="o">==</span> <span class="n">versionTwo</span> <span class="c1">// &lt;- this statement is `true`</span>
+</code></pre>
+
+<p>You can choose between a loosly or strictly comparison considering if you want to compare the build-meta-data of
+the version</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">versionOne</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="o">.</span><span class="n">alpha</span><span class="p">])</span>
+<span class="k">let</span> <span class="nv">versionTwo</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="o">.</span><span class="n">alpha</span><span class="p">],</span> <span class="p">[</span><span class="s">"exp"</span><span class="p">])</span>
+
+<span class="n">versionOne</span> <span class="o">==</span> <span class="n">versionTwo</span> <span class="c1">// `true`</span>
+<span class="n">versionOne</span> <span class="o">===</span> <span class="n">versionTwo</span> <span class="c1">// `false`</span>
+</code></pre>
+<div class="aside aside-remark">
+    <p class="aside-title">Remark</p>
+    See <code>https://semver.org</code> for detailed information.
+
+</div>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparableP5majorSuvp"></a>
+                    <a name="//apple_ref/swift/Property/major" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparableP5majorSuvp">major</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>MAJOR</code> identifier of a version.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">major</span><span class="p">:</span> <span class="kt">UInt</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparableP5minorSuSgvp"></a>
+                    <a name="//apple_ref/swift/Property/minor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparableP5minorSuSgvp">minor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>MINOR</code> identifier of a version</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">minor</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparableP5patchSuSgvp"></a>
+                    <a name="//apple_ref/swift/Property/patch" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparableP5patchSuSgvp">patch</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>PATCH</code> identifer of a verion.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">patch</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparableP10prereleaseSayAA20PrereleaseIdentifierOGSgvp"></a>
+                    <a name="//apple_ref/swift/Property/prerelease" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparableP10prereleaseSayAA20PrereleaseIdentifierOGSgvp">prerelease</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Pre-release identifier of a version.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">prerelease</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Enums/PrereleaseIdentifier.html">PrereleaseIdentifier</a></span><span class="p">]?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparableP5buildSayAA13BuildMetaDataOGSgvp"></a>
+                    <a name="//apple_ref/swift/Property/build" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparableP5buildSayAA13BuildMetaDataOGSgvp">build</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build-meta-data of a version.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">build</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Enums/BuildMetaData.html">BuildMetaData</a></span><span class="p">]?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparablePAAE1loiySbx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/&lt;(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparablePAAE1loiySbx_xtFZ"><(_:<wbr>_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Compare versions using the <code>SemVer</code> ranking system.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Build-meta-data have no influence on a version&rsquo;s rank.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparablePAAE2eeoiySbx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparablePAAE2eeoiySbx_xtFZ">==(_:<wbr>_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Compares version objects for equality.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if version objects are equal.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparablePAAE3eeeoiySbx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/===(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparablePAAE3eeeoiySbx_xtFZ">===(_:<wbr>_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Strictly compares version objects for equality.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="o">===</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if version objects are strictly equal.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparablePAAE4hash4intoys6HasherVz_tF"></a>
+                    <a name="//apple_ref/swift/Method/hash(into:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparablePAAE4hash4intoys6HasherVz_tF">hash(into:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Conformance to <code>Hashable</code> protocol.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Since build-meta-data are not considered in ranking semantic version, it won&rsquo;t be considered
+    here either.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hash</span><span class="p">(</span><span class="n">into</span> <span class="nv">hasher</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Hasher</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparablePAAE12isCompatible4withSbx_tF"></a>
+                    <a name="//apple_ref/swift/Method/isCompatible(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparablePAAE12isCompatible4withSbx_tF">isCompatible(with:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A boolean value indicating the compatibility of two versions. As <code>SemVer</code> states two versions are
+compatible if they have the same major version.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">isCompatible</span><span class="p">(</span><span class="n">with</span> <span class="nv">version</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An version object that conforms to the <code>SemanticVersionComparable</code>protocol.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if both objects have equal major versions.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparablePAAE7compare4withAA0bC6ResultOx_tF"></a>
+                    <a name="//apple_ref/swift/Method/compare(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparablePAAE7compare4withAA0bC6ResultOx_tF">compare(with:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Compare a version object (lhs) with a greater version object (rhs). Lhs must be a lower version to return
+a valid result otherwise <code>.noUpdate</code> will be returned regardless of the difference between the two version
+objects.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">compare</span><span class="p">(</span><span class="n">with</span> <span class="nv">version</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/VersionCompareResult.html">VersionCompareResult</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The version you want to compare to another version.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The severity of the update the version inherits.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparablePAAE08hasEqualB4Core2asSbx_tF"></a>
+                    <a name="//apple_ref/swift/Method/hasEqualVersionCore(as:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparablePAAE08hasEqualB4Core2asSbx_tF">hasEqualVersionCore(as:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Check if a version has an equal version core as another version.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>A version core is defined as the <code>MAJOR.MINOR.PATCH</code> part of a semantic version.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">hasEqualVersionCore</span><span class="p">(</span><span class="k">as</span> <span class="nv">version</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The other version you want to check with.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the respective version cores are equal.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Accessors"></a>
+                <a name="//apple_ref/swift/Section/Accessors" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Accessors"></a>
+                  <h3 class="section-name"><p>Accessors</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparablePAAE14absoluteStringSSvp"></a>
+                    <a name="//apple_ref/swift/Property/absoluteString" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparablePAAE14absoluteStringSSvp">absoluteString</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The absolute string of the version containing the core version, pre-release identifier and build-meta-data
+formatted as <code>MAJOR.MINOR.PATCH-PRERELEASE+BUILD</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">absoluteString</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparablePAAE10coreStringSSvp"></a>
+                    <a name="//apple_ref/swift/Property/coreString" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparablePAAE10coreStringSSvp">coreString</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The string of the version representing <code>MAJOR.MINOR.PATCH</code> only.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">coreString</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparablePAAE15extensionStringSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/extensionString" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparablePAAE15extensionStringSSSgvp">extensionString</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The string of the version containing the pre-release identifier and build-meta-data only.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">extensionString</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparablePAAE26prereleaseIdentifierStringSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/prereleaseIdentifierString" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparablePAAE26prereleaseIdentifierStringSSSgvp">prereleaseIdentifierString</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The pre-release identifier as a string if available.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">prereleaseIdentifierString</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:19SwiftVersionCompare08SemanticB10ComparablePAAE19buildMetaDataStringSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/buildMetaDataString" class="dashAnchor"></a>
+                    <a class="token" href="#/s:19SwiftVersionCompare08SemanticB10ComparablePAAE19buildMetaDataStringSSSgvp">buildMetaDataString</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The build-meta-data as a string if available.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">buildMetaDataString</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-07-22)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
