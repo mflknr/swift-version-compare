@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
       - name: Install jazzy
         run: gem install jazzy
       - name: Generate Documentation
