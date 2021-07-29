@@ -1,4 +1,4 @@
-name: Update Documentation on GitHub Pages
+name: Update Documentation
 
 on:
   push:
