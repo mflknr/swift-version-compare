@@ -14,14 +14,12 @@ jobs:
   document:
     runs-on: macos-latest
     steps:
-      - name: Install Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '2.6'
-      - name: Install jazzy
-        run: gem install jazzy
       - name: Generate Documentation
-        run: jazzy
+        uses: sersoft-gmbh/swifty-docs-action@v1
+        with:
+          source: ${{ github.workspace }}
+          output: docs
+          clean: true
       - name: Upload generated Documentation
         uses: s0/git-publish-subdir-action@develop
         env:
