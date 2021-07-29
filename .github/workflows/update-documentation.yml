@@ -2,7 +2,7 @@ name: Update Documentation
 
 on:
   push:
-    branches: [ main ]
+    branches: [ develop ]
 
 jobs:
   build:
@@ -14,15 +14,18 @@ jobs:
   document:
     runs-on: macos-latest
     steps:
-      - uses: sersoft-gmbh/swifty-docs-action@v1
-  upload:
-    runs-on: macos-latest
-    steps:
-      - name: upload
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+      - name: Install jazzy
+        run: gem install jazzy
+      - name: Generate Documentation
+        run: jazzy
+      - name: Upload generated Documentation
         uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
           BRANCH: documentation
           FOLDER: docs
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
   
