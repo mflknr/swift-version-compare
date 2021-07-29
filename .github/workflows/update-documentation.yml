@@ -19,7 +19,6 @@ jobs:
       - name: Generate Documentation
         uses: sersoft-gmbh/swifty-docs-action@v1
         with:
-          source: /Users/runner/work/SwiftVersionCompare
           output: docs
       - name: Upload generated Documentation
         uses: s0/git-publish-subdir-action@develop
