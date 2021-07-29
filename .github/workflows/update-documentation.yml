@@ -21,11 +21,8 @@ jobs:
         with:
           output: docs
       - name: Upload generated Documentation
-        uses: s0/git-publish-subdir-action@develop
-        env:
-          REPO: self
-          BRANCH: documentation
-          FOLDER: docs
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-  
+        run: |
+          git checkout documentations
+          git checkout main -- docs
+          git add docs
+          git commit -m "Adding 'docs' directory from 'main' branch."
