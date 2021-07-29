@@ -22,7 +22,7 @@ jobs:
           output: docs
       - name: Upload generated Documentation
         run: |
-          git checkout documentations
+          git checkout documentation
           git checkout main -- docs
           git add docs
           git commit -m "Adding 'docs' directory from 'main' branch."
