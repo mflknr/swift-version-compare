@@ -14,15 +14,11 @@ jobs:
   document:
     runs-on: macos-latest
     steps:
-      - name: Test
-        run: cd ${{ github.workspace }}
-      - run: ls
       - name: Generate Documentation
         uses: sersoft-gmbh/swifty-docs-action@v1
         with:
           source: ${{ github.workspace }}
           output: docs
-          clean: true
       - name: Upload generated Documentation
         uses: s0/git-publish-subdir-action@develop
         env:
