@@ -8,25 +8,16 @@ jobs:
   document:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Setup git
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git remote update
-          git fetch --all
-          git checkout main
+      - name: Checkout
+        uses: actions/checkout@v2
+        
       - name: Generate Documentation
         uses: sersoft-gmbh/swifty-docs-action@v1
         with:
           output: docs
-      - name: Push generated Documentation to dedicated branch
-        run: |
-          git stash --include-untracked
-          git checkout -b documentation
-          git stash pop
-          git add docs
-          git commit -m "docs: automatically generate documentation from 'main'"
-          git push
+
+      - name: Deploy to GitHub Pages branch
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: documentation
+          folder: docs
