@@ -27,7 +27,17 @@ jobs:
         run: |
           swift --version
           swift build -v
-      
+          
+      - name: Test
+        run: swift test
+        
+  codecov:
+    name: Deploy to Codecov
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
       - name: Test
         uses: sersoft-gmbh/xcodebuild-action@v1.4
         with:
