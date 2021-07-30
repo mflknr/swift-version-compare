@@ -24,7 +24,7 @@ jobs:
           output: docs
       - name: Push generated Documentation to dedicated branch
         run: |
-          git stash
+          git stash --include-untracked
           git checkout origin/documentation
           git stash pop
           git commit -m "docs: automatically generate documentation from 'main'"
