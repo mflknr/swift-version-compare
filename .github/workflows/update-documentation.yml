@@ -28,6 +28,8 @@ jobs:
           git config user.email github-actions@github.com
           git remote update
           git fetch --all
+          git stash
           git checkout origin/documentation
+          git stash pop
           git commit -m "docs: automatically generate documentation from 'main'"
           git push
