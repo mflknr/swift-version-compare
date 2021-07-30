@@ -5,29 +5,25 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: swift --version
-      - run: swift build -v
   document:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - run: swift --version
-      - name: Generate Documentation
-        uses: sersoft-gmbh/swifty-docs-action@v1
-        with:
-          output: docs
-      - name: Upload generated Documentation
+      - name: Setup git
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git remote update
           git fetch --all
+          git checkout origin/main
+      - name: Generate Documentation
+        uses: sersoft-gmbh/swifty-docs-action@v1
+        with:
+          output: docs
+      - name: Push generated Documentation to dedicated branch
+        run: |
           git stash
           git checkout origin/documentation
           git stash pop
