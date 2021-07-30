@@ -1,30 +1,39 @@
-name: Test build and update Codecov
+name: Check build and tests
 
 on:
   push:
-    branches:
-      - develop
+    branches: [ develop ]
   pull_request:
-    branches:
-      - develop
+    branches: [ develop ]
 
 jobs:
   build:
-    runs-on: macos-latest
+    name: Swift ${{ matrix.swift }} on ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        swift: ["5.3", "5.4"]
+    runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
-      - run: swift --version
-      - run: swift build -v
-  test:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: swift --version
+      - name: Setup Swift Environment for Ubuntu and macOS
+        uses: fwal/setup-swift@v1.7.0
+        with:
+          swift-version: ${{ matrix.swift }}
+          
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Build
+        run: |
+          swift --version
+          swift build -v
+      
       - name: Test
         uses: sersoft-gmbh/xcodebuild-action@v1.4
         with:
           project: SwiftVersionCompare.xcodeproj
           scheme: SwiftVersionCompare-Package
           action: test
-      - name: Codecov
+          
+      - name: Deploy to Codecov
         uses: codecov/codecov-action@v1
