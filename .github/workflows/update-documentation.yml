@@ -17,7 +17,7 @@ jobs:
           git config user.email github-actions@github.com
           git remote update
           git fetch --all
-          git checkout origin/main
+          git checkout -b main
       - name: Generate Documentation
         uses: sersoft-gmbh/swifty-docs-action@v1
         with:
@@ -25,7 +25,7 @@ jobs:
       - name: Push generated Documentation to dedicated branch
         run: |
           git stash --include-untracked
-          git checkout origin/documentation
+          git checkout -b documentation
           git stash pop
           git add docs
           git commit -m "docs: automatically generate documentation from 'main'"
