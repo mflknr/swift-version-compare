@@ -15,6 +15,8 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - run: swift --version
       - name: Generate Documentation
         uses: sersoft-gmbh/swifty-docs-action@v1
@@ -24,8 +26,9 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git checkout origin/documentation
-          git checkout origin/main -- docs
+          git fetch
+          git checkout documentation
+          git checkout main -- docs
           git add docs
           git commit -m "Adding 'docs' directory from 'main' branch."
           git push
