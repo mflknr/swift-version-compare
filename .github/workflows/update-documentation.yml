@@ -29,6 +29,5 @@ jobs:
           git remote update
           git fetch --all
           git checkout origin/documentation
-          git checkout origin/main -- docs
           git commit -m "docs: automatically generate documentation from 'main'"
           git push
