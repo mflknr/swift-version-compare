@@ -21,7 +21,8 @@ jobs:
         with:
           output: docs
       - name: Upload generated Documentation
-        run: git checkout documentation
+        run: cd /Users/runner/work/SwiftVersionCompare
+      - run: git checkout documentation
       - run: git checkout main -- docs
       - run: git add docs
       - run: git commit -m "Adding 'docs' directory from 'main' branch."
