@@ -29,7 +29,7 @@ jobs:
           git remote update
           git fetch --all
           git checkout origin/documentation
-          git checkout origin/main -- docs
+          git checkout origin/develop -- docs
           git add docs
           git commit -m "Adding 'docs' directory from 'main' branch."
           git push
