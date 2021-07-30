@@ -26,9 +26,10 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git fetch
-          git checkout documentation
-          git checkout main -- docs
+          git remote update
+          git fetch --all
+          git checkout origin/documentation
+          git checkout origin/main -- docs
           git add docs
           git commit -m "Adding 'docs' directory from 'main' branch."
           git push
