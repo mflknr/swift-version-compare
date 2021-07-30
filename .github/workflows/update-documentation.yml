@@ -17,7 +17,7 @@ jobs:
           git config user.email github-actions@github.com
           git remote update
           git fetch --all
-          git checkout -b main
+          git checkout main
       - name: Generate Documentation
         uses: sersoft-gmbh/swifty-docs-action@v1
         with:
