@@ -10,7 +10,7 @@ import XCTest
 
 final class SemanticVersionComparableTests: XCTestCase {
     func testEqualOperator() throws {
-        let testData: [Version: Version] = [
+        let testData: KeyValuePairs = [
             Version("15.287349.10"): Version("15.287349.10"),
             Version("0.1.0"): Version("0.1.0"),
             Version("1.0.0"): Version("1"),
@@ -38,7 +38,7 @@ final class SemanticVersionComparableTests: XCTestCase {
     }
 
     func testStrictEqualOperator() throws {
-        let validTestData: [Version: Version] = [
+        let validTestData: KeyValuePairs = [
             Version("15.287349.10"): Version("15.287349.10"),
             Version("0.1.0"): Version("0.1.0"),
             Version("1.0.0"): Version("1"),
@@ -69,7 +69,7 @@ final class SemanticVersionComparableTests: XCTestCase {
     }
 
     func testNonEqualOperators() throws {
-        let testData: [Version: Version] = [
+        let testData: KeyValuePairs = [
             Version("15.287349.9"): Version("15.287349.10"),
             Version("0.0.1"): Version("0.1.0"),
             Version("0"): Version("1.0.0"),
