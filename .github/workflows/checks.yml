@@ -27,9 +27,27 @@ jobs:
         run: |
           swift --version
           swift build -v
+        
+  test:
+    name: Swift ${{ matrix.swift }}
+    strategy:
+      matrix:
+        os: [ macos-latest ]
+        swift: ["5.3", "5.4"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Setup Swift Environment
+        uses: fwal/setup-swift@v1.7.0
+        with:
+          swift-version: ${{ matrix.swift }}
+          
+      - name: Checkout
+        uses: actions/checkout@v2
           
       - name: Test
-        run: swift test
+        run: |
+          swift --version
+          swift test
         
   codecov:
     name: Deploy to Codecov
