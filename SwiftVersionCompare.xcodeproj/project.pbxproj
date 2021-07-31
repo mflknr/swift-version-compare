@@ -173,7 +173,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -187,7 +187,6 @@
 				249FC1BA26B35DF700079A22 /* .codecov.yml */,
 				249FC1BB26B35DF700079A22 /* .jazzy.yml */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -289,7 +288,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_35 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
