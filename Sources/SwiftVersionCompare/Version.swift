@@ -141,7 +141,7 @@ public struct Version: SemanticVersionComparable {
                     let element = UInt($0),
                     let firstCharacter = $0.first,
                     !(firstCharacter.isZero && $0.count > 1) else {
-                    throw VersionValidationError.invalidVersionIdentifier(identifier: $0)
+                    throw VersionValidationError.invalidVersionIdentifier
                 }
 
                 return element
