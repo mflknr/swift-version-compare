@@ -22,7 +22,7 @@ extension VersionValidationError: LocalizedError {
 
             return NSString(
                 format: format as NSString,
-                [identifier]
+                identifier as NSString
             ) as String
         }
     }
