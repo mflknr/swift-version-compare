@@ -41,7 +41,6 @@
 		OBJ_70 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_81 /* SemanticVersionComparableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* SemanticVersionComparableTests.swift */; };
 		OBJ_82 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* VersionTests.swift */; };
-		OBJ_83 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* XCTestManifests.swift */; };
 		OBJ_85 /* SwiftVersionCompare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftVersionCompare::SwiftVersionCompare::Product" /* SwiftVersionCompare.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,7 +83,6 @@
 		OBJ_29 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		OBJ_32 /* SemanticVersionComparableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticVersionComparableTests.swift; sourceTree = "<group>"; };
 		OBJ_33 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
-		OBJ_34 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_38 /* Example */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Example; sourceTree = SOURCE_ROOT; };
 		OBJ_39 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		OBJ_40 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -158,7 +156,6 @@
 			children = (
 				OBJ_32 /* SemanticVersionComparableTests.swift */,
 				OBJ_33 /* VersionTests.swift */,
-				OBJ_34 /* XCTestManifests.swift */,
 			);
 			name = SwiftVersionCompareTests;
 			path = Tests/SwiftVersionCompareTests;
@@ -340,7 +337,6 @@
 			files = (
 				OBJ_81 /* SemanticVersionComparableTests.swift in Sources */,
 				OBJ_82 /* VersionTests.swift in Sources */,
-				OBJ_83 /* XCTestManifests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

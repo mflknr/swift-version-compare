@@ -185,12 +185,4 @@ final class SemanticVersionComparableTests: XCTestCase {
             XCTAssertTrue(compareResult == data.2, "Expected result from comparing \(data.0.absoluteString) and \(data.1.absoluteString) to be \(data.2) but is \(compareResult)!")
         }
     }
-
-    static var allTests = [
-        ("testEqualOperator", testEqualOperator),
-        ("testStrictEqualOperator", testStrictEqualOperator),
-        ("testNonEqualOperators", testNonEqualOperators),
-        ("testCompatibility", testCompatibility),
-        ("testCompare", testCompare)
-    ]
 }

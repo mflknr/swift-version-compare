@@ -209,12 +209,4 @@ final class VersionTests: XCTestCase {
             "Expected \(processInfoOsVersion.patchVersion) to be equal to \(comparableOsVersion.patch!)!"
         )
     }
-
-    static var allTests = [
-        ("testValidConstruction", testValidConstruction),
-        ("testMemberwiseConstruction", testMemberwiseConstruction),
-        ("testInvalidConstruction", testInvalidConstruction),
-//        ("testBundleVersion", testValidBundleVersion),
-        ("testProcessInfoVersion", testProcessInfoVersion)
-    ]
 }
