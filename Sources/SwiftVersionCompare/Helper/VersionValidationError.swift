@@ -20,7 +20,10 @@ extension VersionValidationError: LocalizedError {
                 comment: ""
             )
 
-            return String(format: format, identifier)
+            return NSString(
+                format: format as NSString,
+                [identifier]
+            ) as String
         }
     }
 }
