@@ -5,8 +5,6 @@ Pod::Spec.new do |s|
   s.homepage = 'https://github.com/mflknr/SwiftVersionCompare'
   s.license = { :type => 'MIT', :file => 'LICENSE.md' }
   s.author = 'mflknr'
-  s.readme = 'https://github.com/mflknr/SwiftVersionCompare/blob/main/README.md'
-  s.changelog = 'https://github.com/mflknr/SwiftVersionCompare/blob/main/CHANGELOG.md'
   s.documentation_url = 'https://mflknr.github.io/SwiftVersionCompare/'
   s.source = { :git => 'https://github.com/mflknr/SwiftVersionCompare.git', :tag => s.version.to_s }
   s.source_files = 'Sources/SwiftVersionCompare/**/*'
