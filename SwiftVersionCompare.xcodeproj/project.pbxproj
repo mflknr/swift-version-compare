@@ -64,6 +64,8 @@
 /* Begin PBXFileReference section */
 		249FC1BA26B35DF700079A22 /* .codecov.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .codecov.yml; sourceTree = "<group>"; };
 		249FC1BB26B35DF700079A22 /* .jazzy.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .jazzy.yml; sourceTree = "<group>"; };
+		24E69AF92708BCA600620658 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		24E69AFA2708BEAD00620658 /* SwiftVersionCompare.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftVersionCompare.podspec; sourceTree = "<group>"; };
 		OBJ_10 /* Character+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Extensions.swift"; sourceTree = "<group>"; };
 		OBJ_11 /* String+Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Regex.swift"; sourceTree = "<group>"; };
 		OBJ_12 /* VersionCompareResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCompareResult.swift; sourceTree = "<group>"; };
@@ -84,7 +86,6 @@
 		OBJ_32 /* SemanticVersionComparableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticVersionComparableTests.swift; sourceTree = "<group>"; };
 		OBJ_33 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
 		OBJ_38 /* Example */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Example; sourceTree = SOURCE_ROOT; };
-		OBJ_39 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		OBJ_40 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		OBJ_41 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -178,9 +179,10 @@
 				OBJ_30 /* Tests */,
 				OBJ_35 /* Products */,
 				OBJ_38 /* Example */,
-				OBJ_39 /* LICENSE */,
 				OBJ_40 /* CHANGELOG.md */,
+				24E69AF92708BCA600620658 /* LICENSE.md */,
 				OBJ_41 /* README.md */,
+				24E69AFA2708BEAD00620658 /* SwiftVersionCompare.podspec */,
 				249FC1BA26B35DF700079A22 /* .codecov.yml */,
 				249FC1BB26B35DF700079A22 /* .jazzy.yml */,
 			);
