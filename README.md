@@ -6,7 +6,7 @@
 [![codecov](https://codecov.io/gh/mflknr/SwiftVersionCompare/branch/develop/graph/badge.svg?token=6EAG2J8DMU)](https://codecov.io/gh/mflknr/SwiftVersionCompare)
 [![doccov](https://mflknr.github.io/SwiftVersionCompare/badge.svg?sanitize=true)](https://mflknr.github.io/SwiftVersionCompare/)
 [![licence](https://img.shields.io/github/license/mflknr/SwiftVersionCompare)](https://github.com/mflknr/SwiftVersionCompare/blob/main/LICENSE)
-[![Twitter](https://img.shields.io/badge/twitter-@mflknr-blue.svg?style=flat-square)](https://twitter.com/mflknr)
+[![Twitter](https://img.shields.io/badge/twitter-@mflknr-blue.svg?style=flat)](https://twitter.com/mflknr)
 
 A package introducing a `Version` object implementing the  `SemanticVersionComparable` protocol for comparing versions conforming to [SemVer](https://semver.org). 
 
