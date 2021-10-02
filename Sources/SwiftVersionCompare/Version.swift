@@ -5,10 +5,10 @@
 //  Created by Marius Felkner on 29.12.20.
 //
 
-/// A version type conforming to `SemVer`.
+/// A version type conforming to `SemanticVersionComparable` and therefor `SemVer`.
 ///
-/// You can create a new version using string, string literals and string interpolation formatted
-/// like `MAJOR.MINOR.PATCH-PRERELEASE+BUILD` or memberwise properties.
+/// You can create a new version using strings, string literals and string interpolations, formatted
+/// like `MAJOR.MINOR.PATCH-PRERELEASE+BUILD`, or memberwise initialization.
 ///
 ///     // from string
 ///     let version: Version? = "1.0.0"
@@ -21,8 +21,8 @@
 ///     let version: Version = Version(1, 0, 0)
 ///     let version: Version = Version(major: 1, minor: 0, patch: 0, prerelease: ["alpha, "1"], build: ["exp"])
 ///
-/// Pre-release identifier or build-meta-data can be handled as strings or as a few selected enumared case with it
-/// associated raw value (see `PrereleaseIdentifier` and `BuildMetaData` for more).
+/// Pre-release identifiers or build-meta-data can be handled as strings or as enum cases with it associated raw
+/// values (see `PrereleaseIdentifier` and `BuildMetaData` for more).
 ///
 ///     let version: Version = Version(major: 1, minor: 0, patch: 0, prerelease: ["alpha"], build: ["500"])
 ///     version.absoluteString // -> "1.0.0-alpha+500"
@@ -34,7 +34,7 @@
 ///     version.prereleaseIdentifer // -> "family.alpha"
 ///     version.buildMetaDataString // -> "1"
 ///
-/// - Remark: See `https://semver.org` for detailed information.
+/// - Remark: See [semver.org](https://semver.org) for detailed information.
 public struct Version: SemanticVersionComparable {
     public var major: UInt
     public var minor: UInt?
