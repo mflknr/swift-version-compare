@@ -5,9 +5,9 @@
 //  Created by Marius Felkner on 29.12.20.
 //
 
-/// A type that can be expressed as a semantic version conforming to `SemVer`.
+/// A type that can be expressed and utilized as a semantic version conforming to `SemVer`.
 ///
-/// Additionally to the ranking rules, when comparing two versions, if their version core identifiers are `nil` they
+/// Additionally to the ranking and comparison rules if their version core identifiers are `nil` they
 /// will be treated as `0`.
 ///
 ///     let versionOne = Version(1, 0, 0)
@@ -15,8 +15,8 @@
 ///
 ///     versionOne == versionTwo // <- this statement is `true`
 ///
-/// You can choose between a loosly or strictly comparison considering if you want to compare the build-meta-data of
-/// the version
+/// You can choose between a loosly or strictly comparison considering if you want to include the build-meta-data of
+/// versions when comparing:
 ///
 ///     let versionOne = Version(1, 0, 0, [.alpha])
 ///     let versionTwo = Version(1, 0, 0, [.alpha], ["exp"])
@@ -24,7 +24,7 @@
 ///     versionOne == versionTwo // `true`
 ///     versionOne === versionTwo // `false`
 ///
-/// - Remark: See `https://semver.org` for detailed information.
+/// - Remark: See [semver.org](https://semver.org) for detailed information.
 public protocol SemanticVersionComparable: Comparable, Hashable {
     /// The `MAJOR` identifier of a version.
     var major: UInt { get }
@@ -45,20 +45,20 @@ public extension SemanticVersionComparable {
     /// A boolean value indicating the compatibility of two versions. As `SemVer` states two versions are
     /// compatible if they have the same major version.
     ///
-    /// - Parameter version: An version object that conforms to the `SemanticVersionComparable`protocol.
+    /// - Parameter version: A version object that conforms to the `SemanticVersionComparable` protocol.
     ///
-    /// - Returns: `true` if both objects have equal major versions.
+    /// - Returns: `true` if both versions have equal major versions.
     func isCompatible(with version: Self) -> Bool {
         major == version.major
     }
 
-    /// Compare a version object (lhs) with a greater version object (rhs). Lhs must be a lower version to return
-    /// a valid result otherwise `.noUpdate` will be returned regardless of the difference between the two version
-    /// objects.
+    /// Compare a object (lhs) conforming to `SemanticVersionComparable` with a greater version object (rhs).
+    /// Lhs must be a lower version to return a valid result. Otherwise `.noUpdate` will be
+    /// returned regardless of the difference between the two version objects.
     ///
-    /// - Parameter version: The version you want to compare to another version.
+    /// - Parameter version: A version object that conforms to the `SemanticVersionComparable` protocol that will be compared.
     ///
-    /// - Returns: The severity of the update the version inherits.
+    /// - Returns: A `VersionCompareResult` as the severity of the update.
     func compare(with version: Self) -> VersionCompareResult {
         let lhs = self
         let rhs = version
@@ -94,7 +94,7 @@ public extension SemanticVersionComparable {
 
     /// Check if a version has an equal version core as another version.
     ///
-    /// - Parameter version: The other version you want to check with.
+    /// - Parameter version: A version object that conforms to the `SemanticVersionComparable` protocol.
     ///
     /// - Returns: `true` if the respective version cores are equal.
     ///

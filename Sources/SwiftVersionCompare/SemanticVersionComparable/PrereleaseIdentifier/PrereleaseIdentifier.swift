@@ -5,7 +5,7 @@
 //  Created by Marius Felkner on 12.03.21.
 //
 
-/// Enumerated pre-release identifier for `SemVer` conform initializing and handling.
+/// Enumerated pre-release identifier for `SemVer`.
 ///
 /// - Note: Identifier can be described using alphanumeric or numeric letters.
 ///
