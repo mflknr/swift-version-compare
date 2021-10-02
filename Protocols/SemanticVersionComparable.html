@@ -17,7 +17,7 @@
     <a title="SemanticVersionComparable Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p><a href="../index.html">SwiftVersionCompare 1.0.4 Docs</a> (100% documented)</p>
         <p class="header-right">
           <form role="search" action="../search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
@@ -27,7 +27,7 @@
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
-        <a href="../index.html"> Reference</a>
+        <a href="../index.html">SwiftVersionCompare Reference</a>
         <img id="carat" src="../img/carat.png" />
         SemanticVersionComparable Protocol Reference
       </p>
@@ -89,9 +89,9 @@
 
                 </div>
               </div>
-            <p>A type that can be expressed as a semantic version conforming to <code>SemVer</code>.</p>
+            <p>A type that can be expressed and utilized as a semantic version conforming to <code>SemVer</code>.</p>
 
-<p>Additionally to the ranking rules, when comparing two versions, if their version core identifiers are <code>nil</code> they
+<p>Additionally to the ranking and comparison rules if their version core identifiers are <code>nil</code> they
 will be treated as <code>0</code>.</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">versionOne</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="k">let</span> <span class="nv">versionTwo</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -99,8 +99,8 @@ will be treated as <code>0</code>.</p>
 <span class="n">versionOne</span> <span class="o">==</span> <span class="n">versionTwo</span> <span class="c1">// &lt;- this statement is `true`</span>
 </code></pre>
 
-<p>You can choose between a loosly or strictly comparison considering if you want to compare the build-meta-data of
-the version</p>
+<p>You can choose between a loosly or strictly comparison considering if you want to include the build-meta-data of
+versions when comparing:</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">versionOne</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="o">.</span><span class="n">alpha</span><span class="p">])</span>
 <span class="k">let</span> <span class="nv">versionTwo</span> <span class="o">=</span> <span class="kt">Version</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="o">.</span><span class="n">alpha</span><span class="p">],</span> <span class="p">[</span><span class="s">"exp"</span><span class="p">])</span>
 
@@ -109,7 +109,7 @@ the version</p>
 </code></pre>
 <div class="aside aside-remark">
     <p class="aside-title">Remark</p>
-    See <code>https://semver.org</code> for detailed information.
+    See <a href="https://semver.org">semver.org</a> for detailed information.
 
 </div>
 
@@ -431,7 +431,7 @@ compatible if they have the same major version.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>An version object that conforms to the <code>SemanticVersionComparable</code>protocol.</p>
+                                  <p>A version object that conforms to the <code>SemanticVersionComparable</code> protocol.</p>
                                 </div>
                               </td>
                             </tr>
@@ -440,7 +440,7 @@ compatible if they have the same major version.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p><code>true</code> if both objects have equal major versions.</p>
+                        <p><code>true</code> if both versions have equal major versions.</p>
                       </div>
                     </section>
                   </div>
@@ -461,9 +461,9 @@ compatible if they have the same major version.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Compare a version object (lhs) with a greater version object (rhs). Lhs must be a lower version to return
-a valid result otherwise <code>.noUpdate</code> will be returned regardless of the difference between the two version
-objects.</p>
+                        <p>Compare a object (lhs) conforming to <code>SemanticVersionComparable</code> with a greater version object (rhs).
+Lhs must be a lower version to return a valid result. Otherwise <code>.noUpdate</code> will be
+returned regardless of the difference between the two version objects.</p>
 
                       </div>
                       <div class="declaration">
@@ -486,7 +486,7 @@ objects.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The version you want to compare to another version.</p>
+                                  <p>A version object that conforms to the <code>SemanticVersionComparable</code> protocol that will be compared.</p>
                                 </div>
                               </td>
                             </tr>
@@ -495,7 +495,7 @@ objects.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The severity of the update the version inherits.</p>
+                        <p>A <code><a href="../Enums/VersionCompareResult.html">VersionCompareResult</a></code> as the severity of the update.</p>
                       </div>
                     </section>
                   </div>
@@ -544,7 +544,7 @@ objects.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The other version you want to check with.</p>
+                                  <p>A version object that conforms to the <code>SemanticVersionComparable</code> protocol.</p>
                                 </div>
                               </td>
                             </tr>
@@ -727,8 +727,8 @@ formatted as <code>MAJOR.MINOR.PATCH-PRERELEASE+BUILD</code>.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-07-31)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="https://github.com/mflknr/SwiftVersionCompare" target="_blank" rel="noopener" rel="external">mflknr</a>. All rights reserved. (Last updated: 2021-10-02)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="noopener" rel="external">jazzy ♪♫ v0.14.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="noopener" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
