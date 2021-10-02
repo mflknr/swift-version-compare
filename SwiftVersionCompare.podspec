@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name = 'SwiftVersionCompare'
-  s.version = '1.0.4'
+  s.version = '1.1.0'
   s.summary = 'Create and compare semantic versions in swift.'
   s.homepage = 'https://github.com/mflknr/SwiftVersionCompare'
-  s.license = { :type => 'MIT', :file => 'LICENSE.md' }
-  s.author = 'mflknr'
+  s.license = { :type => 'MIT', :file => 'LICENSE' }
+  s.authors = { 'Marius Felkner' => 'mflknr@mail.de' }
   s.documentation_url = 'https://mflknr.github.io/SwiftVersionCompare/'
   s.source = { :git => 'https://github.com/mflknr/SwiftVersionCompare.git', :tag => s.version.to_s }
   s.source_files = 'Sources/SwiftVersionCompare/**/*'
@@ -14,7 +14,5 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = '7.0'
   s.tvos.deployment_target = '13.0'
 
-  s.swift_version = '5.0'
-
-  s.cocoapods_version = '>= 0.36'
+  s.swift_versions = ['5.3', '5.4', '5.5']
 end

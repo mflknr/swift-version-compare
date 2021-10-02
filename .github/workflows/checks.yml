@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-        swift: ["5.3", "5.4"]
+        swift: ["5.3", "5.4", "5.5"]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Setup Swift Environment for Ubuntu and macOS
@@ -33,7 +33,7 @@ jobs:
     strategy:
       matrix:
         os: [ macos-latest ]
-        swift: ["5.3", "5.4"]
+        swift: ["5.3", "5.4", "5.5"]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Setup Swift Environment
