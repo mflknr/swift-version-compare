@@ -7,7 +7,7 @@ skip_undocumented: true
 hide_documentation_coverage: false
 theme: apple
 output: docs/
-swift_version: 5.3.2
+swift_version: 5.9.2
 clean: true
 min_acl: public
 xcodebuild_arguments:
