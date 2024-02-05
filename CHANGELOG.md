@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- `swift-tools-version` to `5.9.2` for the package manifest and tools
+- `swift-tools-version` to `5.7` for the package manifest and tools
 
 ### Removed
 
