@@ -18,4 +18,5 @@ jobs:
         with:
           swift-version: ${{ matrix.swift }}
           
+      - run: swift --version
       - run: swift build -v
