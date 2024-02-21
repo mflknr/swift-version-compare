@@ -9,6 +9,9 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: fwal/setup-swift@v1
+        with:
+          swift-version: '5.9.2'
         
       - name: generate docs
         uses: sersoft-gmbh/swifty-docs-action@v3
