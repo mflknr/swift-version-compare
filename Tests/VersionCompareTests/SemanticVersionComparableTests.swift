@@ -1,12 +1,12 @@
 //
 //  SemanticVersionComparableTests.swift
-//  SwiftVersionCompareTests
+//  VersionCompareTests
 //
 //  Created by Marius Felkner on 01.01.21.
 //
 
 import XCTest
-@testable import SwiftVersionCompare
+@testable import VersionCompare
 
 final class SemanticVersionComparableTests: XCTestCase {
     func testEqualOperator() throws {

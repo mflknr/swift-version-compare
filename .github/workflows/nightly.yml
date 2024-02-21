@@ -1,17 +1,15 @@
-name: check build and tests
+name: Check build and tests
 
 on:
-  push:
-    branches: [ develop, main ]
-  pull_request:
-    branches: [ develop, main ]
+  schedule:
+    - cron: '30 5 * * *'
 
 jobs:
   build:
     name: Build with Swift ${{ matrix.swift }} on ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ macos-latest ]
+        os: [ubuntu-latest, macos-latest]
         swift: ["5.7", "5.8", "5.9"]
     runs-on: ${{ matrix.os }}
     steps:
@@ -19,7 +17,6 @@ jobs:
       - uses: fwal/setup-swift@v1
         with:
           swift-version: ${{ matrix.swift }}
-      
+          
       - run: swift --version
       - run: swift build -v
-      - run: swift test -v

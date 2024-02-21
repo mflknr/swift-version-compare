@@ -1,4 +1,4 @@
-name: Create Release
+name: release
 
 on:
   push:
@@ -8,27 +8,16 @@ on:
 jobs:
   release:
     runs-on: macos-latest
+    permissions:
+      contents: write
     steps:
-    - name: Get current date
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      - name: exit if not on main branch
+        if: endsWith(github.ref, 'main') == false
+        run: exit -1
       
-    - name: Get current tag
-      id: vars
-      run: echo "::set-output name=tag::${GITHUB_REF#refs/*/}"
-      
-    - name: Release to GitHub
-      uses: "marvinpinto/action-automatic-releases@latest"
-      with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        draft: true
-        title: "[${{ steps.vars.outputs.tag }}] - ${{ steps.date.outputs.date }}"
-        
-    - name: Release to CocoaPods
-      run: |
-        gem install cocoapods
-        set -eo pipefail
-        pod lib lint --allow-warnings
-        pod trunk push --allow-warnings
-      env:
-        COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+      - name: create release
+        uses: ncipollo/release-action@v1
+        with:
+          draft: true
+          skipIfReleaseExists: true
+
