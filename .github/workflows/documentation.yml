@@ -1,4 +1,4 @@
-name: update documentation
+name: update-docs
 
 on:
   push:

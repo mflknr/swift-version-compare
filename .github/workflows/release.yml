@@ -2,6 +2,8 @@ name: release
 
 on:
   push:
+    branches:
+      - main
     tags: 
       - '*'
 
@@ -11,10 +13,6 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: exit if not on main branch
-        if: endsWith(github.ref, 'main') == false
-        run: exit -1
-      
       - name: create release
         uses: ncipollo/release-action@v1
         with:
