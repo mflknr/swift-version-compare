@@ -2,7 +2,10 @@ name: update-docs
 
 on:
   push:
-    branches: [ main ]
+    branches: 
+      - main
+    paths:
+      - '**.swift'
 
 jobs:
   document:
