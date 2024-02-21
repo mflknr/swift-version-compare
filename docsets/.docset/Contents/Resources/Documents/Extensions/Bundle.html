@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ProcessInfo Extension Reference</title>
+    <title>Bundle Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,23 +13,23 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Extension/ProcessInfo" class="dashAnchor"></a>
-    <a title="ProcessInfo Extension Reference"></a>
+    <a name="//apple_ref/swift/Extension/Bundle" class="dashAnchor"></a>
+    <a title="Bundle Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SwiftVersionCompare 1.1.0 Docs</a> (100% documented)</p>
-        <p class="header-right">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <div class="header-right">
           <form role="search" action="../search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
           </form>
-        </p>
+        </div>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
-        <a href="../index.html">SwiftVersionCompare Reference</a>
-        <img id="carat" src="../img/carat.png" />
-        ProcessInfo Extension Reference
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        Bundle Extension Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -58,6 +58,9 @@
               <li class="nav-group-task">
                 <a href="../Extensions/ProcessInfo.html">ProcessInfo</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Extensions.html#/s:14VersionCompare0A15ValidationErrorO">VersionValidationError</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -81,11 +84,11 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>ProcessInfo</h1>
+            <h1>Bundle</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">extension</span> <span class="kt">ProcessInfo</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">extension</span> <span class="kt">Bundle</span></code></pre>
 
                 </div>
               </div>
@@ -97,9 +100,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:So13NSProcessInfoC19SwiftVersionCompareE025comparableOperatingSystemD0AC0D0Vvp"></a>
-                    <a name="//apple_ref/swift/Property/comparableOperatingSystemVersion" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So13NSProcessInfoC19SwiftVersionCompareE025comparableOperatingSystemD0AC0D0Vvp">comparableOperatingSystemVersion</a>
+                    <a name="/s:So8NSBundleC14VersionCompareE05shortB0AC0B0VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/shortVersion" class="dashAnchor"></a>
+                    <a class="token" href="#/s:So8NSBundleC14VersionCompareE05shortB0AC0B0VSgvp">shortVersion</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -107,15 +110,51 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The version of the operating system on which the current process is executing.</p>
+                        <p>The version of the current bundle.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Uses the key <code>CFBundleShortVersionString</code> for retrieving version values.
+
+</div>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(macOS 10.10, *)</span>
-<span class="k">var</span> <span class="nv">comparableOperatingSystemVersion</span><span class="p">:</span> <span class="kt"><a href="../Structs/Version.html">Version</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">shortVersion</span><span class="p">:</span> <span class="kt"><a href="../Structs/Version.html">Version</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:So8NSBundleC14VersionCompareE7versionAC0B0VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/version" class="dashAnchor"></a>
+                    <a class="token" href="#/s:So8NSBundleC14VersionCompareE7versionAC0B0VSgvp">version</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The full version of the current bundle.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Uses the key <code>CFBundleShortVersionString</code> and <code>CFBundleVersion</code> for retrieving version values.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">version</span><span class="p">:</span> <span class="kt"><a href="../Structs/Version.html">Version</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -127,11 +166,10 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://github.com/mflknr/SwiftVersionCompare" target="_blank" rel="noopener" rel="external">Marius Felkner</a>. All rights reserved. (Last updated: 2021-10-02)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="noopener" rel="external">jazzy ♪♫ v0.14.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="noopener" rel="external">Realm</a> project.</p>
+          <p>&copy; 2024 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2024-02-21)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
     </div>
   </body>
-</div>
 </html>
