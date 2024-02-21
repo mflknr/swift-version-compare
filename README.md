@@ -1,11 +1,8 @@
-# SwiftVersionCompare
+# swift-version-compare
 
-[![platforms](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fmflknr%2FSwiftVersionCompare%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/mflknr/SwiftVersionCompare)
-[![swiftcomp](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fmflknr%2FSwiftVersionCompare%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/mflknr/SwiftVersionCompare)
-[![build](https://github.com/mflknr/SwiftVersionCompare/workflows/build/badge.svg)](https://github.com/mflknr/SwiftVersionCompare/actions)
-[![doccov](https://mflknr.github.io/SwiftVersionCompare/badge.svg?sanitize=true)](https://mflknr.github.io/SwiftVersionCompare/)
-[![licence](https://img.shields.io/github/license/mflknr/SwiftVersionCompare)](https://github.com/mflknr/SwiftVersionCompare/blob/main/LICENSE)
-[![Twitter](https://img.shields.io/badge/twitter-@mflknr-blue.svg?style=flat)](https://twitter.com/mflknr)
+[![build](https://github.com/mflknr/SwiftVersionCompare/workflows/build/badge.svg)](https://github.com/mflknr/swift-version-compare/actions)
+[![doccov](https://mflknr.github.io/swift-version-compare/badge.svg?sanitize=true)](https://mflknr.github.io/swift-version-compare/)
+[![licence](https://img.shields.io/github/license/mflknr/swift-version-compare)](https://github.com/mflknr/swift-version-compare/blob/main/LICENSE)
 
 A package introducing a `Version` object implementing the  `SemanticVersionComparable` protocol for comparing versions conforming to [SemVer](https://semver.org). 
 
@@ -14,18 +11,12 @@ A package introducing a `Version` object implementing the  `SemanticVersionCompa
 #### Swift Package Manager:
 
 ```swift
-package(url: https://github.com/mflknr/SwiftVersionCompare.git", from: "1.1.0"))
-```
-
-#### CocoaPods
-
-```ruby
-pod 'SwiftVersionCompare', '~> 1.1.0'
+.package(url: https://github.com/mflknr/swift-version-compare.git", from: "2.0.0"))
 ```
 
 # Usage
 
-For detailed implementation information see [documentation](https://mflknr.github.io/SwiftVersionCompare/).
+For detailed implementation information see [documentation](https://mflknr.github.io/swift-version-compare/).
 
 ```swift
 // use the version core identifier for initialization

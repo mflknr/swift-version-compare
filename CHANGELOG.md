@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 2.0.0
 
+### Changed
+
+- package name to `swift-version-compare` to be in line with community standards
+
 ### Removed
 
 - [CocoaPods](https://cocoapods.org) support
