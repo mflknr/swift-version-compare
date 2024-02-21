@@ -1,6 +1,6 @@
 # swift-version-compare
 
-[![build](https://github.com/mflknr/SwiftVersionCompare/workflows/build/badge.svg)](https://github.com/mflknr/swift-version-compare/actions)
+[![build](https://github.com/mflknr/swift-version-compare/workflows/checks/badge.svg)](https://github.com/mflknr/swift-version-compare/actions/workflows/checks.yml)
 [![doccov](https://mflknr.github.io/swift-version-compare/badge.svg?sanitize=true)](https://mflknr.github.io/swift-version-compare/)
 [![licence](https://img.shields.io/github/license/mflknr/swift-version-compare)](https://github.com/mflknr/swift-version-compare/blob/main/LICENSE)
 
