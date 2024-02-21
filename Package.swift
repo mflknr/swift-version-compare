@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "SwiftVersionCompare",
+    name: "swift-version-compare",
     platforms: [
         .iOS(.v13),
         .macOS(.v10_15),
@@ -13,16 +13,19 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "SwiftVersionCompare",
-            targets: ["SwiftVersionCompare"]),
+            name: "VersionCompare",
+            targets: [
+                "VersionCompare"
+                ]
+        ),
     ],
     targets: [
-        .target(
-            name: "SwiftVersionCompare",
-            dependencies: []),
+        .target(name: "VersionCompare"),
         .testTarget(
-            name: "SwiftVersionCompareTests",
-            dependencies: ["SwiftVersionCompare"]
+            name: "VersionCompareTests",
+            dependencies: [
+                "VersionCompare"
+                ]
         ),
     ],
     swiftLanguageVersions: [.v5]

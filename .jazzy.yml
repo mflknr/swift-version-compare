@@ -1,7 +1,7 @@
-module: SwiftVersionCompare
+module: VersionCompare
 author: mflknr
 author_url: https://www.mflknr.de/
-github_url: https://github.com/mflknr/SwiftVersionCompare/
+github_url: https://github.com/mflknr/swift-version-compare/
 readme: README.md
 skip_undocumented: true
 hide_documentation_coverage: false
@@ -12,6 +12,6 @@ clean: true
 min_acl: public
 xcodebuild_arguments:
   - -project
-  - SwiftVersionCompare.xcodeproj
+  - VersionCompare.xcodeproj
   - -scheme
-  - SwiftVersionCompare-Package
+  - VersionCompare-Package
