@@ -17,4 +17,5 @@ jobs:
         with:
           draft: true
           skipIfReleaseExists: true
+          bodyFile: "CHANGELOG.md"
 
