@@ -13,13 +13,9 @@ jobs:
         swift: ["5.7", "5.8", "5.9"]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Setup Swift Environment for Ubuntu and macOS
-        uses: fwal/setup-swift@v1
+      - uses: actions/checkout@v4
+      - uses: fwal/setup-swift@v1
         with:
           swift-version: ${{ matrix.swift }}
           
-      - name: Checkout
-        uses: actions/checkout@v3
-        
-      - name: Build
-        run: swift build -v
+      - run: swift build -v

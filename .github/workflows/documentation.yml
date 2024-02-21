@@ -1,4 +1,4 @@
-name: Update Documentation
+name: update documentation
 
 on:
   push:
@@ -8,15 +8,14 @@ jobs:
   document:
     runs-on: macos-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         
-      - name: Generate Documentation
-        uses: sersoft-gmbh/swifty-docs-action@v1
+      - name: generate docs
+        uses: sersoft-gmbh/swifty-docs-action@v3
         with:
           output: docs
 
-      - name: Deploy to GitHub Pages branch
+      - name: deploy docs to github pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: documentation
