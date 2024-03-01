@@ -20,7 +20,13 @@ let package = Package(
         ),
     ],
     targets: [
-        .target(name: "VersionCompare"),
+        .target(
+            name: "VersionCompare",
+            path: "Sources",
+            resources: [
+                .copy("Resources/PrivacyInfo.xcprivacy")
+            ]
+        ),
         .testTarget(
             name: "VersionCompareTests",
             dependencies: [
