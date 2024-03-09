@@ -21,7 +21,7 @@ public enum BuildMetaData: Comparable {
     case unknown
 
     init(private string: String) {
-        if let _ = Int(string) {
+        if Int(string) != nil {
             self = .digits(string)
         } else if string.isAlphaNumericString {
             self = .alphaNumeric(string)

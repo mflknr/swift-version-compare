@@ -6,11 +6,11 @@
 //
 
 extension BuildMetaData: LosslessStringConvertible {
+    public var description: String { value }
+
     public init?(_ string: String) {
         self.init(private: string)
     }
-
-    public var description: String { value }
 }
 
 extension BuildMetaData: ExpressibleByStringLiteral {

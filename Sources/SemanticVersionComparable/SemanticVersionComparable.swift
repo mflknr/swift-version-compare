@@ -56,12 +56,13 @@ public extension SemanticVersionComparable {
     /// Lhs must be a lower version to return a valid result. Otherwise `.noUpdate` will be
     /// returned regardless of the difference between the two version objects.
     ///
-    /// - Parameter version: A version object that conforms to the `SemanticVersionComparable` protocol that will be compared.
+    /// - Parameter version: A version object that conforms to the `SemanticVersionComparable` protocol that will be 
+    /// compared.
     ///
     /// - Returns: A `VersionCompareResult` as the severity of the update.
     func compare(with version: Self) -> VersionCompareResult {
-        let lhs = self
-        let rhs = version
+        let lhs: Self = self
+        let rhs: Self = version
 
         guard !lhs.hasEqualVersionCore(as: rhs) else {
             if lhs < rhs {
@@ -75,21 +76,19 @@ public extension SemanticVersionComparable {
             return .noUpdate
         }
 
-        if
-            lhs.major == rhs.major,
-            lhs.minor == rhs.minor,
-            lhs.patch ?? 0 < rhs.patch ?? 0 {
+        if lhs.major == rhs.major, lhs.minor == rhs.minor, lhs.patch ?? 0 < rhs.patch ?? 0 {
             return .patch
-        } else if
-            lhs.major == rhs.major,
-            lhs.minor ?? 0 < rhs.minor ?? 0 {
-            return .minor
-        } else if
-            lhs.major < rhs.major {
-            return .major
-        } else {
-            return .noUpdate
         }
+
+        if lhs.major == rhs.major, lhs.minor ?? 0 < rhs.minor ?? 0 {
+            return .minor
+        }
+
+        if lhs.major < rhs.major {
+            return .major
+        }
+
+        return .noUpdate
     }
 
     /// Check if a version has an equal version core as another version.
@@ -100,8 +99,8 @@ public extension SemanticVersionComparable {
     ///
     /// - Note: A version core is defined as the `MAJOR.MINOR.PATCH` part of a semantic version.
     func hasEqualVersionCore(as version: Self) -> Bool {
-        let lhsAsIntSequence = [Int(major), Int(minor ?? 0), Int(patch ?? 0)]
-        let rhsAsIntSequence = [Int(version.major), Int(version.minor ?? 0), Int(version.patch ?? 0)]
+        let lhsAsIntSequence: [Int] = [Int(major), Int(minor ?? 0), Int(patch ?? 0)]
+        let rhsAsIntSequence: [Int] = [Int(version.major), Int(version.minor ?? 0), Int(version.patch ?? 0)]
         return lhsAsIntSequence.elementsEqual(rhsAsIntSequence)
     }
 }
@@ -112,7 +111,7 @@ public extension SemanticVersionComparable {
     /// The absolute string of the version containing the core version, pre-release identifier and build-meta-data
     /// formatted as `MAJOR.MINOR.PATCH-PRERELEASE+BUILD`.
     var absoluteString: String {
-        var versionString = coreString
+        var versionString: String = coreString
         if let pr = prereleaseIdentifierString {
             versionString = [versionString, pr].joined(separator: "-")
         }

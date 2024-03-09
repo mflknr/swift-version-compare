@@ -6,6 +6,14 @@
 //
 
 internal extension String {
+    var isAlphaNumericString: Bool {
+        matches("^[a-zA-Z0-9-]+$")
+    }
+
+    var isNumericString: Bool {
+        matches("[0-9]+$")
+    }
+
     func matches(_ regex: String) -> Bool {
         range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
     }
@@ -14,13 +22,5 @@ internal extension String {
         matches("^([0-9a-zA-Z]+)\\.([0-9a-zA-Z]+)\\.([0-9a-zA-Z]+)$") ||
             matches("^([0-9a-zA-Z]+)\\.([0-9a-zA-Z]+)$") ||
             matches("^([0-9a-zA-Z]+)$")
-    }
-
-    var isAlphaNumericString: Bool {
-        matches("^[a-zA-Z0-9-]+$")
-    }
-
-    var isNumericString: Bool {
-        matches("[0-9]+$")
     }
 }

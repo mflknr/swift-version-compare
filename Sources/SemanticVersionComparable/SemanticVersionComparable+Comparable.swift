@@ -14,22 +14,22 @@ public extension SemanticVersionComparable {
         guard lhs.hasEqualVersionCore(as: rhs) else {
             // cast UInt to Int for each identifier to compare ordering lexicographically. missing
             // identifier for minor or patch versions (e. g. "1" or "2.0") are handled as zeros.
-            let lhsAsIntSequence = [Int(lhs.major), Int(lhs.minor ?? 0), Int(lhs.patch ?? 0)]
-            let rhsAsIntSequence = [Int(rhs.major), Int(rhs.minor ?? 0), Int(rhs.patch ?? 0)]
+            let lhsAsIntSequence: [Int] = [Int(lhs.major), Int(lhs.minor ?? 0), Int(lhs.patch ?? 0)]
+            let rhsAsIntSequence: [Int] = [Int(rhs.major), Int(rhs.minor ?? 0), Int(rhs.patch ?? 0)]
             return lhsAsIntSequence.lexicographicallyPrecedes(rhsAsIntSequence)
         }
 
         // non-pre-release lhs version is always >= than rhs version
         guard
             let lhspr = lhs.prerelease,
-            lhspr.count > 0 else {
+            !lhspr.isEmpty else {
             return false
         }
 
         // same goes for rhs vise versa
         guard
             let rhspr = rhs.prerelease,
-            rhspr.count > 0  else {
+            !rhspr.isEmpty  else {
             return true
         }
 

@@ -12,7 +12,9 @@ public extension Bundle {
      ///
      /// - Note: Uses the key `CFBundleShortVersionString` for retrieving version values.
     var shortVersion: Version? {
-        guard let versionString: String = infoDictionary?["CFBundleShortVersionString"] as? String else { return nil }
+        guard let versionString: String = infoDictionary?["CFBundleShortVersionString"] as? String else {
+            return nil
+        }
         let version: Version? = Version(versionString)
 
         return version

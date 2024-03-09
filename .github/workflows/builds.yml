@@ -1,4 +1,4 @@
-name: checks
+name: builds
 
 on:
   push:
@@ -21,7 +21,6 @@ jobs:
       - uses: fwal/setup-swift@v1
         with:
           swift-version: ${{ matrix.swift }}
-      
-      - run: swift --version
+  
       - run: swift build -v
       - run: swift test -v

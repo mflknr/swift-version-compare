@@ -101,18 +101,19 @@ public struct Version: SemanticVersionComparable {
     /// - Parameter string: The string representing a version.
     public init?(private string: String) {
         // split string into version with pre-release identifier and build-meta-data substrings
-        let versionSplitBuild = string.split(separator: "+", omittingEmptySubsequences: false)
+        let versionSplitBuild: [String.SubSequence] = string.split(separator: "+", omittingEmptySubsequences: false)
 
         // check if string does not contain only build-meta-data e.g. "+123" or falsely "+123+something"
+        let maxNumberOfSplits: Int = 2
         guard
             !versionSplitBuild.isEmpty,
-            versionSplitBuild.count <= 2,
+            versionSplitBuild.count <= maxNumberOfSplits,
             let versionPrereleaseString = versionSplitBuild.first else {
             return nil
         }
 
         // split previously splitted substring into version and pre-release identifier substrings
-        var versionSplitPrerelease = versionPrereleaseString
+        var versionSplitPrerelease: [Substring.SubSequence] = versionPrereleaseString
             .split(separator: "-", omittingEmptySubsequences: false)
 
         // check for non-empty or invalid version string e.g. "-alpha"
@@ -125,7 +126,7 @@ public struct Version: SemanticVersionComparable {
 
         // check that the version string has the correct SemVer format which are 0 and positive numbers in the form
         // of `x`, `x.x`or `x.x.x`.
-        let versionString = String(versionStringElement)
+        let versionString: String = String(versionStringElement)
         guard versionString.matchesSemVerFormat() else {
             return nil
         }
@@ -154,21 +155,22 @@ public struct Version: SemanticVersionComparable {
         // map valid identifiers to corresponding version identifier
         self.major = safeIdentifiers[0]
         self.minor = safeIdentifiers.indices.contains(1) ? safeIdentifiers[1] : nil
+        // swiftlint:disable:next no_magic_numbers
         self.patch = safeIdentifiers.indices.contains(2) ? safeIdentifiers[2] : nil
 
         // extract pre-release identifier if available
         if versionSplitPrerelease.indices.contains(1) {
             versionSplitPrerelease.removeFirst(1)
-            let prereleaseSubstring = versionSplitPrerelease.joined(separator: "-")
+            let prereleaseSubstring: String = versionSplitPrerelease.joined(separator: "-")
             self.prerelease = String(prereleaseSubstring)
                 .split(separator: ".")
                 .map(String.init)
                 .compactMap {
                     if let asInt = Int($0) {
-                        return PrereleaseIdentifier.init(integerLiteral: asInt)
+                        return PrereleaseIdentifier(integerLiteral: asInt)
                     }
 
-                    return PrereleaseIdentifier.init($0)
+                    return PrereleaseIdentifier($0)
                 }
             // if a pre-release identifier element is initialized as .unkown, we can savely assume that the given
             // string is not a valid  `SemVer` version string.
@@ -190,7 +192,7 @@ public struct Version: SemanticVersionComparable {
                 .split(separator: ".")
                 .map(String.init)
                 .compactMap {
-                    BuildMetaData.init($0)
+                    BuildMetaData($0)
                 }
             // finding an .unkown element means that the given string is not conform to `SemVer` since it is no
             // alphaNumeric or a digit

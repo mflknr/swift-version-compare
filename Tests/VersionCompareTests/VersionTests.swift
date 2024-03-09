@@ -13,10 +13,11 @@ typealias ExpectedVersionString = String
 typealias ExpectedExtensionString = String
 
 final class VersionTests: XCTestCase {
+    // swiftlint:disable:next large_tuple
     private let validVersionData: [(ValidVersionStringLiteral, ExpectedVersionString, ExpectedExtensionString?)] = [
-        ("1.0.0", "1.0.0", nil) ,
+        ("1.0.0", "1.0.0", nil),
         ("1.2.3-alpha.1", "1.2.3", "alpha.1"),
-        ("1.0", "1.0" , nil),
+        ("1.0", "1.0", nil),
         ("1", "1", nil),
         ("13434", "13434", nil),
         ("0.123123.0", "0.123123.0", nil),
@@ -93,27 +94,37 @@ final class VersionTests: XCTestCase {
     ]
 
     func testValidConstruction() {
+        // swiftlint:disable force_unwrapping
         validVersionData.forEach {
-            let version = Version($0.0)
+            let version: Version? = Version($0.0)
             XCTAssertNotNil(version, "Expected object from string `\($0.0)` not to be nil!")
-            XCTAssertTrue(version!.coreString == $0.1, "Expected versionCode to be \($0.1), is: \(version!.coreString)")
+            XCTAssertEqual(version!.coreString, $0.1, "Expected versionCode to be \($0.1), is: \(version!.coreString)")
             XCTAssertEqual(version!.debugDescription, version!.description)
             if let expectedExtension = $0.2 {
-                XCTAssertEqual(version!.extensionString, $0.2, "Expected extension to be \(expectedExtension), is: \(version!.extensionString ?? "nil")")
+                XCTAssertEqual(
+                    version!.extensionString,
+                    $0.2,
+                    "Expected extension to be \(expectedExtension), is: \(version!.extensionString ?? "nil")"
+                )
             } else {
                 XCTAssertNil(version!.extensionString, "Expected extension to be nil!")
             }
         }
+        // swiftlint:enable force_unwrapping
 
         // test string literal
         validVersionData.forEach {
             // equivalent to `let version: Version = ""`
-            let version = Version(stringLiteral: $0.0)
+            let version: Version = Version(stringLiteral: $0.0)
             XCTAssertNotNil(version, "Expected object from string `\($0.0)` not to be nil!")
-            XCTAssertTrue(version.coreString == $0.1, "Expected versionCode to be \($0.1), is: \(version.coreString)")
+            XCTAssertEqual(version.coreString, $0.1, "Expected versionCode to be \($0.1), is: \(version.coreString)")
             XCTAssertEqual(version.debugDescription, version.description)
             if let expectedExtension = $0.2 {
-                XCTAssertEqual(version.extensionString, $0.2, "Expected extension to be \(expectedExtension), is: \(version.extensionString ?? "nil")")
+                XCTAssertEqual(
+                    version.extensionString,
+                    $0.2,
+                    "Expected extension to be \(expectedExtension), is: \(version.extensionString ?? "nil")"
+                )
             } else {
                 XCTAssertNil(version.extensionString, "Expected extension to be nil!")
             }
@@ -124,10 +135,14 @@ final class VersionTests: XCTestCase {
             // equivalent to `let version: Version = ""`
             let version: Version = "\($0.0)"
             XCTAssertNotNil(version, "Expected object from string `\($0.0)` not to be nil!")
-            XCTAssertTrue(version.coreString == $0.1, "Expected versionCode to be \($0.1), is: \(version.coreString)")
+            XCTAssertEqual(version.coreString, $0.1, "Expected versionCode to be \($0.1), is: \(version.coreString)")
             XCTAssertEqual(version.debugDescription, version.description)
             if let expectedExtension = $0.2 {
-                XCTAssertEqual(version.extensionString, $0.2, "Expected extension to be \(expectedExtension), is: \(version.extensionString ?? "nil")")
+                XCTAssertEqual(
+                    version.extensionString,
+                    $0.2,
+                    "Expected extension to be \(expectedExtension), is: \(version.extensionString ?? "nil")"
+                )
             } else {
                 XCTAssertNil(version.extensionString, "Expected extension to be nil!")
             }
@@ -135,27 +150,41 @@ final class VersionTests: XCTestCase {
     }
 
     func testMemberwiseConstruction() {
-        let versionA = Version(major: 1, minor: 2, patch: 3, prerelease: [.alpha])
+        let versionA: Version = Version(major: 1, minor: 2, patch: 3, prerelease: [.alpha])
         XCTAssertEqual(versionA.absoluteString, "1.2.3-alpha", "Expected version to be `1.2.3-alpha`, is: \(versionA)!")
 
-        let versionB = Version(major: 125)
+        let versionB: Version = Version(major: 125)
         XCTAssertEqual(versionB, "125.0.0")
 
-        let versionC = Version(
+        let versionC: Version = Version(
             major: 1,
             minor: 2,
             patch: 3,
             prerelease: [.alpha, "release"],
-            build: [.alphaNumeric("exp"), .digits("300"), "test"])
-        XCTAssertEqual(versionC.absoluteString, "1.2.3-alpha.release+exp.300.test", "Expected version to be `1.2.3-alpha.release+exp.300.test`, is: \(versionC)!")
+            build: [
+                .alphaNumeric("exp"),
+                .digits("300"),
+                "test"
+            ]
+            )
+        XCTAssertEqual(
+            versionC.absoluteString,
+            "1.2.3-alpha.release+exp.300.test",
+            "Expected version to be `1.2.3-alpha.release+exp.300.test`, is: \(versionC)!"
+        )
 
-        let versionD = Version(
+        let versionD: Version = Version(
             major: 1,
             minor: 2,
             patch: 3,
             prerelease: [.alphaNumeric("alpha"), .numeric(1), .beta, .releaseCandidate, .prerelease],
-            build: [.alphaNumeric("exp"), .digits("300"), "test"])
-        XCTAssertEqual(versionD.absoluteString, "1.2.3-alpha.1.beta.rc.prerelease+exp.300.test", "Expected version to be `1.2.3-alpha.release+exp.300.test`, is: \(versionD)!")
+            build: [.alphaNumeric("exp"), .digits("300"), "test"]
+        )
+        XCTAssertEqual(
+            versionD.absoluteString,
+            "1.2.3-alpha.1.beta.rc.prerelease+exp.300.test",
+            "Expected version to be `1.2.3-alpha.release+exp.300.test`, is: \(versionD)!"
+        )
     }
 
     func testInvalidConstruction() {
@@ -163,31 +192,6 @@ final class VersionTests: XCTestCase {
             XCTAssertNil(Version($0), "Expected object from string `\($0)` to be nil!")
         }
     }
-
-    // FIXME: Since the pipeline will use `swift test` resulting in different bundles that were previously
-    //        expected here this test will always fail. A new way to access a .plist file during a test
-    //        which contains the required keys is necessary to pass the test. It is not a critcal functionality
-    //        using a direct first party API therefor this test is disabled unless fixed.
-//    func testInvalidBundleVersion() {
-//        // the main bundle from test targets is different from actual app targets and will be invalid for use,
-//        // but not for testing
-//        XCTAssertNil(Bundle.main.shortVersion)
-//        XCTAssertNil(Bundle.main.version)
-//    }
-
-//    func testValidBundleVersion() {
-//        let testBundle = Bundle(for: type(of: self))
-//        let shortVersionString = testBundle.infoDictionary?["CFBundleShortVersionString"] as? String
-//        let buildString = testBundle.infoDictionary?["CFBundleVersion"] as? String
-//        let shortVersion: Version? = testBundle.shortVersion
-//        let version: Version? = testBundle.version
-//
-//        XCTAssertNotNil(shortVersion)
-//        XCTAssertEqual(shortVersionString!, shortVersion!.absoluteString, "Expected \(shortVersion!) to be equal to \(shortVersionString!)!")
-//
-//        XCTAssertNotNil(version)
-//        XCTAssertEqual("\(shortVersionString!)+\(buildString!)", version!.absoluteString, "Expected \(version!) to be equal to \(buildString!)!")
-//    }
 
     func testProcessInfoVersion() {
         let processInfoOsVersion: OperatingSystemVersion = ProcessInfo.processInfo.operatingSystemVersion
@@ -201,11 +205,13 @@ final class VersionTests: XCTestCase {
         XCTAssertEqual(
             UInt(processInfoOsVersion.minorVersion),
             comparableOsVersion.minor,
+            // swiftlint:disable:next force_unwrapping
             "Expected \(processInfoOsVersion.minorVersion) to be equal to \(comparableOsVersion.minor!)!"
         )
         XCTAssertEqual(
             UInt(processInfoOsVersion.patchVersion),
             comparableOsVersion.patch,
+            // swiftlint:disable:next force_unwrapping
             "Expected \(processInfoOsVersion.patchVersion) to be equal to \(comparableOsVersion.patch!)!"
         )
     }

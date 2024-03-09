@@ -96,10 +96,12 @@ final class SemanticVersionComparableTests: XCTestCase {
             XCTAssertFalse(lhs < lhs)
             XCTAssertFalse(rhs < rhs)
 
-
             // greater
             XCTAssertTrue(rhs > lhs, "Expected \(lhs.absoluteString) to be greater than \(rhs.absoluteString)!")
-            XCTAssertTrue(rhs >= lhs, "Expected \(lhs.absoluteString) to be greater than or equal to \(rhs.absoluteString)!")
+            XCTAssertTrue(
+                rhs >= lhs,
+                "Expected \(lhs.absoluteString) to be greater than or equal to \(rhs.absoluteString)!"
+            )
             XCTAssertTrue(rhs >= rhs)
             XCTAssertTrue(lhs >= lhs)
 
@@ -110,21 +112,21 @@ final class SemanticVersionComparableTests: XCTestCase {
     }
 
     func testCompatibility() {
-        let versionAA = Version("1.0.0")
-        let versionAB = Version("1.1.0")
-        let versionAC = Version("1.1.1")
-        let versionAD = Version("1.0.1")
-        let versionAE = Version("1.6238746")
-        let versionAF = Version("1")
-        let versionAs = [versionAA, versionAB, versionAC, versionAD, versionAE, versionAF]
+        let versionAA: Version = Version("1.0.0")
+        let versionAB: Version = Version("1.1.0")
+        let versionAC: Version = Version("1.1.1")
+        let versionAD: Version = Version("1.0.1")
+        let versionAE: Version = Version("1.6238746")
+        let versionAF: Version = Version("1")
+        let versionAs: [Version] = [versionAA, versionAB, versionAC, versionAD, versionAE, versionAF]
 
-        let versionBA = Version("2.0.0")
-        let versionBB = Version("2.1.0")
-        let versionBC = Version("2.1.1")
-        let versionBD = Version("2.0.1")
-        let versionBE = Version("2.3875")
-        let versionBF = Version("2")
-        let versionBs = [versionBA, versionBB, versionBC, versionBD, versionBE, versionBF]
+        let versionBA: Version = Version("2.0.0")
+        let versionBB: Version = Version("2.1.0")
+        let versionBC: Version = Version("2.1.1")
+        let versionBD: Version = Version("2.0.1")
+        let versionBE: Version = Version("2.3875")
+        let versionBF: Version = Version("2")
+        let versionBs: [Version] = [versionBA, versionBB, versionBC, versionBD, versionBE, versionBF]
 
         // compatible
         versionAs.forEach { first in
@@ -154,6 +156,7 @@ final class SemanticVersionComparableTests: XCTestCase {
     }
 
     func testCompare() {
+        // swiftlint:disable:next large_tuple
         let testData: [(Version, Version, VersionCompareResult)] = [
             (Version("1"), Version("2"), VersionCompareResult.major),
             (Version("600.123.4"), Version("601.0.1"), VersionCompareResult.major),
@@ -179,10 +182,14 @@ final class SemanticVersionComparableTests: XCTestCase {
         ]
 
         testData.forEach { data in
-            let versionOne = data.0
-            let versionTwo = data.1
-            let compareResult = versionOne.compare(with: versionTwo)
-            XCTAssertTrue(compareResult == data.2, "Expected result from comparing \(data.0.absoluteString) and \(data.1.absoluteString) to be \(data.2) but is \(compareResult)!")
+            let versionOne: Version = data.0
+            let versionTwo: Version = data.1
+            let compareResult: VersionCompareResult = versionOne.compare(with: versionTwo)
+            XCTAssertEqual(
+                compareResult,
+                data.2,
+                "Expected result from comparing to be \(data.2) but is \(compareResult)!"
+            )
         }
     }
 }
