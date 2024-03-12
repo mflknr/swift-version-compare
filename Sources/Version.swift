@@ -35,7 +35,7 @@
 ///     version.buildMetaDataString // -> "1"
 ///
 /// - Remark: See [semver.org](https://semver.org) for detailed information.
-public struct Version: SemanticVersionComparable {
+public struct Version: Sendable, SemanticVersionComparable {
     public var major: UInt
     public var minor: UInt?
     public var patch: UInt?
