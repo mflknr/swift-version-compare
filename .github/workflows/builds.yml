@@ -14,11 +14,11 @@ jobs:
     strategy:
       matrix:
         os: [ macos-latest ]
-        swift: ["5.7", "5.8", "5.9"]
+        swift: ["5.7", "5.8", "5.9", "5.10"]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: fwal/setup-swift@v1
+      - uses: fwal/setup-swift@v2
         with:
           swift-version: ${{ matrix.swift }}
   
