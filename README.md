@@ -11,7 +11,7 @@ A package introducing a `Version` object implementing the  `SemanticVersionCompa
 #### Swift Package Manager:
 
 ```swift
-.package(url: https://github.com/mflknr/swift-version-compare.git", from: "2.0.0"))
+.package(url: "https://github.com/mflknr/swift-version-compare.git", from: "2.0.0"))
 ```
 
 # Usage
