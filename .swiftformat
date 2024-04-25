@@ -1,0 +1,52 @@
+# file options
+
+--exclude Tuist,Project.swift
+
+# format options
+
+--allman false
+--anonymousforeach convert
+--binarygrouping 4,8
+--commas inline
+--comments indent
+--decimalgrouping 3,5
+--elseposition same-line
+--empty void
+--exponentcase lowercase
+--exponentgrouping disabled
+--fractiongrouping disabled
+--header ignore
+--hexgrouping 4,8
+--hexliteralcase uppercase
+--ifdef indent
+--indent 4
+--indentcase false
+--importgrouping testable-bottom
+--linebreaks lf
+--marktypes never
+--maxwidth none
+--octalgrouping 4,8
+--onelineforeach convert
+--operatorfunc spaced
+--patternlet hoist
+--ranges no-space
+--self remove
+--semicolons inline
+--stripunusedargs always
+--swiftversion 5.7
+--trimwhitespace always
+--typeblanklines preserve
+--wraparguments preserve
+--wrapcollections preserve
+
+# rules
+
+--enable blankLinesBetweenImports
+--enable blockComments
+--enable docComments
+--enable isEmpty
+--enable markTypes
+--enable noExplicitOwnership
+--enable wrapConditionalBodies
+--enable wrapEnumCases
+--enable wrapMultilineConditionalAssignment
