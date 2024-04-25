@@ -30,7 +30,7 @@ final class SemanticVersionComparableTests: XCTestCase {
             Version(1, nil, nil, [.prerelease]): Version(1, 0, 0, ["prerelease"])
         ]
 
-        testData.forEach { lhs, rhs in
+        for (lhs, rhs) in testData {
             XCTAssertEqual(lhs, rhs, "Expected \(lhs) to be equal to \(rhs)")
             XCTAssertFalse(lhs > rhs, "Expected \(lhs) to be greater than \(rhs)")
             XCTAssertFalse(lhs < rhs, "Expected \(lhs) to be lesser than \(rhs)")
@@ -57,13 +57,13 @@ final class SemanticVersionComparableTests: XCTestCase {
             Version("300.0+master"): Version("300.0+develop")
         ]
 
-        validTestData.forEach { lhs, rhs in
+        for (lhs, rhs) in validTestData {
             XCTAssertTrue(lhs === rhs, "Expected \(lhs) to be equal to \(rhs)")
             XCTAssertFalse(lhs > rhs, "Expected \(lhs) to be greater than \(rhs)")
             XCTAssertFalse(lhs < rhs, "Expected \(lhs) to be lesser than \(rhs)")
         }
 
-        invalidTestData.forEach { lhs, rhs in
+        for (lhs, rhs) in invalidTestData {
             XCTAssertFalse(lhs === rhs, "Expected \(lhs) to be equal to \(rhs)")
         }
     }
@@ -85,7 +85,7 @@ final class SemanticVersionComparableTests: XCTestCase {
             Version("5-alpha.23+500"): Version("5-alpha.beta+200")
         ]
 
-        testData.forEach { lhs, rhs in
+        for (lhs, rhs) in testData {
             // less
             XCTAssertTrue(lhs < rhs, "Expected \(lhs.absoluteString) to be less to \(rhs.absoluteString)!")
             XCTAssertTrue(lhs <= rhs, "Expected \(lhs.absoluteString) to be less or equal to \(rhs.absoluteString)!")
@@ -112,44 +112,44 @@ final class SemanticVersionComparableTests: XCTestCase {
     }
 
     func testCompatibility() {
-        let versionAA: Version = Version("1.0.0")
-        let versionAB: Version = Version("1.1.0")
-        let versionAC: Version = Version("1.1.1")
-        let versionAD: Version = Version("1.0.1")
-        let versionAE: Version = Version("1.6238746")
-        let versionAF: Version = Version("1")
+        let versionAA = Version("1.0.0")
+        let versionAB = Version("1.1.0")
+        let versionAC = Version("1.1.1")
+        let versionAD = Version("1.0.1")
+        let versionAE = Version("1.6238746")
+        let versionAF = Version("1")
         let versionAs: [Version] = [versionAA, versionAB, versionAC, versionAD, versionAE, versionAF]
 
-        let versionBA: Version = Version("2.0.0")
-        let versionBB: Version = Version("2.1.0")
-        let versionBC: Version = Version("2.1.1")
-        let versionBD: Version = Version("2.0.1")
-        let versionBE: Version = Version("2.3875")
-        let versionBF: Version = Version("2")
+        let versionBA = Version("2.0.0")
+        let versionBB = Version("2.1.0")
+        let versionBC = Version("2.1.1")
+        let versionBD = Version("2.0.1")
+        let versionBE = Version("2.3875")
+        let versionBF = Version("2")
         let versionBs: [Version] = [versionBA, versionBB, versionBC, versionBD, versionBE, versionBF]
 
         // compatible
-        versionAs.forEach { first in
-            versionAs.forEach { second in
+        for first in versionAs {
+            for second in versionAs {
                 XCTAssertTrue(first.isCompatible(with: second))
             }
         }
 
-        versionBs.forEach { first in
-            versionBs.forEach { second in
+        for first in versionBs {
+            for second in versionBs {
                 XCTAssertTrue(first.isCompatible(with: second))
             }
         }
 
         // incompatible
-        versionAs.forEach { first in
-            versionBs.forEach { second in
+        for first in versionAs {
+            for second in versionBs {
                 XCTAssertFalse(first.isCompatible(with: second))
             }
         }
 
-        versionBs.forEach { first in
-            versionAs.forEach { second in
+        for first in versionBs {
+            for second in versionAs {
                 XCTAssertFalse(first.isCompatible(with: second))
             }
         }
@@ -181,7 +181,7 @@ final class SemanticVersionComparableTests: XCTestCase {
             (Version("1.0.0-alpha+1"), Version("1.0.0"), VersionCompareResult.prerelease)
         ]
 
-        testData.forEach { data in
+        for data in testData {
             let versionOne: Version = data.0
             let versionTwo: Version = data.1
             let compareResult: VersionCompareResult = versionOne.compare(with: versionTwo)

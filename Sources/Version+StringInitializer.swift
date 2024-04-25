@@ -5,6 +5,8 @@
 //  Created by Marius Felkner on 05.01.21.
 //
 
+// MARK: - Version + LosslessStringConvertible
+
 extension Version: LosslessStringConvertible {
     public var description: String { absoluteString }
 
@@ -18,6 +20,8 @@ extension Version: LosslessStringConvertible {
     }
 }
 
+// MARK: - Version + ExpressibleByStringLiteral
+
 extension Version: ExpressibleByStringLiteral {
     /// Creates a new version from a string literal.
     ///
@@ -27,6 +31,8 @@ extension Version: ExpressibleByStringLiteral {
         self.init(private: value)!
     }
 }
+
+// MARK: - Version + ExpressibleByStringInterpolation
 
 extension Version: ExpressibleByStringInterpolation {
     /// Creates a new version from a string interpolation.

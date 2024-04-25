@@ -35,7 +35,8 @@ public enum PrereleaseIdentifier: Comparable, Hashable {
 
     init(private string: String) {
         if string.isNumericString,
-           let numeric = UInt(string) {
+           let numeric = UInt(string)
+        {
             self = .numeric(numeric)
         } else if string.isAlphaNumericString {
             self = .alphaNumeric(string)

@@ -56,7 +56,7 @@ public extension SemanticVersionComparable {
     /// Lhs must be a lower version to return a valid result. Otherwise `.noUpdate` will be
     /// returned regardless of the difference between the two version objects.
     ///
-    /// - Parameter version: A version object that conforms to the `SemanticVersionComparable` protocol that will be 
+    /// - Parameter version: A version object that conforms to the `SemanticVersionComparable` protocol that will be
     /// compared.
     ///
     /// - Returns: A `VersionCompareResult` as the severity of the update.
@@ -68,8 +68,9 @@ public extension SemanticVersionComparable {
             if lhs < rhs {
                 return .prerelease
             }
-            if lhs.build != rhs.build &&
-               lhs.prereleaseIdentifierString == rhs.prereleaseIdentifierString {
+            if lhs.build != rhs.build,
+               lhs.prereleaseIdentifierString == rhs.prereleaseIdentifierString
+            {
                 return .build
             }
 
@@ -148,14 +149,14 @@ public extension SemanticVersionComparable {
     /// The pre-release identifier as a string if available.
     var prereleaseIdentifierString: String? {
         prerelease?
-            .compactMap { $0.value }
+            .compactMap(\.value)
             .joined(separator: ".")
     }
 
     /// The build-meta-data as a string if available.
     var buildMetaDataString: String? {
         build?
-            .compactMap { $0.value }
+            .compactMap(\.value)
             .joined(separator: ".")
     }
 }

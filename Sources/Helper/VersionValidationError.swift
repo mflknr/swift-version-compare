@@ -11,6 +11,8 @@ enum VersionValidationError: Swift.Error {
     case invalidVersionIdentifier
 }
 
+// MARK: LocalizedError
+
 extension VersionValidationError: LocalizedError {
     var errorDescription: String? {
         switch self {

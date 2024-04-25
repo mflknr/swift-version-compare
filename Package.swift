@@ -16,8 +16,8 @@ let package = Package(
             name: "VersionCompare",
             targets: [
                 "VersionCompare"
-                ]
-        ),
+            ]
+        )
     ],
     targets: [
         .target(
@@ -31,8 +31,8 @@ let package = Package(
             name: "VersionCompareTests",
             dependencies: [
                 "VersionCompare"
-                ]
-        ),
+            ]
+        )
     ],
     swiftLanguageVersions: [.v5]
 )

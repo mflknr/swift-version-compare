@@ -12,7 +12,7 @@ public extension ProcessInfo {
     @available(macOS, introduced: 10.10)
     var comparableOperatingSystemVersion: Version {
         let osVersion: OperatingSystemVersion = operatingSystemVersion
-        let version: Version = Version(
+        let version = Version(
             major: UInt(osVersion.majorVersion),
             minor: UInt(osVersion.minorVersion),
             patch: UInt(osVersion.patchVersion)

@@ -22,21 +22,25 @@ public extension SemanticVersionComparable {
         // non-pre-release lhs version is always >= than rhs version
         guard
             let lhspr = lhs.prerelease,
-            !lhspr.isEmpty else {
+            !lhspr.isEmpty
+        else {
             return false
         }
 
         // same goes for rhs vise versa
         guard
             let rhspr = rhs.prerelease,
-            !rhspr.isEmpty  else {
+            !rhspr.isEmpty
+        else {
             return true
         }
 
         // compare content of pre-release identifier
         for (untypedLhs, untypedRhs) in zip(lhspr, rhspr) {
             // if both pre-release identifier are equal, skip the now obsolete comparison
-            if untypedLhs == untypedRhs { continue }
+            if untypedLhs == untypedRhs {
+                continue
+            }
 
             // cast identifiers to int or string as Any
             let typedLhs: Any = Int(untypedLhs.value) ?? untypedLhs.value

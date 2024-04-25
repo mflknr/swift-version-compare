@@ -5,6 +5,8 @@
 //  Created by Marius Felkner on 12.03.21.
 //
 
+// MARK: - BuildMetaData + LosslessStringConvertible
+
 extension BuildMetaData: LosslessStringConvertible {
     public var description: String { value }
 
@@ -12,6 +14,8 @@ extension BuildMetaData: LosslessStringConvertible {
         self.init(private: string)
     }
 }
+
+// MARK: - BuildMetaData + ExpressibleByStringLiteral
 
 extension BuildMetaData: ExpressibleByStringLiteral {
     public init(stringLiteral value: StringLiteralType) {

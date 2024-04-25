@@ -104,11 +104,12 @@ public struct Version: Sendable, SemanticVersionComparable {
         let versionSplitBuild: [String.SubSequence] = string.split(separator: "+", omittingEmptySubsequences: false)
 
         // check if string does not contain only build-meta-data e.g. "+123" or falsely "+123+something"
-        let maxNumberOfSplits: Int = 2
+        let maxNumberOfSplits = 2
         guard
             !versionSplitBuild.isEmpty,
             versionSplitBuild.count <= maxNumberOfSplits,
-            let versionPrereleaseString = versionSplitBuild.first else {
+            let versionPrereleaseString = versionSplitBuild.first
+        else {
             return nil
         }
 
@@ -120,13 +121,14 @@ public struct Version: Sendable, SemanticVersionComparable {
         guard
             !versionSplitPrerelease.isEmpty,
             let versionStringElement = versionSplitPrerelease.first,
-            !versionStringElement.isEmpty else {
+            !versionStringElement.isEmpty
+        else {
             return nil
         }
 
         // check that the version string has the correct SemVer format which are 0 and positive numbers in the form
         // of `x`, `x.x`or `x.x.x`.
-        let versionString: String = String(versionStringElement)
+        let versionString = String(versionStringElement)
         guard versionString.matchesSemVerFormat() else {
             return nil
         }
@@ -141,7 +143,8 @@ public struct Version: Sendable, SemanticVersionComparable {
                 guard
                     let element = UInt($0),
                     let firstCharacter = $0.first,
-                    !(firstCharacter.isZero && $0.count > 1) else {
+                    !(firstCharacter.isZero && $0.count > 1)
+                else {
                     throw VersionValidationError.invalidVersionIdentifier
                 }
 
@@ -153,16 +156,16 @@ public struct Version: Sendable, SemanticVersionComparable {
         }
 
         // map valid identifiers to corresponding version identifier
-        self.major = safeIdentifiers[0]
-        self.minor = safeIdentifiers.indices.contains(1) ? safeIdentifiers[1] : nil
+        major = safeIdentifiers[0]
+        minor = safeIdentifiers.indices.contains(1) ? safeIdentifiers[1] : nil
         // swiftlint:disable:next no_magic_numbers
-        self.patch = safeIdentifiers.indices.contains(2) ? safeIdentifiers[2] : nil
+        patch = safeIdentifiers.indices.contains(2) ? safeIdentifiers[2] : nil
 
         // extract pre-release identifier if available
         if versionSplitPrerelease.indices.contains(1) {
             versionSplitPrerelease.removeFirst(1)
             let prereleaseSubstring: String = versionSplitPrerelease.joined(separator: "-")
-            self.prerelease = String(prereleaseSubstring)
+            prerelease = String(prereleaseSubstring)
                 .split(separator: ".")
                 .map(String.init)
                 .compactMap {
@@ -175,20 +178,22 @@ public struct Version: Sendable, SemanticVersionComparable {
             // if a pre-release identifier element is initialized as .unkown, we can savely assume that the given
             // string is not a valid  `SemVer` version string.
             if
-                let prerelease = self.prerelease,
-                prerelease.contains(where: { $0 == .unknown }) {
+                let prerelease,
+                prerelease.contains(where: { $0 == .unknown })
+            {
                 return nil
             }
         } else {
             // not pre-release identifier has been found
-            self.prerelease = nil
+            prerelease = nil
         }
 
         // extract build-meta-data identifier if available
         if
             versionSplitBuild.indices.contains(1),
-            let buildSubstring = versionSplitBuild.last {
-            self.build = String(buildSubstring)
+            let buildSubstring = versionSplitBuild.last
+        {
+            build = String(buildSubstring)
                 .split(separator: ".")
                 .map(String.init)
                 .compactMap {
@@ -197,13 +202,14 @@ public struct Version: Sendable, SemanticVersionComparable {
             // finding an .unkown element means that the given string is not conform to `SemVer` since it is no
             // alphaNumeric or a digit
             if
-                let build = self.build,
-                build.contains(where: { $0 == .unknown }) {
+                let build,
+                build.contains(where: { $0 == .unknown })
+            {
                 return nil
             }
         } else {
             // no build-meta-data has been found
-            self.build = nil
+            build = nil
         }
     }
 }
@@ -212,8 +218,10 @@ public struct Version: Sendable, SemanticVersionComparable {
 
 public extension Version {
     /// An initial version representing the string `0.0.0`.
-    static var initial: Version = Version(major: 0, minor: 0, patch: 0)
+    static var initial: Version = .init(major: 0, minor: 0, patch: 0)
 }
+
+// MARK: CustomDebugStringConvertible
 
 extension Version: CustomDebugStringConvertible {
     public var debugDescription: String { absoluteString }

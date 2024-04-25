@@ -8,9 +8,9 @@
 import Foundation
 
 public extension Bundle {
-     /// The version of the current bundle.
-     ///
-     /// - Note: Uses the key `CFBundleShortVersionString` for retrieving version values.
+    /// The version of the current bundle.
+    ///
+    /// - Note: Uses the key `CFBundleShortVersionString` for retrieving version values.
     var shortVersion: Version? {
         guard let versionString: String = infoDictionary?["CFBundleShortVersionString"] as? String else {
             return nil
@@ -26,10 +26,11 @@ public extension Bundle {
     var version: Version? {
         guard
             let versionString: String = infoDictionary?["CFBundleShortVersionString"] as? String,
-            let buildString: String = infoDictionary?["CFBundleVersion"] as? String else {
+            let buildString: String = infoDictionary?["CFBundleVersion"] as? String
+        else {
             return nil
         }
-        let fullVersionString: String = "\(versionString)+\(buildString)"
+        let fullVersionString = "\(versionString)+\(buildString)"
         let version: Version? = Version(fullVersionString)
 
         return version

@@ -5,7 +5,7 @@
 //  Created by Marius Felkner on 05.01.21.
 //
 
-internal extension String {
+extension String {
     var isAlphaNumericString: Bool {
         matches("^[a-zA-Z0-9-]+$")
     }
