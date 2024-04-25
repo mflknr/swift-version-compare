@@ -4,6 +4,7 @@ excluded:
   - .build
 
 disabled_rules:
+  - opening_brace
 
 analyzer_rules:
   - capture_variable
@@ -49,7 +50,7 @@ opt_in_rules:
   - explicit_enum_raw_value
   - explicit_init
   #- explicit_top_level_acl
-  - explicit_type_interface
+  #- explicit_type_interface
   - extension_access_modifier
   - fallthrough
   - fatal_error_message
@@ -95,7 +96,6 @@ opt_in_rules:
   - number_separator
   #- object_literal
   - one_declaration_per_file # has been added to the source, but has not been released yet
-  - opening_brace
   - operator_usage_whitespace
   - optional_enum_case_matching
   - overridden_super_call

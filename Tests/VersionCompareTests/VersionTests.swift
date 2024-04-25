@@ -98,7 +98,11 @@ final class VersionTests: XCTestCase {
         for validVersionData in validVersionData {
             let version: Version? = Version(validVersionData.0)
             XCTAssertNotNil(version, "Expected object from string `\(validVersionData.0)` not to be nil!")
-            XCTAssertEqual(version!.coreString, validVersionData.1, "Expected versionCode to be \(validVersionData.1), is: \(version!.coreString)")
+            XCTAssertEqual(
+                version!.coreString,
+                validVersionData.1,
+                "Expected versionCode to be \(validVersionData.1), is: \(version!.coreString)"
+            )
             XCTAssertEqual(version!.debugDescription, version!.description)
             if let expectedExtension = validVersionData.2 {
                 XCTAssertEqual(
@@ -117,7 +121,11 @@ final class VersionTests: XCTestCase {
             // equivalent to `let version: Version = ""`
             let version = Version(stringLiteral: validVersionData.0)
             XCTAssertNotNil(version, "Expected object from string `\(validVersionData.0)` not to be nil!")
-            XCTAssertEqual(version.coreString, validVersionData.1, "Expected versionCode to be \(validVersionData.1), is: \(version.coreString)")
+            XCTAssertEqual(
+                version.coreString,
+                validVersionData.1,
+                "Expected versionCode to be \(validVersionData.1), is: \(version.coreString)"
+            )
             XCTAssertEqual(version.debugDescription, version.description)
             if let expectedExtension = validVersionData.2 {
                 XCTAssertEqual(
@@ -135,7 +143,11 @@ final class VersionTests: XCTestCase {
             // equivalent to `let version: Version = ""`
             let version: Version = "\(validVersionData.0)"
             XCTAssertNotNil(version, "Expected object from string `\(validVersionData.0)` not to be nil!")
-            XCTAssertEqual(version.coreString, validVersionData.1, "Expected versionCode to be \(validVersionData.1), is: \(version.coreString)")
+            XCTAssertEqual(
+                version.coreString,
+                validVersionData.1,
+                "Expected versionCode to be \(validVersionData.1), is: \(version.coreString)"
+            )
             XCTAssertEqual(version.debugDescription, version.description)
             if let expectedExtension = validVersionData.2 {
                 XCTAssertEqual(
