@@ -11,7 +11,7 @@
 ///
 /// - Attention: If an identifier does not show conformance for beeing numeric or alphanumeric it is initialized
 ///              as `nil`.
-public enum PrereleaseIdentifier: Comparable, Hashable {
+public enum PrereleaseIdentifier: Comparable, Hashable, Sendable {
     /// Identifier displaying `alpha`.
     case alpha
 

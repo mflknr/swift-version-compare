@@ -10,7 +10,7 @@
 /// - Note: Identifier can be described using alphanumeric letters or digits.
 ///
 /// - Attention: Strings not conforming to `SemVer` will be handled as `nil`.
-public enum BuildMetaData: Comparable {
+public enum BuildMetaData: Comparable, Sendable {
     /// Alphanumeric identifier are lower- and uppercased letters and numbers from 0-9.
     case alphaNumeric(_ identifier: String)
 
