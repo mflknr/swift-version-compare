@@ -196,9 +196,7 @@ public struct Version: Sendable, SemanticVersionComparable {
             build = String(buildSubstring)
                 .split(separator: ".")
                 .map(String.init)
-                .compactMap {
-                    BuildMetaData($0)
-                }
+                .compactMap { BuildMetaData($0) }
             // finding an .unkown element means that the given string is not conform to `SemVer` since it is no
             // alphaNumeric or a digit
             if

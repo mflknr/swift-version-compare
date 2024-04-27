@@ -149,14 +149,14 @@ public extension SemanticVersionComparable {
     /// The pre-release identifier as a string if available.
     var prereleaseIdentifierString: String? {
         prerelease?
-            .compactMap(\.value)
+            .compactMap { $0.value }
             .joined(separator: ".")
     }
 
     /// The build-meta-data as a string if available.
     var buildMetaDataString: String? {
         build?
-            .compactMap(\.value)
+            .compactMap { $0.value }
             .joined(separator: ".")
     }
 }
