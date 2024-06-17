@@ -15,7 +15,7 @@
 ///
 ///     versionOne == versionTwo // <- this statement is `true`
 ///
-/// You can choose between a loosly or strictly comparison considering if you want to include the build-meta-data of
+/// You can choose between a loosly or strictly comparison considering if you want to include the ``BuildMetaData`` of
 /// versions when comparing:
 ///
 ///     let versionOne = Version(1, 0, 0, [.alpha])
@@ -45,18 +45,18 @@ public extension SemanticVersionComparable {
     /// A boolean value indicating the compatibility of two versions. As `SemVer` states two versions are
     /// compatible if they have the same major version.
     ///
-    /// - Parameter version: A version object that conforms to the `SemanticVersionComparable` protocol.
+    /// - Parameter version: A version object that conforms to the ``SemanticVersionComparable`` protocol.
     ///
     /// - Returns: `true` if both versions have equal major versions.
     func isCompatible(with version: Self) -> Bool {
         major == version.major
     }
 
-    /// Compare a object (lhs) conforming to `SemanticVersionComparable` with a greater version object (rhs).
-    /// Lhs must be a lower version to return a valid result. Otherwise `.noUpdate` will be
+    /// Compare a object (lhs) conforming to ``SemanticVersionComparable`` with a greater version object (rhs).
+    /// Lhs must be a lower version to return a valid result. Otherwise `VersionCompareResult.noUpdate` will be
     /// returned regardless of the difference between the two version objects.
     ///
-    /// - Parameter version: A version object that conforms to the `SemanticVersionComparable` protocol that will be
+    /// - Parameter version: A version object that conforms to the ``SemanticVersionComparable`` protocol that will be
     /// compared.
     ///
     /// - Returns: A `VersionCompareResult` as the severity of the update.
@@ -94,7 +94,7 @@ public extension SemanticVersionComparable {
 
     /// Check if a version has an equal version core as another version.
     ///
-    /// - Parameter version: A version object that conforms to the `SemanticVersionComparable` protocol.
+    /// - Parameter version: A version object that conforms to the ``SemanticVersionComparable`` protocol.
     ///
     /// - Returns: `true` if the respective version cores are equal.
     ///

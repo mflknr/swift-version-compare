@@ -5,7 +5,7 @@
 //  Created by Marius Felkner on 12.03.21.
 //
 
-/// Enumerated build-meta-data for simple and `SemVer` conform access.
+/// Enumerated ``BuildMetaData`` for simple and `SemVer` conform access.
 ///
 /// - Note: Identifier can be described using alphanumeric letters or digits.
 ///

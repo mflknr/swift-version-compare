@@ -5,7 +5,7 @@
 //  Created by Marius Felkner on 29.12.20.
 //
 
-/// A version type conforming to `SemanticVersionComparable` and therefor `SemVer`.
+/// A version type conforming to ``SemanticVersionComparable`` and therefor `SemVer`.
 ///
 /// You can create a new version using strings, string literals and string interpolations, formatted
 /// like `MAJOR.MINOR.PATCH-PRERELEASE+BUILD`, or memberwise initialization.
@@ -21,8 +21,8 @@
 ///     let version: Version = Version(1, 0, 0)
 ///     let version: Version = Version(major: 1, minor: 0, patch: 0, prerelease: ["alpha, "1"], build: ["exp"])
 ///
-/// Pre-release identifiers or build-meta-data can be handled as strings or as enum cases with it associated raw
-/// values (see `PrereleaseIdentifier` and `BuildMetaData` for more).
+/// Pre-release identifiers or ``BuildMetaData`` can be handled as strings or as enum cases with it associated raw
+/// values (see ``PrereleaseIdentifier`` and ``BuildMetaData`` for more).
 ///
 ///     let version: Version = Version(major: 1, minor: 0, patch: 0, prerelease: ["alpha"], build: ["500"])
 ///     version.absoluteString // -> "1.0.0-alpha+500"
@@ -45,7 +45,7 @@ public struct Version: Sendable, SemanticVersionComparable {
 
     // MARK: - Init
 
-    /// Creates a new version.
+    /// Creates a new ``Version``.
     ///
     /// - Parameters:
     ///    - major: The `MAJOR` identifier of a version.
@@ -74,14 +74,14 @@ public struct Version: Sendable, SemanticVersionComparable {
         self.build = build
     }
 
-    /// Creates a new version.
+    /// Creates a new ``Version``.
     ///
     /// - Parameters:
     ///    - major: The `MAJOR` identifier of a version.
     ///    - minor: The `MINOR` identifier of a version.
     ///    - patch: The `PATCH` identifier of a version.
-    ///    - prerelease: The pre-release identifier of a version.
-    ///    - build: The build-meta-data of a version.
+    ///    - prerelease: The ``PrereleaseIdentifier`` identifier of a version.
+    ///    - build: The ``BuildMetaData`` of a version.
     ///
     /// - Note: Unsigned integers are used to provide an straightforward way to make sure that the identifiers
     ///         are not negative numbers.
@@ -96,7 +96,7 @@ public struct Version: Sendable, SemanticVersionComparable {
         self.init(major, minor, patch, prerelease, build)
     }
 
-    /// Creates a new version using a string.
+    /// Creates a new ``Version`` using a string.
     ///
     /// - Parameter string: The string representing a version.
     public init?(private string: String) {
@@ -215,7 +215,7 @@ public struct Version: Sendable, SemanticVersionComparable {
 // MARK: - Static Accessors
 
 public extension Version {
-    /// An initial version representing the string `0.0.0`.
+    /// An initial ``Version`` representing the string `0.0.0`.
     static var initial: Version = .init(major: 0, minor: 0, patch: 0)
 }
 

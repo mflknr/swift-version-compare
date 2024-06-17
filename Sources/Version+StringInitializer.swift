@@ -10,7 +10,7 @@
 extension Version: LosslessStringConvertible {
     public var description: String { absoluteString }
 
-    /// Creates a new version from a string.
+    /// Creates a new ``Version`` from a string.
     ///
     /// - Parameter string: A string beeing parsed into a version.
     ///
@@ -23,7 +23,7 @@ extension Version: LosslessStringConvertible {
 // MARK: - Version + ExpressibleByStringLiteral
 
 extension Version: ExpressibleByStringLiteral {
-    /// Creates a new version from a string literal.
+    /// Creates a new ``Version`` from a string literal.
     ///
     /// - Warning: Usage is not recommended unless the given string conforms to `SemVer`.
     public init(stringLiteral value: StringLiteralType) {
@@ -35,7 +35,7 @@ extension Version: ExpressibleByStringLiteral {
 // MARK: - Version + ExpressibleByStringInterpolation
 
 extension Version: ExpressibleByStringInterpolation {
-    /// Creates a new version from a string interpolation.
+    /// Creates a new ``Version`` from a string interpolation.
     ///
     /// - Warning: Usage is not recommended unless the given string conforms to `SemVer`.
     public init(stringInterpolation: DefaultStringInterpolation) {

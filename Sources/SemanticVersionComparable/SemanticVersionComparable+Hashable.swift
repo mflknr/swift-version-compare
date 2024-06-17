@@ -8,7 +8,7 @@
 public extension SemanticVersionComparable {
     /// Conformance to `Hashable` protocol.
     ///
-    /// - Note: Since build-meta-data are not considered in ranking semantic version, it won't be considered
+    /// - Note: Since ``BuildMetaData`` are not considered in ranking semantic version, it won't be considered
     ///         here either.
     func hash(into hasher: inout Hasher) {
         hasher.combine(major)

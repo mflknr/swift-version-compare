@@ -6,7 +6,7 @@
 //
 
 public extension SemanticVersionComparable {
-    /// Compares version objects for equality.
+    /// Compares types conforming to ``SemanticVersionComparable`` for equality.
     ///
     /// - Returns: `true` if version objects are equal.
     static func == (lhs: Self, rhs: Self) -> Bool {
@@ -16,7 +16,7 @@ public extension SemanticVersionComparable {
             && lhs.prerelease == rhs.prerelease
     }
 
-    /// Strictly compares version objects for equality.
+    /// Strictly compares types conforming to``SemanticVersionComparable`` for equality.
     ///
     /// - Returns: `true` if version objects are strictly equal.
     static func === (lhs: Self, rhs: Self) -> Bool {

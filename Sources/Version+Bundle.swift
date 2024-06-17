@@ -8,7 +8,7 @@
 import Foundation
 
 public extension Bundle {
-    /// The version of the current bundle.
+    /// The ``Version`` of the current bundle.
     ///
     /// - Note: Uses the key `CFBundleShortVersionString` for retrieving version values.
     var shortVersion: Version? {
@@ -20,7 +20,7 @@ public extension Bundle {
         return version
     }
 
-    /// The full version of the current bundle.
+    /// The full ``Version`` of the current bundle.
     ///
     /// - Note: Uses the key `CFBundleShortVersionString` and `CFBundleVersion` for retrieving version values.
     var version: Version? {
