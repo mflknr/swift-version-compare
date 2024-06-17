@@ -2,13 +2,32 @@ version: 1
 builder:
   configs:
   - platform: ios
-    scheme: VersionCompare
+    swift_version: '5.9.2'
+    scheme: swift-version-compare
+    target: VersionCompare
+    documentation_targets: [VersionCompare]
   - platform: macos-xcodebuild
-    scheme: VersionCompare
+    swift_version: '5.9.2'
+    scheme: swift-version-compare
+    target: VersionCompare
+    documentation_targets: [VersionCompare]
   - platform: tvos
-    scheme: VersionCompare
+    swift_version: '5.9.2'
+    scheme: swift-version-compare
+    target: VersionCompare
+    documentation_targets: [VersionCompare]
   - platform: watchos
-    scheme: VersionCompare
+    swift_version: '5.9.2'
+    scheme: swift-version-compare
+    target: VersionCompare
+    documentation_targets: [VersionCompare]
   - platform: visionos
-    scheme: VersionCompare
-  - documentation_targets: [VersionCompare]
+    swift_version: '5.9.2'
+    scheme: swift-version-compare
+    target: VersionCompare
+    documentation_targets: [VersionCompare]
+external_links:
+  documentation: https://mflknr.github.io/swift-version-compare/
+metadata:
+  authors: 
+   Marius Felkner
