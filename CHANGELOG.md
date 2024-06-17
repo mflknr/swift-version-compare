@@ -7,6 +7,8 @@
 ### Changed
 
 - Documentation syntax to DocC
+- `SwiftLint` to `0.55.1`
+- `SwiftFormat` to `0.54.0`
 
 ### Removed
 

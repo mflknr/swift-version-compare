@@ -168,12 +168,12 @@ public struct Version: Sendable, SemanticVersionComparable {
             prerelease = String(prereleaseSubstring)
                 .split(separator: ".")
                 .map(String.init)
-                .compactMap {
-                    if let asInt = Int($0) {
+                .compactMap { identifierString in
+                    if let asInt = Int(identifierString) {
                         return PrereleaseIdentifier(integerLiteral: asInt)
                     }
 
-                    return PrereleaseIdentifier($0)
+                    return PrereleaseIdentifier(identifierString)
                 }
             // if a pre-release identifier element is initialized as .unkown, we can savely assume that the given
             // string is not a valid  `SemVer` version string.
