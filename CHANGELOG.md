@@ -4,6 +4,10 @@
 - Support for VisionOS
 - `.spi.yml` for automated DocC generation on the Swift Package Index
 
+### Changed
+
+- Documentation syntax to DocC
+
 ### Removed
 
 - `jazzy` documentation generation
