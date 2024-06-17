@@ -1,7 +1,8 @@
 # swift-version-compare
 
-[![build](https://github.com/mflknr/swift-version-compare/workflows/checks/badge.svg)](https://github.com/mflknr/swift-version-compare/actions/workflows/checks.yml)
-[![doccov](https://mflknr.github.io/swift-version-compare/badge.svg?sanitize=true)](https://mflknr.github.io/swift-version-compare/)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fmflknr%2Fswift-version-compare%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/mflknr/swift-version-compare)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fmflknr%2Fswift-version-compare%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/mflknr/swift-version-compare)
+[![](https://github.com/mflknr/swift-version-compare/workflows/checks/badge.svg)](https://github.com/mflknr/swift-version-compare/actions/workflows/checks.yml)
 [![licence](https://img.shields.io/github/license/mflknr/swift-version-compare)](https://github.com/mflknr/swift-version-compare/blob/main/LICENSE)
 
 A package introducing a `Version` object implementing the  `SemanticVersionComparable` protocol for comparing versions conforming to [SemVer](https://semver.org). 
