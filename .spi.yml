@@ -2,27 +2,27 @@ version: 1
 builder:
   configs:
   - platform: ios
-    swift_version: '5.9.2'
+    swift_version: '5.9'
     scheme: swift-version-compare
     target: VersionCompare
     documentation_targets: [VersionCompare]
-  - platform: macos-xcodebuild
-    swift_version: '5.9.2'
+  - platform: macos
+    swift_version: '5.9'
     scheme: swift-version-compare
     target: VersionCompare
     documentation_targets: [VersionCompare]
   - platform: tvos
-    swift_version: '5.9.2'
+    swift_version: '5.9'
     scheme: swift-version-compare
     target: VersionCompare
     documentation_targets: [VersionCompare]
   - platform: watchos
-    swift_version: '5.9.2'
+    swift_version: '5.9'
     scheme: swift-version-compare
     target: VersionCompare
     documentation_targets: [VersionCompare]
   - platform: visionos
-    swift_version: '5.9.2'
+    swift_version: '5.9'
     scheme: swift-version-compare
     target: VersionCompare
     documentation_targets: [VersionCompare]
