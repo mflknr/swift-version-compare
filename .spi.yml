@@ -1,0 +1,14 @@
+version: 1
+builder:
+  configs:
+  - platform: ios
+    scheme: VersionCompare
+  - platform: macos-xcodebuild
+    scheme: VersionCompare
+  - platform: tvos
+    scheme: VersionCompare
+  - platform: watchos
+    scheme: VersionCompare
+  - platform: visionos
+    scheme: VersionCompare
+  - documentation_targets: [VersionCompare]
