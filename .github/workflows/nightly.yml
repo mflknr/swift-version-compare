@@ -10,11 +10,11 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-        swift: ["5.9", "5.10"]
+        swift: ["6.0"]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: fwal/setup-swift@v2
+      - uses: swift-actions/setup-swift@v2
         with:
           swift-version: ${{ matrix.swift }}
 
