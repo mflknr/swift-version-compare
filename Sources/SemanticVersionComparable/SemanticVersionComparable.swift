@@ -25,7 +25,7 @@
 ///     versionOne === versionTwo // `false`
 ///
 /// - Remark: See [semver.org](https://semver.org) for detailed information.
-public protocol SemanticVersionComparable: Comparable, Hashable {
+public protocol SemanticVersionComparable: Comparable, Hashable, Sendable {
     /// The `MAJOR` identifier of a version.
     var major: UInt { get }
     /// The `MINOR` identifier of a version
