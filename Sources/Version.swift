@@ -216,7 +216,7 @@ public struct Version: Sendable, SemanticVersionComparable {
 
 public extension Version {
     /// An initial ``Version`` representing the string `0.0.0`.
-    static var initial: Version = .init(major: 0, minor: 0, patch: 0)
+    static let initial: Version = .init(major: 0, minor: 0, patch: 0)
 }
 
 // MARK: CustomDebugStringConvertible
